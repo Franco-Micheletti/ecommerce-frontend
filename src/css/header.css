@@ -1,0 +1,176 @@
+.products-in-cart{
+
+    font-size: 17px;
+    font-weight: 800;
+    width: 25px;
+    height: 25px;
+    color: #0084ff;
+    position: relative;
+    bottom: 0;
+    right: 17px;
+    bottom: 22px;
+    background: blanchedalmond;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-table;
+    align-items: center;
+    text-decoration: none;
+    align-content: center;
+
+}
+
+.cart-shop-icon{
+
+    width: 30px;
+    height: 30px;
+}
+
+.scope-icon {
+
+    color: snow;
+    width: 25px;
+    height: 25px;
+    display: block;
+    top: 0;
+    fill: #878686;
+    
+}
+
+.search-button {
+
+    background-color: #dbdada;
+    height: 42.8px;
+    width: 62px;
+    border: 0;
+    margin-left: -12px;
+    border-start-end-radius: 20px;
+    border-end-end-radius: 20px;
+    justify-content: center;
+    display: grid;
+    align-items: center;
+}
+
+.search-button-container {
+    
+    align-items: center;
+    display: flex;
+}
+
+
+.search-button:hover {
+
+    cursor: pointer;
+    background-color: rgb(225, 226, 226);
+    border-start-end-radius: 20px;
+    border-end-end-radius: 20px;
+    
+}
+.logo-image {
+
+    border-radius: 50px;
+}
+
+.logo-name {
+
+    display: inline-flex;
+    gap: 7px;
+
+}
+.logo-container {
+    
+    text-decoration: none;
+    display: inline-flex;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgb(56, 60, 75);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.login-link {
+
+    background-color: rgb(34, 133, 199);
+    height: 32px;
+    width: 100px;
+    height: 35px;
+    color: white;
+    border-radius: 5px;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 50px;
+}
+
+.user-options-button-container {
+
+    margin-right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+}   
+
+.expand-user-options-button {
+
+    height: 50px;
+    width: 50px;
+    border: 0;
+    background-color: rgb(255, 255, 255);
+
+}
+.expand-user-options-button:hover {
+
+    cursor:pointer;
+    
+}
+
+.user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.header-container {
+    
+    height: 90px;
+    display: flex;
+    align-items: center;
+}
+
+.input-box-style {
+
+    background-color: transparent;
+    color: black;
+    border-width: 0;
+    width: 672px;
+    height: 20px;
+    position: relative;
+    font-size:15px;
+    border-radius: 20px;
+}
+
+.input-box-style:focus {
+    
+    outline: 0
+}
+
+::placeholder { 
+    color: rgb(68, 66, 66);
+    opacity: 1;
+  }
+
+.input-box-container {
+
+    width: 672px;
+    height: 20px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 0.01px solid #e9e9e9;
+    border-radius: 20px;
+    
+}

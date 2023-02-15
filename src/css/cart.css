@@ -1,0 +1,240 @@
+.cart-icon-in-cart {
+
+    fill-opacity: 50%;
+    opacity: 50%;
+    height: 35px;
+    width: 35px;
+
+}
+.buttons-scroll-cart {
+
+    display: inline-grid;
+    margin-left: 46px;
+    gap: 5px;
+    width: 30px;
+    justify-content: center;
+}
+
+.cart-checkout{
+
+    background-color: #ffffff;
+    width: 350px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 80%) 0px 8px 34px -25px;
+
+}
+.vertical-scroll-down {
+
+    background-color: rgb(229, 235, 236);
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60%;
+    display: inline-flex;
+    border: 0.00003px solid rgb(235, 235, 235);
+    
+}
+.vertical-scroll-up {
+
+    background-color: rgb(229, 235, 236);
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60%;
+    display: inline-flex;
+    border: 0.00003px solid rgb(235, 235, 235);
+    
+}
+
+.vertical-scroll-down:hover, .vertical-scroll-up:hover{
+
+    background-color: rgb(205, 224, 241);
+    cursor: pointer;
+}
+
+.vertical-scroll-up svg {
+    transform: rotate(180deg);
+}
+
+.vertical-scroll-down svg {
+    transform: rotate(0deg);
+}
+
+.total-products-in-cart{
+
+    gap: 5px;
+    font-size: 22px;
+    font-family: monospace;
+    font-weight: bold;
+    display: inline-flex;
+    background: #0379b3;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+.text-cart {
+    color:white
+}
+.total-products-in-cart label {
+
+    font-weight: 200;
+    color: white;
+}
+
+.unit-price-cart{
+
+    color: rgb(10, 83, 143);
+
+}
+.product-info-item-cart{
+
+    width: 501px;
+    height: 109px;
+    display: inherit;
+    justify-content: space-between;
+    border-bottom: groove;
+    border-color: #fbfbfb;
+    border-width: 0.1px;
+    align-items: center;
+}
+
+.product-info-item-cart label {
+
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    color: #929292;
+
+}
+
+.product-list-in-cart-container {
+
+    display: inline-flex;
+    height: 550px;
+    width: 425px;
+    flex-wrap: wrap;
+    gap: 1px;
+    margin-left:30px;
+    align-items: center;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    justify-items: center;
+    align-content: flex-start;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    scroll-behavior: smooth;
+}
+
+
+.product-list-in-cart-container::-webkit-scrollbar {
+
+    display: none;
+}
+
+.total-price-in-cart {
+
+    border-top: groove;
+    border-width: 1px;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: end;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 186px;
+    margin-left: 402px;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.total-price-in-cart label{
+
+    color: rgb(10, 83, 143);
+}
+
+.buy-products-container {
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    border-radius: 10px;    
+    height: 795px;
+    width: 600px;
+    display: grid;
+    box-shadow: rgb(0 0 0 / 80%) 0px 8px 34px -25px;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.cart-page {
+
+    min-height: 740px;
+    width: 1779px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    gap: 60px;
+
+}
+
+.product-item-cart {
+
+    text-align: center;
+    border-radius: 50%;
+    width: 150px;
+    height: 122px;
+    
+}
+
+.button-product-remove {
+
+    background-color: rgb(248, 32, 3);
+    border-radius: 30px;
+    text-align: center;
+    justify-items: center;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-left: -73px;
+    width: 83px;
+    height: 30px;
+    border: 0;
+    color: white;  
+}
+
+
+
+.products-list-container-cart::-webkit-scrollbar {
+
+    display: none;
+}
+
+.product-name{
+
+    color: white;
+    text-align: left;
+    font-size: 11px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.product-price {
+    
+    font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    width: 98px;
+    height: 20px;
+    margin-top: 5px;
+    text-align: left;
+    color: white;
+}

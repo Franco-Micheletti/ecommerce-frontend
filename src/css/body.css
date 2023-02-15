@@ -1,0 +1,15 @@
+.body-container {
+
+    height: auto;
+    display: flex;
+    min-height: 738px;
+    background-color: #ffffff;
+}
+
+.body-container-without-filter {
+
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+}
