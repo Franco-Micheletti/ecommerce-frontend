@@ -7,7 +7,9 @@ import {searchMadeReducer,
         stringInputReducer,
         productsReducer,
         filtersReducer,
-        homeProductsReducer} from './products/productsSlices'
+        homeProductsReducer,
+        appliedFiltersReducer,
+        urlFiltersStringReducer} from './products/productsSlices'
 
 
 export const store = configureStore({
@@ -20,7 +22,9 @@ export const store = configureStore({
         stringInputReducer,
         productsReducer,
         filtersReducer,
-        homeProductsReducer
+        homeProductsReducer,
+        appliedFiltersReducer,
+        urlFiltersStringReducer
         
     }
 })

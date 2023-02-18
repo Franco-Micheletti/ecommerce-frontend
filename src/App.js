@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path ='/' element = {<Home />} />
+        <Route path ="/search:urlString" element = {<Search />} />
         <Route path ="/search" element = {<Search />} />
         <Route path ='/cart' element = {<Cart />} />
         <Route path = '*' element = {<h1 style={{textAlign: "center"}}>404 Not Found</h1>} />

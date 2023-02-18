@@ -21,3 +21,14 @@ export const fetchProductsByName = (string) => {
     )
 
 } 
+
+export const fetchAndApplyFilter = async (searchInput,appliedFilters) => {
+    
+    const filters = JSON.stringify(appliedFilters)
+    store.dispatch(setSearchedString(searchInput))
+    
+    const data = await fetch(`http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}`)
+    const dataJson = await data.json()
+    return dataJson;
+    
+} 

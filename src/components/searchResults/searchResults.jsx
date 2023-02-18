@@ -1,16 +1,23 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import '../../css/products.css'
 import '../../css/body.css'
 import Filters from '../filters/filters'
 import { addProductToCart } from "../cart/functions/addProductToCart";
 import { useSelector } from "react-redux";
+import { store } from "../../state/store";
 
 const SearchResults = () => {
 
-    const filters = useSelector( (store) => store.filtersReducer)
-    const products = useSelector( (store) => store.productsReducer)
-    const searchedString = useSelector( (store) => store.stringInputReducer)
+    var filters        = useSelector( (store) => store.filtersReducer)
+    var products       = useSelector( (store) => store.productsReducer)
+    var searchedString = useSelector( (store) => store.stringInputReducer)
+    
+    store.subscribe(()=> {
+        filters        = store.getState().filtersReducer
+        products       = store.getState().productsReducer
+        searchedString = store.getState().stringInputReducer
+    })
     
     if ( products && filters ) {
         return (

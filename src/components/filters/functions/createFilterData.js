@@ -1,7 +1,7 @@
 function createFilterData(filters) {
 
     if(filters["filters"]) { 
-        
+    
         var filtersNames = {}
 
         Object.keys(filters["filters"])?.map( (filterKeyName) => {
@@ -16,7 +16,7 @@ function createFilterData(filters) {
         
         return filtersNames
     }
-   
+    
 }
 
 export default createFilterData

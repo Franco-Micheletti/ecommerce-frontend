@@ -37,7 +37,7 @@ const Navbar = ({loggedIn = false}) => {
         
         if (e.key === 'Enter') {
             fetchProductsByName(searchInput)
-            navigate("/search")
+            navigate(`/search/${""}`)
         }
     }
 

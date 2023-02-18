@@ -1,15 +1,28 @@
-import React,{useState,useEffect,useRef} from "react";
+import React,{useState,useEffect} from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { useFetcher, useNavigate } from "react-router-dom";
 import '../../css/filters.css'
 import handleShowFilter from './functions/toggleFilterValues.js'
 import createFilterData from './functions/createFilterData.js'
+import { fetchAndApplyFilter } from '../../api/fetchProductsByName'
+import { addFilter } from "../../state/products/productsSlices";
+import { setUrlFiltersString } from "../../state/products/productsSlices";
+import { setProducts } from "../../state/products/productsSlices";
+import { setFilters } from "../../state/products/productsSlices";
+import { store } from "../../state/store";
 
 
-// import {ProductTypeFilters,PriceExpand} from '../html/filtersDetails.jsx'
 const Filters = (filters) => {
     
+    const navigate = useNavigate()
+    // States
+    const dispatch = useDispatch()
+    const appliedFilters = useSelector( (store) => store.appliedFiltersReducer)
+    const searchInput = useSelector( (store) => store.stringInputReducer)
+    const urlFiltersString = useSelector( (store) => store.urlFiltersStringReducer)
+
     // Create object with values of each filter to be used by handleShowFilter function
     var filtersNames = createFilterData(filters)
-    
     // Price Range States
     const [minPrice,setMinPrice] = useState(0)
     const [maxPrice,setMaxPrice] = useState(100)
@@ -27,25 +40,59 @@ const Filters = (filters) => {
         setMaxPrice(event.target.value)
     }
 
+    const handleFilterClick = async (filterToApplied,toggleActiveId,filterOptionsLength,elementClickedId) => {
+        
+        dispatch(addFilter(filterToApplied))
+        dispatch(setUrlFiltersString(appliedFilters))
+        const urlString = store.getState().urlFiltersStringReducer
+        const data = await fetchAndApplyFilter(searchInput,appliedFilters)
+        if (data) {
+            
+            dispatch(setProducts(data["products"]))
+            const products = store.getState().productsReducer
+            dispatch(setFilters(data["filters"]))
+            
+            
+            console.log("Filter To Applied",filterToApplied)
+            console.log("Applied Filters",appliedFilters)
+            console.log("Filtered Products",products)
+            console.log("String at url",urlFiltersString)
+            
+            
+            for (let number = 0;number<filterOptionsLength;number++) {
+                const otherButton = document.getElementById("label"+filterToApplied["filter_name"]+number)
+                otherButton.style.backgroundColor = "#ffffff"
+            }
+            
+            const radioButtonLabel = document.getElementById(toggleActiveId)
+            if (radioButtonLabel.style.backgroundColor === "#2a7dca") {
+                radioButtonLabel.style.backgroundColor = "#ffffff"
+            } else {
+                radioButtonLabel.style.backgroundColor = "#2a7dca"
+            }
+           
+        }
+        navigate(`/search/${urlString}`)
+        
+    }
+
+
     return (
         
         <div className="filters-container">
-            <div className="filters-features-container">
+            <div className="applied-filters-wraper">
                 <div className="selected-filters-container">
                     <div className="selected-filters-text">Selected Filters</div>
                 </div>
                 <div className="selected-filters-list-container">
-                    <div className="applied-filter">$0-30</div>
-                    <div className="applied-filter">Condiments</div>
-                    <div className="applied-filter">Cookies</div>
-                    <div className="applied-filter">Big</div>
-                    <div className="applied-filter">In 1day</div>
-                    <div className="applied-filter">300g</div>
-                    <div className="applied-filter">$0-30</div>
-                    <div className="applied-filter">$0-30</div>
+                {
+                    Object.keys(appliedFilters).map( (key,index) => {
+                        return (<div className="applied-filter">{appliedFilters[key]}</div>)
+                    })
+                }
                 </div>
-                {/* FILTERS */}
-                
+            </div>
+            <div className="filters-features-container">
                 {   
                     filters["filters"]
                         ?   (Object.keys(filters["filters"]).map(function(filter, filterIndex) {
@@ -53,7 +100,7 @@ const Filters = (filters) => {
                                 return (
                                     <>  
                                         <div key={filter} className="filter-container">
-                                            <div className="filters-title">{filter}</div>
+                                            <div className="filters-title">{filter.charAt(0).toUpperCase()+filter.slice(1).replace("_"," ")}</div>
                                             <div id={filter+"toggle"} onClick={() => handleShowFilter(filter,filtersNames)} className="expand-filter-options-container"> 
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
                                             </div>
@@ -61,12 +108,20 @@ const Filters = (filters) => {
                                         <div className="transition-inline">
                                             { 
                                                 Object.keys(filters["filters"][filter]).map(function(attribute, keyIndex) {
-                                                    
+                                                    const filterToApplied = {"filter_name":filter,
+                                                                             "filter_value":attribute}
                                                     return(
                                                         filter !== "Price"
         
                                                                 ?  <div key={attribute} id={filter+attribute} className="filter-items" style={{display:"None"}}>
-                                                                        <input className="radio-button" type="checkbox" name="filter" value="nuts"></input>
+                                                                        <div style={{display:"inline-flex",width:"40px"}}>
+                                                                            <div>
+                                                                                <input id={"radio"+filter+attribute} onClick={() => handleFilterClick(filterToApplied,"label"+filter+keyIndex,Object.keys(filters["filters"][filter]).length,"radio"+filter+attribute)} className="radio-button" type="radio" name={filter} value={filter+attribute}></input>
+                                                                            </div>
+                                                                            <div style={{display:"inline-flex"}}>
+                                                                                <label id={"label"+filter+keyIndex} className="custom-radio-button" htmlFor={"radio"+filter+attribute}></label>
+                                                                            </div>
+                                                                        </div>
                                                                         <div className="space-between">
                                                                             <div className="filter-items-text">{attribute}</div>
                                                                             <div className="num-result">{filters["filters"][filter][attribute]}</div>
