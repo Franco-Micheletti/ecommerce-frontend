@@ -19,7 +19,7 @@ const Filters = (filters) => {
     const dispatch = useDispatch()
     const appliedFilters = useSelector( (store) => store.appliedFiltersReducer)
     const searchInput = useSelector( (store) => store.stringInputReducer)
-    const urlFiltersString = useSelector( (store) => store.urlFiltersStringReducer)
+    
 
     // Create object with values of each filter to be used by handleShowFilter function
     var filtersNames = createFilterData(filters)
@@ -40,12 +40,13 @@ const Filters = (filters) => {
         setMaxPrice(event.target.value)
     }
 
-    const handleFilterClick = async (filterToApplied,toggleActiveId,filterOptionsLength,elementClickedId) => {
+    const handleFilterClick = async (filterToApplied,toggleActiveId,filterOptionsLength) => {
         
-        dispatch(addFilter(filterToApplied))
-        dispatch(setUrlFiltersString(appliedFilters))
+        dispatch(addFilter(filterToApplied)) // Aca el problema
+        const appliedFiltersState = store.getState().appliedFiltersReducer
+        dispatch(setUrlFiltersString(appliedFiltersState))
         const urlString = store.getState().urlFiltersStringReducer
-        const data = await fetchAndApplyFilter(searchInput,appliedFilters)
+        const data = await fetchAndApplyFilter(searchInput,appliedFiltersState)
         if (data) {
             
             dispatch(setProducts(data["products"]))
@@ -53,10 +54,7 @@ const Filters = (filters) => {
             dispatch(setFilters(data["filters"]))
             
             
-            console.log("Filter To Applied",filterToApplied)
-            console.log("Applied Filters",appliedFilters)
-            console.log("Filtered Products",products)
-            console.log("String at url",urlFiltersString)
+            
             
             
             for (let number = 0;number<filterOptionsLength;number++) {

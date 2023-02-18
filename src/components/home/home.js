@@ -6,6 +6,7 @@ import Footer from '../footer';
 import HomeProducts from "../homeProducts/homeProducts";
 import Navbar from '../navbar'
 
+
 const Home = () => {
 
     return (

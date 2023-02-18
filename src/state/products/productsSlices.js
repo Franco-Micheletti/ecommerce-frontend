@@ -73,11 +73,15 @@ export const appliedFiltersSlice = createSlice(
         initialState:{},
         reducers:{
             addFilter: (state,action) =>{
-                state[action.payload.filter_name] = action.payload.filter_value
+                state[action.payload["filter_name"]] = action.payload["filter_value"]
                 return state
             },
             removeFilter: (state,action) =>{
-                delete state[action.payload]
+                delete state[action.payload["filter_name"]]
+                return state
+            },
+            resetAppliedFiltersList: (state,action) =>{
+                state = {}
                 return state
             }
         }
@@ -115,7 +119,7 @@ export const {setFilters}             = filtersSlice.actions
 export const {setSearchMade}          = searchMadeSlice.actions
 export const {setSearchedString}      = searchedStringSlice.actions
 export const {setHomeProducts}        = homePageProductsSlice.actions
-export const {addFilter,removeFilter} = appliedFiltersSlice.actions
+export const {addFilter,removeFilter,resetAppliedFiltersList} = appliedFiltersSlice.actions
 export const {setUrlFiltersString}    = urlFiltersStringSlice.actions
 // Export reducers
 export const stringInputReducer      = searchedStringSlice.reducer

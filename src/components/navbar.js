@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByName } from '../api/fetchProductsByName'
 import { setSearchedString } from '../state/products/productsSlices'
 import { useNavigate } from "react-router-dom";
+import { resetAppliedFiltersList } from "../state/products/productsSlices";
 
 const Navbar = ({loggedIn = false}) => {
 
@@ -36,6 +37,8 @@ const Navbar = ({loggedIn = false}) => {
     function handleEnterKeyEvent(e,searchInput) {
         
         if (e.key === 'Enter') {
+
+            dispatch(resetAppliedFiltersList())
             fetchProductsByName(searchInput)
             navigate(`/search/${""}`)
         }
