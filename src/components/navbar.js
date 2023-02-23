@@ -3,7 +3,6 @@ import UserOptions from "./userOptions";
 import '../css/header.css'
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsByName } from '../api/fetchProductsByName'
 import { setSearchedString } from '../state/products/productsSlices'
 import { useNavigate } from "react-router-dom";
 import { resetAppliedFiltersList } from "../state/products/productsSlices";
@@ -37,17 +36,16 @@ const Navbar = ({loggedIn = false}) => {
     function handleEnterKeyEvent(e,searchInput) {
         
         if (e.key === 'Enter') {
-
             dispatch(resetAppliedFiltersList())
-            fetchProductsByName(searchInput)
-            navigate(`/search/${""}`)
+            
+            navigate(`/search/${searchInput}/`)
         }
     }
 
     loggedIn = true
     return (
         
-        <header>
+        <header className="header">
             <div className="header-container">
                 <div className="logo-container">
                     <Link to="/" className="logo-container">

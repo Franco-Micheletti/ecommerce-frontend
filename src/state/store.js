@@ -11,6 +11,10 @@ import {searchMadeReducer,
         appliedFiltersReducer,
         urlFiltersStringReducer} from './products/productsSlices'
 
+import { 
+         maxPriceFilterReducer,
+         minPriceValueReducer,
+         maxPriceValueReducer } from './filters/filtersSlices'
 
 export const store = configureStore({
     reducer: {
@@ -24,7 +28,10 @@ export const store = configureStore({
         filtersReducer,
         homeProductsReducer,
         appliedFiltersReducer,
-        urlFiltersStringReducer
+        urlFiltersStringReducer,
+        maxPriceFilterReducer,
+        minPriceValueReducer,
+        maxPriceValueReducer
         
     }
 })

@@ -1,30 +1,51 @@
-
-
+import React, { useEffect } from "react";
+// CSS IMPORTS
 import '../../css/home.css'
 import '../../css/userOptions.css' 
-import Footer from '../footer';
-import SearchResults from "../searchResults/searchResults";
-import Navbar from '../navbar'
-import React, { useEffect } from "react";
 import '../../css/products.css'
 import '../../css/body.css'
+// COMPONENTS IMPORTS
+import Footer from '../footer';
+import Navbar from '../navbar'
 import Filters from '../filters/filters'
-import { addProductToCart } from "../cart/functions/addProductToCart";
-import { useSelector } from "react-redux";
+// REDUX
 import { store } from "../../state/store";
+import { setProducts,setFilters } from '../../state/products/productsSlices';
+import { useDispatch,useSelector } from "react-redux";
+// FUNCTIONS
+import { addProductToCart } from "../cart/functions/addProductToCart";
+import { fetchProductsByName,fetchAndApplyFilter } from '../../api/fetchProductsByName';
+// ROUTER
+import { useParams } from 'react-router-dom';
+
+
 
 const Search = () => {
 
-    var filters        = useSelector( (store) => store.filtersReducer)
-    var products       = useSelector( (store) => store.productsReducer)
-    var searchedString = useSelector( (store) => store.stringInputReducer)
-    
-    store.subscribe(()=> {
-        filters        = store.getState().filtersReducer
-        products       = store.getState().productsReducer
-        searchedString = store.getState().stringInputReducer
-    })
+    const filters  = useSelector((store)=> store.filtersReducer)
+    const products = useSelector((store)=> store.productsReducer)
 
+    const dispatch = useDispatch()
+    const {searchInput,urlString} = useParams()
+
+    useEffect(  () => {
+        if (searchInput.length > 1) {
+            
+            if ( searchInput && !urlString) {
+                fetchProductsByName(searchInput)
+                console.log("fecthing by name")
+            }
+            else if ( searchInput && urlString ) {
+                console.log("fecthing by name and filters")
+                console.log("URL FILTERS:",urlString)
+                fetchAndApplyFilter(searchInput,urlString)
+                // filters  = store.getState().filtersReducer
+                // products = store.getState().productsReducer
+            } 
+        }
+    },[searchInput,urlString])
+    
+    
     return ( 
         <div>
             <Navbar />
@@ -34,7 +55,7 @@ const Search = () => {
                     ?   <div className="body-container">
                             <Filters filters={filters} />
                             <div className="results">
-                                <span className="title-results"><h4>Results for:</h4><label>"{ searchedString }" ( {products.length} )</label></span>
+                                <span className="title-results"><h4>Results for:</h4><label>"{ searchInput }" ( {products.length} )</label></span>
                                 <div className="products-list-container">
                                     { 
                                         products.map( (keys) =>  
@@ -56,6 +77,9 @@ const Search = () => {
                         
                     :   <div className="body-container">
                             <Filters />
+                            {
+                                console.log("filters,products",filters,products)
+                            }
                             <div className="no-results">
                                 <h1>No products have been found , check your spelling or use the filter available in the left side. </h1>
                             </div>

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,current  } from "@reduxjs/toolkit";
 
 
 export const productsSlice = createSlice(
@@ -73,7 +73,15 @@ export const appliedFiltersSlice = createSlice(
         initialState:{},
         reducers:{
             addFilter: (state,action) =>{
-                state[action.payload["filter_name"]] = action.payload["filter_value"]
+                if (action.payload["filter_name"] !== "price"){
+                    if (!state["features"]) {
+                        state["features"] = {}
+                    }
+                    state["features"][action.payload["filter_name"]] = action.payload["filter_value"]
+                }
+                else {
+                    state[action.payload["filter_name"]] = action.payload["filter_value"]
+                }
                 return state
             },
             removeFilter: (state,action) =>{
@@ -97,13 +105,15 @@ export const urlFiltersStringSlice = createSlice(
             setUrlFiltersString: (state,action) =>{
                 var filtersApplied = action.payload
                 state = ""
-                Object.keys(filtersApplied).forEach( (key,index) => {
-                    if (index !== Object.keys(filtersApplied).length -1 ) {
-                        state += "?"+key+"="+filtersApplied[key]+"&"
-                    } else {
-                        state += "?"+key+"="+filtersApplied[key]
-                    }
-                });
+                if (filtersApplied["features"]) {
+                    Object.keys(filtersApplied["features"]).forEach( (key,index) => {
+                        state += "&"+key+"="+filtersApplied["features"][key]
+                    });
+                }
+                if ( filtersApplied["price"]) {
+                    state += "&"+"min_price="+filtersApplied["price"]["min_price"]+"&"+"max_price="+filtersApplied["price"]["max_price"]
+                }
+                console.log(state)
                 return state
             }
             

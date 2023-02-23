@@ -7,7 +7,7 @@ function handleShowFilter(filter,filtersNames) {
 
     Object.keys(filtersNames[filter]).map( (attrKey) => {
         
-        if (filter === "Price") {
+        if (filter === "price") {
 
             let attribute = document.getElementById(filter)
 
