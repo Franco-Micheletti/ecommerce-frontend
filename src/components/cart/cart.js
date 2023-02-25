@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import Footer from "../footer"
-import Navbar from "../navbar"
+import Navbar from "../navbar/navbar"
 import '../../css/cart.css'
 import { useSelector } from "react-redux"
 

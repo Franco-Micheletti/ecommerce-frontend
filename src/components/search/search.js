@@ -6,7 +6,7 @@ import '../../css/products.css'
 import '../../css/body.css'
 // COMPONENTS IMPORTS
 import Footer from '../footer';
-import Navbar from '../navbar'
+import Navbar from '../navbar/navbar'
 import Filters from '../filters/filters'
 // REDUX
 import { store } from "../../state/store";
@@ -25,7 +25,7 @@ const Search = () => {
     const filters  = useSelector((store)=> store.filtersReducer)
     const products = useSelector((store)=> store.productsReducer)
 
-    const dispatch = useDispatch()
+    
     const {searchInput,urlString} = useParams()
 
     useEffect(  () => {
@@ -33,11 +33,8 @@ const Search = () => {
             
             if ( searchInput && !urlString) {
                 fetchProductsByName(searchInput)
-                console.log("fecthing by name")
             }
             else if ( searchInput && urlString ) {
-                console.log("fecthing by name and filters")
-                console.log("URL FILTERS:",urlString)
                 fetchAndApplyFilter(searchInput,urlString)
                 // filters  = store.getState().filtersReducer
                 // products = store.getState().productsReducer
@@ -77,9 +74,6 @@ const Search = () => {
                         
                     :   <div className="body-container">
                             <Filters />
-                            {
-                                console.log("filters,products",filters,products)
-                            }
                             <div className="no-results">
                                 <h1>No products have been found , check your spelling or use the filter available in the left side. </h1>
                             </div>

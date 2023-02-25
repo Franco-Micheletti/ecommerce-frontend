@@ -1,5 +1,6 @@
-import { createSlice,current  } from "@reduxjs/toolkit";
-
+import { createSlice  } from "@reduxjs/toolkit";
+import { appliedFiltersLocalStorage,getAllAppliedFilters } from "../../components/appliedFilters/functions/appliedFiltersLocalStorage";
+import { getStringInputFromLocalStorage,addSearchInputToLocalStorage} from "../../components/navbar/functions/searchStringLocalStorage";
 
 export const productsSlice = createSlice(
 
@@ -57,9 +58,10 @@ export const searchMadeSlice = createSlice(
 export const searchedStringSlice = createSlice(
     {
         name:'stringInputReducer',
-        initialState:"",
+        initialState: getStringInputFromLocalStorage(),
         reducers:{
             setSearchedString: (state,action) =>{
+                addSearchInputToLocalStorage(action.payload)
                 state = action.payload
                 return state
             },
@@ -70,26 +72,46 @@ export const searchedStringSlice = createSlice(
 export const appliedFiltersSlice = createSlice(
     {
         name:'appliedFiltersReducer',
-        initialState:{},
+        initialState: getAllAppliedFilters(),
         reducers:{
             addFilter: (state,action) =>{
                 if (action.payload["filter_name"] !== "price"){
                     if (!state["features"]) {
                         state["features"] = {}
                     }
+                    
+                    appliedFiltersLocalStorage("features",false,action.payload)
                     state["features"][action.payload["filter_name"]] = action.payload["filter_value"]
                 }
                 else {
+                    appliedFiltersLocalStorage(action.payload["filter_name"],false,action.payload)
                     state[action.payload["filter_name"]] = action.payload["filter_value"]
                 }
                 return state
             },
             removeFilter: (state,action) =>{
-                delete state[action.payload["filter_name"]]
-                return state
+                if (action.payload["filter_name"] !== "price") {
+                    if (state["features"]) {
+                        if (state["features"][action.payload["filter_name"]]) {
+                            delete state["features"][action.payload["filter_name"]]
+                        }
+                        else {
+                            console.Error("Filter name doesn't exist")
+                        }
+                    }
+                    appliedFiltersLocalStorage("features",true,action.payload)
+                    return state
+                } else {
+                    if (state[action.payload["filter_name"]]) {
+                        delete state[action.payload["filter_name"]]
+                        appliedFiltersLocalStorage(action.payload["filter_name"],true,action.payload)
+                    }
+                }
+                
             },
             resetAppliedFiltersList: (state,action) =>{
                 state = {}
+                window.localStorage.setItem("applied_filters",JSON.stringify({}))
                 return state
             }
         }
@@ -113,7 +135,6 @@ export const urlFiltersStringSlice = createSlice(
                 if ( filtersApplied["price"]) {
                     state += "&"+"min_price="+filtersApplied["price"]["min_price"]+"&"+"max_price="+filtersApplied["price"]["max_price"]
                 }
-                console.log(state)
                 return state
             }
             

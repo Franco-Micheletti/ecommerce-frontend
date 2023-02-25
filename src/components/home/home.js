@@ -4,7 +4,7 @@ import '../../css/home.css'
 import '../../css/userOptions.css' 
 import Footer from '../footer';
 import HomeProducts from "../homeProducts/homeProducts";
-import Navbar from '../navbar'
+import Navbar from '../navbar/navbar'
 
 
 const Home = () => {

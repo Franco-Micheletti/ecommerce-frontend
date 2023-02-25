@@ -1,11 +1,11 @@
 import React,{useState} from "react"
-import UserOptions from "./userOptions";
-import '../css/header.css'
+import UserOptions from "../userOptions";
+import '../../css/header.css'
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchedString } from '../state/products/productsSlices'
+import { setSearchedString } from '../../state/products/productsSlices'
 import { useNavigate } from "react-router-dom";
-import { resetAppliedFiltersList } from "../state/products/productsSlices";
+import { resetAppliedFiltersList } from "../../state/products/productsSlices";
 
 const Navbar = ({loggedIn = false}) => {
 
@@ -49,7 +49,7 @@ const Navbar = ({loggedIn = false}) => {
             <div className="header-container">
                 <div className="logo-container">
                     <Link to="/" className="logo-container">
-                        <img className="logo-image" src={require(`../images/cart.png`)} width="50" height="50"></img>
+                        <img className="logo-image" src={require(`../../images/cart.png`)} width="50" height="50"></img>
                         <div className="logo-name">
                             <span style={{color: "#2285C7"}}>CODENAME:</span><span>MARKET </span>  
                         </div>
@@ -69,11 +69,11 @@ const Navbar = ({loggedIn = false}) => {
                                 <div className="user-options-button-container">
                                     <div>
                                         <Link to="/cart">
-                                            <img className="cart-shop-icon" src={require("../images/cart-2.png")}></img>
+                                            <img className="cart-shop-icon" src={require("../../images/cart-2.png")}></img>
                                             <div className="products-in-cart">{cartCounter}</div>
                                         </Link>
                                     </div>
-                                    <button className="expand-user-options-button" onClick={toggleUserOptions}><img className="user-image" src={require(`../images/user.png`)}></img></button>
+                                    <button className="expand-user-options-button" onClick={toggleUserOptions}><img className="user-image" src={require(`../../images/user.png`)}></img></button>
                                 </div>
                                 {   renderUserOptions === true
                                                 ? <UserOptions />

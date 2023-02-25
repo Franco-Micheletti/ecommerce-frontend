@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import '../../css/filters.css'
 import handleShowFilter from './functions/toggleFilterValues.js'
 import createFilterData from './functions/createFilterData.js'
+import { getStringInputFromLocalStorage } from "../navbar/functions/searchStringLocalStorage";
 import { addMouseUpEvent } from "./functions/addPriceFilter";
-
 import { fetchAndApplyFilter } from '../../api/fetchProductsByName'
 import { setProducts,setFilters,setUrlFiltersString,addFilter } from "../../state/products/productsSlices";
 import { setMaxPrice,setMinPriceValue,setMaxPriceValue } from "../../state/filters/filtersSlices";
@@ -18,7 +18,7 @@ const Filters = (filters) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     // const appliedFilters = useSelector( (store) => store.appliedFiltersReducer)
-    const searchInput = useSelector( (store) => store.stringInputReducer)
+    // const searchInput = useSelector( (store) => store.stringInputReducer)
     // Create object with values of each filter to be used by handleShowFilter function
     var filtersNames = createFilterData(filters)
     // Price Range States
@@ -29,26 +29,22 @@ const Filters = (filters) => {
     useEffect(() => {
         
         if (filters["filters"]) {
-            console.log("Setting max price")
-
             dispatch(setMaxPrice(filters["filters"]["price"]["max_price"]))
             dispatch(setMaxPriceValue(filters["filters"]["price"]["max_price"]))
         }
-        else {
-            console.log("The component did mount but there is no filters")
-        }
     },[filters])
 
-    const handleFilterClick = (filterToApplied,toggleActiveId,filterOptionsLength) => {
-        
-        dispatch(addFilter(filterToApplied))
+    const handleFilterClick = (filterToApply,toggleActiveId,filterOptionsLength) => {
+        dispatch(addFilter(filterToApply))
         const appliedFilters = store.getState().appliedFiltersReducer
         dispatch(setUrlFiltersString(appliedFilters))
         const urlString = store.getState().urlFiltersStringReducer
+        const searchInput = getStringInputFromLocalStorage()
+        
         fetchAndApplyFilter(searchInput,urlString)
-
+        
         for (let number = 0;number<filterOptionsLength;number++) {
-            const otherButton = document.getElementById("label"+filterToApplied["filter_name"]+number)
+            const otherButton = document.getElementById("label"+filterToApply["filter_name"]+number)
             otherButton.style.backgroundColor = "#ffffff"
         }
         
@@ -87,8 +83,8 @@ const Filters = (filters) => {
                                     <div className="transition-inline">
                                     { 
                                     Object.keys(filters["filters"][filter]).map(function(attribute, keyIndex) {
-                                        const filterToApplied = {"filter_name":filter,
-                                                                 "filter_value":attribute}
+                                        const filterToApply = {"filter_name":filter,
+                                                               "filter_value":attribute}
                                         
                                         return(
                                             filter !== "price"
@@ -98,7 +94,7 @@ const Filters = (filters) => {
                                                         <div>
                                                             <input 
                                                                 id={"radio"+filter+attribute} 
-                                                                onClick={() => handleFilterClick(filterToApplied,"label"+filter+keyIndex,Object.keys(filters["filters"][filter]).length)} 
+                                                                onClick={() => handleFilterClick(filterToApply,"label"+filter+keyIndex,Object.keys(filters["filters"][filter]).length)} 
                                                                 className="radio-button" 
                                                                 type="radio" 
                                                                 name={filter} 

@@ -1,11 +1,11 @@
-import {React,} from "react"
+import {React} from "react"
 import { store } from "../../state/store"
-import '../css/filters.css'
+import '../../css/filters.css'
 
 export const AppliedFilters = () => {
     
     const appliedFilters = store.getState().appliedFiltersReducer
-
+    
     return (
         
         <div className="applied-filters-wraper">
