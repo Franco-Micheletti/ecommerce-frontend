@@ -5,15 +5,21 @@ import '../../css/cart.css'
 import { useSelector } from "react-redux"
 
 const Cart = () => {
-
+    
     // Get products in cart
     const productsInCart = useSelector( (store) => store.cartListReducer)
+    console.log(productsInCart)
     // Number of products
     const numberOfproductsInCart = useSelector( (store) => store.cartCounterReducer)
     // Sum prices
     var totalPrice = 0
     productsInCart?.map( (product) => {
-        totalPrice += product["price"]
+        if(product["quantity"] > 1) {
+            totalPrice += product["price"] * product["quantity"]
+        } 
+        else {
+            totalPrice += product["price"]
+        }
     })
     // Scrolling
     var movingUp = false
@@ -52,13 +58,14 @@ const Cart = () => {
                         <div id="product-list-in-cart-container" className="product-list-in-cart-container">
                             {
                                 productsInCart?.map( (product) =>  {
-                                    console.log(productsInCart)
+                                    console.log(product)
                                     const imageFile = product["product_image_tag"]
                                     return(
                                             <div className="product-info-item-cart">
                                                 <img src={require(`../../images/${imageFile}.webp`)} width="80" height="80"></img>
-                                                <label>{product['product_name'].slice(0,30)}...</label>
+                                                <label className="cart-product-name">{product['product_name'].slice(0,30)}...</label>
                                                 <label className="unit-price-cart"> ${product['price'].toFixed(2)}</label>
+                                                <label className="cart-product-quantity">{product['quantity']}</label>
                                             </div>)
                                 })
                             }

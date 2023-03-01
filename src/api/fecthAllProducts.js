@@ -1,4 +1,4 @@
-import { setHomeProducts } from "../state/products/productsSlices"
+import { setDataLoading, setHomeProducts } from "../state/products/productsSlices"
 import { store } from "../state/store";
 
 export const fetchAllProducts = () => {
@@ -11,7 +11,8 @@ export const fetchAllProducts = () => {
                     }
     )
     .then(data => {
-        store.dispatch(setHomeProducts(data["products"]))    
+        store.dispatch(setHomeProducts(data["products"]))
+        store.dispatch(setDataLoading(true))    
         }
     )
 } 

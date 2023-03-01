@@ -1,3 +1,36 @@
+.cart-product-quantity{
+
+    font-weight: bold;
+    color: rgb(16 121 161);
+    font-size: 19px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #dfdfdf;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    display: grid;
+}
+
+.cart-product-name {
+
+    font-size: 17px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    color: #929292;
+    width: 100px;
+}
+
+.unit-price-cart{
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 17px;
+    color: rgb(10, 83, 143);
+
+}
 .cart-icon-in-cart {
 
     fill-opacity: 50%;
@@ -71,13 +104,12 @@
     font-weight: bold;
     display: inline-flex;
     background: #0379b3;
-    height: 60px;
+    height: 50px;
     align-items: center;
     justify-content: center;
     width: 600px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-
 }
 .text-cart {
     color:white
@@ -88,11 +120,6 @@
     color: white;
 }
 
-.unit-price-cart{
-
-    color: rgb(10, 83, 143);
-
-}
 .product-info-item-cart{
 
     width: 501px;
@@ -103,15 +130,6 @@
     border-color: #fbfbfb;
     border-width: 0.1px;
     align-items: center;
-}
-
-.product-info-item-cart label {
-
-    font-size: 15px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 500;
-    color: #929292;
-
 }
 
 .product-list-in-cart-container {
@@ -143,16 +161,19 @@
 
     border-top: groove;
     border-width: 1px;
-    font-size: 18px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 23px;
+    font-family: monospace;
     text-align: end;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    width: 186px;
-    margin-left: 402px;
+    margin-top: 40px;
     display: flex;
     gap: 5px;
-    justify-content: center;
+    justify-content: right;
+    background-color: rgb(229 235 236);
+    height: 66px;
+    align-items: center;
+    padding-right: 40px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .total-price-in-cart label{
@@ -165,13 +186,14 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 25px;
     font-weight: 800;
-    border-radius: 10px;    
-    height: 795px;
+    border-radius: 10px;
+    height: 745px;
     width: 600px;
     display: grid;
     box-shadow: rgb(0 0 0 / 80%) 0px 8px 34px -25px;
     justify-content: center;
     align-content: center;
+    margin-top: 50px;
     
 }
 

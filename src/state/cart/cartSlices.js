@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { cartProductsLocalStorage } from "../../components/cart/functions/cartProductsLocalStorage";
+import { countTotalInLocalStorage } from "../../components/cart/functions/countTotalInLocalStorage"
 
 export const cartCounterSlice = createSlice(
     {
         name:'cartCounterReducer',
-        initialState:cartProductsLocalStorage("cart_products").length,
+        initialState: countTotalInLocalStorage(),
         reducers:{
             cartCounterIncrease: (state,action) =>{
                 state += action.payload
@@ -29,7 +30,6 @@ export const cartListSlice = createSlice(
         ,
         reducers:{
             cartListAdd: (state,action) => {
-                
                 state.push(action.payload)
                 return state
             },
@@ -40,6 +40,11 @@ export const cartListSlice = createSlice(
             cartListReset: (state) => {
                 state = []
                 return state
+            },
+            addOneMoreOfTheSameProduct: (state,action) => {
+                const productIndex = action.payload
+                state[productIndex]["quantity"] += 1
+                return state
             }
         }
     }
@@ -48,7 +53,7 @@ export const cartListSlice = createSlice(
 
 // Actions
 export const {cartCounterIncrease,cartCounterDecrease,cartCounterReset} = cartCounterSlice.actions
-export const {cartListAdd,cartListRemove,cartListReset} = cartListSlice.actions
+export const {cartListAdd,cartListRemove,cartListReset,addOneMoreOfTheSameProduct} = cartListSlice.actions
 // Reducers
 export const cartCounterReducer = cartCounterSlice.reducer
 export const cartListReducer = cartListSlice.reducer

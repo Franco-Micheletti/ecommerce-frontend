@@ -136,10 +136,21 @@ export const urlFiltersStringSlice = createSlice(
                     state += "&"+"min_price="+filtersApplied["price"]["min_price"]+"&"+"max_price="+filtersApplied["price"]["max_price"]
                 }
                 return state
-            }
-            
-                    
-            
+            }  
+        }
+    }
+)
+
+export const dataLoadingSlice = createSlice(
+
+    {
+        name:'dataLoading',
+        initialState:false,
+        reducers:{
+            setDataLoading: (state,action) =>{
+                state = action.payload
+                return state
+            }  
         }
     }
 )
@@ -152,6 +163,7 @@ export const {setSearchedString}      = searchedStringSlice.actions
 export const {setHomeProducts}        = homePageProductsSlice.actions
 export const {addFilter,removeFilter,resetAppliedFiltersList} = appliedFiltersSlice.actions
 export const {setUrlFiltersString}    = urlFiltersStringSlice.actions
+export const {setDataLoading}         = dataLoadingSlice.actions
 // Export reducers
 export const stringInputReducer      = searchedStringSlice.reducer
 export const searchMadeReducer       =  searchMadeSlice.reducer
@@ -160,7 +172,7 @@ export const filtersReducer          = filtersSlice.reducer
 export const homeProductsReducer     = homePageProductsSlice.reducer
 export const appliedFiltersReducer   = appliedFiltersSlice.reducer
 export const urlFiltersStringReducer = urlFiltersStringSlice.reducer
-
+export const dataLoadingReducer      = dataLoadingSlice.reducer
 
 
 

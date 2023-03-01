@@ -1,3 +1,31 @@
+.button-show-filters-container{
+
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+    margin-top: 50px;
+    box-shadow: rgb(0 0 0 / 80%) 0px 8px 34px -25px;
+    position: absolute;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 0.1px solid #e7e7e7;
+    display: none;
+    z-index: 3;
+
+}
+.button-show-filters-container:hover{
+    
+    cursor: pointer;
+    background-color: #eeeff0;
+}
+.skeleton-filters-search{
+
+    height: 743px;
+    width: 250px;
+    margin-right: 40px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
 
 .filter-option-value{
     color: rgb(14 162 207);
@@ -64,7 +92,7 @@
     flex-wrap: wrap;
     display: inline-flex;
     align-content: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 
@@ -91,7 +119,7 @@
     box-shadow: rgb(0 0 0 / 80%) 0px 8px 34px -25px;
     border-radius: 20px;
     margin-top: 40px;
-    margin-left: 77px;
+    margin-left: 40px;
     margin-bottom: 40px;
     margin-right: 40px;
     height: -moz-fit-content;
@@ -224,4 +252,93 @@
     display: inline-flex;
     gap: 20px;
     align-items: center;
+}
+
+.toggle-filter-black-background{
+
+    position: static;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1104px;
+    transition-property: opacity;
+    transform: translateZ(0);
+    opacity: 0;
+    background-color: #1e1e1e;
+}
+
+@media (max-width:1025px) {
+
+    .filters-container{
+        display: block;
+    }
+}   
+
+@media(max-width:769px) {
+
+    .filters-container{
+        display: none;
+        margin-left: -320px;
+        position: absolute;
+        /* width: 100px; */
+        margin-top: -10px;
+        min-width: 300px;
+    }
+    .button-show-filters-container{
+
+        display: block;
+        margin-top: 0;
+        margin-left: 0;
+        left: 5%;
+        top: 15.9%;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media(max-width:592px){
+
+    .filters-container{
+        display: none;
+        margin-left: -320px;
+        position: absolute;
+        margin-top: -30px;
+        min-width: 230px;
+    }
+
+    .filter-container{
+        width: 196px;
+        height: 30px;
+    }
+    .filters-features-container{
+        width: 202px;
+    }
+    .button-show-filters-container{
+        display: block;
+        margin-top: 0;
+        margin-left: 0;
+        left: 6%;
+        top: 14.3%;
+        width: 30px;
+        height: 30px;
+    }
+    .selected-filters-text, .filters-title{
+        font-size: 11px;
+    }
+    .expand-filter-options-container{
+        width: 20px;
+        height: 20px;
+    }
+    .filter-items{
+        width: 183px;
+        font-size: 11px;
+    }
+    .custom-radio-button{
+        height: 16px;
+        width: 16px;
+    }
+    .toggle-filter-black-background{
+        position: absolute
+    }
 }

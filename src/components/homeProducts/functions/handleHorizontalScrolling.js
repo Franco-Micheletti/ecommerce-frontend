@@ -16,29 +16,61 @@ export function handleHorizontalScrolling(side,number,elementToMove) {
          typeof side === "string" ) {
 
             if (side === "left") {
-            
-                // Hide left button
-                const leftButton = document.getElementById("scroll-left-"+number.toString(10))
-                leftButton.style.visibility = "hidden"
-                // Show right button
-                const rightButton = document.getElementById("scroll-right-"+number.toString(10))
-                rightButton.style.visibility = "visible"
                 // Scroll to the left
                 const container = document.getElementById(elementToMove)
-                container.scrollLeft -= 1149
-            }
+                // Scroll based on media width
+                const width = container.offsetWidth
+                if (width === 236) {
+                    container.scrollLeft -= width +13
+                    console.log(container.scrollLeft)
+                    if(container.scrollLeft < 275) {
+                        // Hide left button
+                        const leftButton = document.getElementById("scroll-left-"+number.toString(10))
+                        leftButton.style.visibility = "hidden"
+                        // Show right button
+                        const rightButton = document.getElementById("scroll-right-"+number.toString(10))
+                        rightButton.style.visibility = "visible"
+                    }
+                } else {
+                    // Hide left button
+                    const leftButton = document.getElementById("scroll-left-"+number.toString(10))
+                    leftButton.style.visibility = "hidden"
+                    // Show right button
+                    const rightButton = document.getElementById("scroll-right-"+number.toString(10))
+                    rightButton.style.visibility = "visible"
+                    container.scrollLeft -= 1149
+                }
+                
+            }   
             else if (side === "right") {
     
-                // Hide left button
-                const rightButton = document.getElementById("scroll-right-"+number.toString(10))
-                rightButton.style.visibility = "hidden"
-                // Show right button
-                const leftButton = document.getElementById("scroll-left-"+number.toString(10))
-                leftButton.style.visibility = "visible"
+                
                 // Scroll to the left
                 const container = document.getElementById(elementToMove)
-                container.scrollLeft += 1149
+                // Scroll based on media width
+                const width = container.offsetWidth
+                if (width === 236) {
+                    container.scrollLeft += width +13
+                    console.log(container.scrollLeft)
+                    if(container.scrollLeft > 450) {
+                        // Hide right button
+                        const rightButton = document.getElementById("scroll-right-"+number.toString(10))
+                        rightButton.style.visibility = "hidden"
+                        // Show left button
+                        const leftButton = document.getElementById("scroll-left-"+number.toString(10))
+                        leftButton.style.visibility = "visible"
+                    }
+                } else {
+                    // Hide left button
+                    const rightButton = document.getElementById("scroll-right-"+number.toString(10))
+                    rightButton.style.visibility = "hidden"
+                    // Show right button
+                    const leftButton = document.getElementById("scroll-left-"+number.toString(10))
+                    leftButton.style.visibility = "visible"
+                    container.scrollLeft += 1149
+                }
             }
 
         }
 }    
+

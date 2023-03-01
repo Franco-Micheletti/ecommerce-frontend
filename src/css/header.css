@@ -18,7 +18,7 @@
     position: relative;
     bottom: 0;
     right: 17px;
-    bottom: 22px;
+    bottom: 11px;
     background: blanchedalmond;
     border-radius: 50%;
     text-align: center;
@@ -119,7 +119,7 @@
     margin-right: 60px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 30px;
     
 }   
 
@@ -190,4 +190,74 @@
     border: 0.01px solid #e9e9e9;
     border-radius: 20px;
     
+}
+
+.link-to-cart{
+    display: inline-flex;
+    text-decoration: none;
+}
+
+@media(max-width: 1024px){
+    .input-box-container{
+        width: 403px;
+    }
+    
+}
+
+@media(max-width:769px){
+    .input-box-container {
+        width: 40%;
+    }
+    .logo-name{
+        display: none;
+    }
+}
+
+@media ( max-width: 592px ) {
+    .input-box-container {
+        width: 200px;
+    }
+    .input-box-style{
+        width: 150px;
+    }
+    .logo-name{
+        display: none;
+    }
+    .logo-container{
+        margin-left: 0;
+    }
+    .user-options-button-container{
+        margin-right: 0;
+        gap: 11px;
+    }
+    .products-in-cart{
+        width: 20px;
+        height: 20px;
+    }
+    .link-to-cart{
+        display: inline-flex;
+        text-decoration: none;
+    }
+    .search-button{
+        margin-left: 0px;
+    }
+}
+
+@media ( max-width: 320px ) {
+    .input-box-container {
+        width: 100px;
+        height: 11px;
+        margin-right: 50px;
+    }
+    .logo-image{
+        width: 30px;
+        height: 30px;
+        margin-left: 7px;
+    }
+    .input-box-style{
+        width: 150px;
+    }
+    .search-button{
+        margin-left: -25px;
+    }
 }

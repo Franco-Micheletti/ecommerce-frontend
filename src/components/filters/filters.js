@@ -61,7 +61,7 @@ const Filters = (filters) => {
 
     return (
         
-        <div className="filters-container">
+        <div id="filters-container" className="filters-container">
             <AppliedFilters />
             <div className="filters-features-container">
                 {   
@@ -110,7 +110,7 @@ const Filters = (filters) => {
                                                     </div>
                                                 </div>
 
-                                            : <div key={attribute} id={filter} className="price-range-container" style={{display: "None"}}>
+                                            :   <div key={attribute} id={filter} className="price-range-container" style={{display: "None"}}>
                                                     <label >${minPriceValue} - ${maxPriceValue} </label>
                                                     <div className="price-slider-container">
                                                         <label>Min</label>

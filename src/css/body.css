@@ -13,3 +13,11 @@
     flex-wrap: wrap;
     background-color: #ffffff;
 }
+
+@media( max-width: 425px){
+
+    .body-container{
+        width: 300px;
+    }
+    
+}
