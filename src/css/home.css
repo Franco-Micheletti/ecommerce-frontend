@@ -1,4 +1,62 @@
 
+.popular-products-product-name{
+
+    text-align: left;
+    font-size: 15px;
+    font-family: sans-serif;
+    width: 183px;
+}
+
+.home-product-image{
+
+    width: 120px;
+    height: 120px;
+}
+
+.title-popular-products-home{
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: left;
+    font-size: 17px;
+    margin-left: 40px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+}
+
+.popular-product-item {
+
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    width: 185px;
+    height: 320px;
+}
+
+.popular-products-home {
+    
+    display: inline-flex;
+    min-height: 300px;
+    width: 1157px;
+    align-items: center;
+    overflow-x: scroll;
+    gap: 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: 0.3s all ease-in;
+    scroll-behavior: smooth;
+}
+
+.popular-products-home::-webkit-scrollbar {
+
+    display: none;
+}
+
+.popular-products-wraper{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .body-home {
     display: inline-grid;
@@ -34,20 +92,131 @@
     transform: rotate(90deg);
 }
 
-
-
 .horizontal-scroll-right:hover, .horizontal-scroll-left:hover {
 
     background-color: rgb(205, 224, 241);
     cursor: pointer;
 }
 
-@media ( max-width: 425px) {
+
+
+@media(max-width:2560px) {
+    .body-home{
+        justify-content: center;
+    }
+
+}
+@media ( max-width: 1400px) {
+
+    .horizontal-scroll-left, .horizontal-scroll-right{
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        margin-left: 10px
+    }
+    .popular-products-home{
+        width: 770px;
+        min-height: 180px;
+        margin-top: 0px;
+    }
+    
+}
+
+@media ( max-width: 1024px) {
+
+    .horizontal-scroll-left, .horizontal-scroll-right{
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        margin-left: 10px
+    }
+    .popular-product-item{
+        width: 73px;
+        height: 150px;
+    }
+    .popular-products-home{
+        width: 408px;
+        min-height: 180px;
+        margin-top: 0px;
+    }
+    .home-product-image{
+        width: 60px;
+        height: 60px;
+    }
+    .title-popular-products-home{
+        font-size: 8px;
+    }
+    .popular-products-product-name{
+        font-size: 8px;
+        width: 80px;
+    }
+}
+
+@media ( max-width: 768px) {
+    .popular-products-home{
+        width: 330px;
+        min-height: 181px;
+    }
     .horizontal-scroll-left, .horizontal-scroll-right{
         width: 25px;
         height: 25px;
         margin-right: 10px;
         margin-left: 10px
     }
-    
+    .popular-product-item{
+        width: 73px;
+        height: 150px;
+    }
+    .popular-products-home{
+        width: 320px;
+        min-height: 180px;
+        margin-top: 0px;
+    }
+    .home-product-image{
+        width: 60px;
+        height: 60px;
+    }
+    .title-popular-products-home{
+        font-size: 8px;
+    }
+    .popular-products-product-name{
+        font-size: 8px;
+        width: 80px;
+    }
+}
+
+@media ( max-width: 480px) {
+    .horizontal-scroll-left, .horizontal-scroll-right{
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+        margin-left: 10px
+    }
+    .body-home {
+        justify-content: center;
+    }
+    .popular-products-home{
+        width: 235px;
+        min-height: 181px;
+    }
+    .title-popular-products-home{
+        font-size: 8px;
+    }
+    .popular-product-item{
+        width: 73px;
+        height: 150px;
+    }
+    .popular-products-home{
+        width: 236px;
+        min-height: 180px;
+        margin-top: 0px;
+    }
+    .home-product-image{
+        width: 60px;
+        height: 60px;
+    }
+    .popular-products-product-name{
+        font-size: 8px;
+        width: 80px;
+    }
 }

@@ -1,7 +1,6 @@
 import React from "react"
 // CSS IMPORTS
 import '../css/products.css'
-import '../css/body.css'
 import '../css/filters.css'
 import '../css/home.css'
 import '../css/skeleton.css'
@@ -9,7 +8,7 @@ import '../css/skeleton.css'
 export const TemplateSkeletonHome = () => {
 
     return (
-        <div className="body-container">
+        <div className="body-home">
             <div className="results">
                 <div className="results-container">
                     <span className="title-results skeleton-item skeleton-text-search"></span>

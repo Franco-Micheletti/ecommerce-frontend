@@ -13,8 +13,8 @@
  */
 import {checkIfProductExistInCart} from './checkIfProductExistInCart'
 
-export const cartProductsLocalStorage = (key,product=null) => {
-
+export const cartProductsLocalStorage = (key,product=null,remove) => {
+        
         // Get list of products in the cart
         if ( key && !product ){
             
@@ -38,9 +38,20 @@ export const cartProductsLocalStorage = (key,product=null) => {
                 const indexOfRepeatedProduct = checkIfProductExistInCart(productsList,nameOfProduct)
                 // Modify the quantity of the product if the product already exists
                 // Add the product to the list if it does not exist.
-                indexOfRepeatedProduct === null
-                    ? productsList.push(product)
-                    : productsList[indexOfRepeatedProduct]["quantity"] += 1
+                if (remove === false){
+                    indexOfRepeatedProduct === null
+                        ? productsList.push(product)
+                        : productsList[indexOfRepeatedProduct]["quantity"] += 1
+                } else { 
+                    if ( product["quantity"] > 1 ) {
+                        console.log("quantity is higher than 1 , removing one quantity")
+                        productsList[indexOfRepeatedProduct]["quantity"] -= 1
+                    }
+                    else {
+                        console.log("quantity is 1 , removing product")
+                        productsList.splice(indexOfRepeatedProduct,1)
+                    }
+                } 
                 // Update the list
                 window.localStorage.setItem(key,JSON.stringify(productsList))
             } 

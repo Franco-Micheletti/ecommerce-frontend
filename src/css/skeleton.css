@@ -1,3 +1,13 @@
+
+.skeleton-filters-search{
+
+    height: 743px;
+    width: 250px;
+    margin-right: 40px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
 .skeleton-item{
 
     opacity: .7;
@@ -64,13 +74,22 @@
     }
 }
 
-@media( max-width: 425px){
 
-    .skeleton-image{
+
+@media( max-width: 426px){
+
+    .skeleton-image-search{
         width: 60px;
         height: 60px;
     }
-    .skeleton-text{
+    .skeleton-text-search{
+        height: 5px
+    }
+    .skeleton-image-home{
+        width: 60px;
+        height: 60px;
+    }
+    .skeleton-text-home{
         height: 5px
     }
 }

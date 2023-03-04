@@ -1,16 +1,17 @@
+.button-title-results-wraper{
+    align-items: center;
+    display: inline-flex;
+    gap: 15px;
+}
+
 .search-product-image{
     width: 170px;
     height: 170px;
 }
 
-.home-product-image{
-
-    width: 120px;
-    height: 120px;
-}
-
 .results-container{
     display: grid;
+    
 }
 .product-name-search  {
     text-align: left;
@@ -19,13 +20,6 @@
     width: 200px;
 }
 
-.popular-products-product-name{
-
-    text-align: left;
-    font-size: 15px;
-    font-family: sans-serif;
-    width: 183px;
-}
 .product-price-search {
     
     font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -65,23 +59,10 @@
 }
 .title-results {
 
-    margin-left: 40px;
     display: inline-flex;
-    width: 270px;
+    width: 300px;
     align-items: center;
     gap: 10px;
-}
-
-.title-popular-products-home{
-
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: left;
-    font-size: 17px;
-    margin-left: 40px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 5px;
-
 }
 
 .products-list-container {
@@ -97,29 +78,6 @@
     width: 100%;
 }
 
-.popular-products-home {
-    
-    display: inline-flex;
-    min-height: 300px;
-    width: 1157px;
-    margin-top: 40px;
-    margin-right: 20px;
-    margin-left: 20px;
-    align-items: center;
-    overflow-x: scroll;
-    gap: 10px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    transition: 0.3s all ease-in;
-    scroll-behavior: smooth;
-}
-
-.popular-products-home::-webkit-scrollbar {
-
-    display: none;
-}
-
-
 .product-item {
 
     text-align: center;
@@ -129,15 +87,6 @@
     height: 350px;
     box-shadow: rgb(255 255 255 / 80%) 0px 8px 34px -25px;
 }
-
-.popular-product-item {
-
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    width: 185px;
-    height: 320px;
-}
-
 
 .no-results {
 
@@ -162,48 +111,64 @@
     gap: 3px;
 }
 
-@media( max-width: 769px){
+@media(max-width: 2460px) {
 
     .products-list-container{
-        margin-top: 35px;
-        justify-content: center;
+        height: fit-content;
     }
-    
-    .title-results{
-
-        width: 200px;
-        height: 10px;
-        margin-left: 25%;
-        margin-top: -20px;
+    .button-title-results-wraper{
+        height: 30px;
     }
-
     .results-container{
-        height: fit-content
+        display: block;
     }
-
 }
 
+@media(max-width: 1024px) {
 
-@media( max-width: 592px){
+    .button-title-results-wraper{
+        width: 300px;
+        justify-content: left;
+        display: inline-flex;
+        gap: 10px;
+    }
+    .button-product-add{
+        width: 75px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .product-price-search{
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
+@media( max-width: 768px) {
+
+    .button-title-results-wraper{
+        width: 300px;
+        justify-content: left;
+        display: inline-flex;
+        gap: 10px;
+    }
+    .button-product-add{
+        width: 75px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .product-price-search{
+        font-size: 12   px;
+        margin-top: 10px;
+    }
+}
+
+@media( max-width: 480px){
 
     .results-container{
         height: fit-content
     }
     .products-list-container{
-        margin-top: 10%;
         justify-content: left;
-    }
-    .title-popular-products-home{
-        font-size: 8px;
-    }
-    .popular-product-item{
-        width: 73px;
-        height: 150px;
-    }
-    .popular-products-home{
-        width: 236px;
-        min-height: 180px;
-        margin-top: 0px;
     }
     .button-product-add{
         width: 23px;
@@ -214,14 +179,6 @@
     .product-price-search{
         font-size: 8px;
         margin-top: 10px;
-    }
-    .popular-products-product-name{
-        font-size: 8px;
-        width: 80px;
-    }
-    .home-product-image{
-        width: 60px;
-        height: 60px;
     }
     .skeleton-image{
         width: 60px;
@@ -236,10 +193,9 @@
     }
     .title-results{
 
-        width: 200px;
         height: 10px;
         font-size: 10px;
-        margin-left: 16%;
+        width: 300px;
         margin-top: 0;
     }
     .results{
@@ -252,6 +208,12 @@
     .product-name-search{
         width: 69px;
         font-size: 7px;
+    }
+    .button-title-results-wraper{
+        width: 300px;
+        justify-content: left;
+        display: inline-flex;
+        gap: 10px;
     }
 }
 

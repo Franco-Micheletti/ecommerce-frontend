@@ -10,7 +10,8 @@ import {searchMadeReducer,
         homeProductsReducer,
         appliedFiltersReducer,
         urlFiltersStringReducer,
-        dataLoadingReducer} from './products/productsSlices'
+        dataLoadingReducer,
+        popularProductsForCartReducer} from './products/productsSlices'
 
 import { 
          maxPriceFilterReducer,
@@ -33,7 +34,9 @@ export const store = configureStore({
         maxPriceFilterReducer,
         minPriceValueReducer,
         maxPriceValueReducer,
-        dataLoadingReducer
+        dataLoadingReducer,
+        popularProductsForCartReducer
+
     }
 })
 

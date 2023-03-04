@@ -30,6 +30,21 @@ export const homePageProductsSlice = createSlice(
     }
 )
 
+
+export const popularProductsForCartSlice = createSlice(
+
+    {
+        name:'popularProductsReducer',
+        initialState: null,
+        reducers:{
+            setPopularProductsForCart: (state,action) =>{
+                state = action.payload
+                return state
+            },
+        }
+    }
+)
+
 export const filtersSlice = createSlice(
     {
         name:'filtersReducer',
@@ -164,15 +179,17 @@ export const {setHomeProducts}        = homePageProductsSlice.actions
 export const {addFilter,removeFilter,resetAppliedFiltersList} = appliedFiltersSlice.actions
 export const {setUrlFiltersString}    = urlFiltersStringSlice.actions
 export const {setDataLoading}         = dataLoadingSlice.actions
+export const {setPopularProductsForCart} = popularProductsForCartSlice.actions
 // Export reducers
-export const stringInputReducer      = searchedStringSlice.reducer
-export const searchMadeReducer       =  searchMadeSlice.reducer
-export const productsReducer         = productsSlice.reducer
-export const filtersReducer          = filtersSlice.reducer
-export const homeProductsReducer     = homePageProductsSlice.reducer
-export const appliedFiltersReducer   = appliedFiltersSlice.reducer
-export const urlFiltersStringReducer = urlFiltersStringSlice.reducer
-export const dataLoadingReducer      = dataLoadingSlice.reducer
+export const popularProductsForCartReducer  = popularProductsForCartSlice.reducer
+export const stringInputReducer             = searchedStringSlice.reducer
+export const searchMadeReducer              = searchMadeSlice.reducer
+export const productsReducer                = productsSlice.reducer
+export const filtersReducer                 = filtersSlice.reducer
+export const homeProductsReducer            = homePageProductsSlice.reducer
+export const appliedFiltersReducer          = appliedFiltersSlice.reducer
+export const urlFiltersStringReducer        = urlFiltersStringSlice.reducer
+export const dataLoadingReducer             = dataLoadingSlice.reducer
 
 
 
