@@ -1,4 +1,26 @@
 
+.all-pages-container{
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+.page-item-container{
+
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    font-family: system-ui;
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+    background-color: #ededed;
+    color: #1c7fbb;
+    font-weight: 700;
+    cursor:pointer
+}
+
 .order-by-container{
 
     display: flex;

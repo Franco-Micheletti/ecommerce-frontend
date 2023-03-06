@@ -3,7 +3,8 @@ import {configureStore} from '@reduxjs/toolkit'
 // Cart 
 import {cartCounterReducer,cartListReducer} from './cart/cartSlices'
 // Products
-import {searchMadeReducer,
+import {
+        searchMadeReducer,
         stringInputReducer,
         productsReducer,
         filtersReducer,
@@ -12,11 +13,15 @@ import {searchMadeReducer,
         urlFiltersStringReducer,
         dataLoadingReducer,
         popularProductsForCartReducer} from './products/productsSlices'
-
+// Filters
 import { 
          maxPriceFilterReducer,
          minPriceValueReducer,
          maxPriceValueReducer } from './filters/filtersSlices'
+// Pagination
+import {
+        pagesListReducer,
+        pageReducer} from './pagination/paginationSlices'
 
 export const store = configureStore({
     reducer: {
@@ -35,7 +40,10 @@ export const store = configureStore({
         minPriceValueReducer,
         maxPriceValueReducer,
         dataLoadingReducer,
-        popularProductsForCartReducer
+        popularProductsForCartReducer,
+        // Pagination
+        pagesListReducer,
+        pageReducer
 
     }
 })

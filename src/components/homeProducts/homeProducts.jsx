@@ -6,7 +6,7 @@ import '../../css/skeleton.css'
 // REDUX
 import { useSelector } from "react-redux";
 // API
-import { fetchAllProducts } from "../../api/fecthAllProducts";
+import { fetchHomeProducts } from "../../api/fetchHomeProducts";
 // FUNCTIONS
 import { addProductToCart } from "../cart/functions/addProductToCart";
 import { handleHorizontalScrolling } from "./functions/handleHorizontalScrolling";
@@ -22,7 +22,7 @@ const HomeProducts = () => {
 
     useEffect( () => {
         // fetchAllProducts to show at home or different categories of popular products
-        fetchAllProducts()
+        fetchHomeProducts()
     },[]) 
 
     if ( typeof products === "object" && products !== null ) {
@@ -38,7 +38,7 @@ const HomeProducts = () => {
                     <div id="popular-cookies-snacks" className="popular-products-home">
                         
                         { 
-                        products.slice(0,12).map( (product) =>
+                        products.map( (product) =>
                             
                             {   
                                 const imageFile = product["product_image_tag"]
@@ -66,7 +66,7 @@ const HomeProducts = () => {
                     <div id="popular-cookies-snacks" className="popular-products-home">
                         
                         { 
-                        products.slice(0,12).map( (product) =>
+                        products.map( (product) =>
                                 
                             {   
                                 const imageFile = product["product_image_tag"]
@@ -93,7 +93,7 @@ const HomeProducts = () => {
                     <div id="popular-cookies-snacks" className="popular-products-home">
                         
                         { 
-                        products.slice(0,12).map( (product) =>
+                        products.map( (product) =>
                                 
                             {   
                                 const imageFile = product["product_image_tag"]

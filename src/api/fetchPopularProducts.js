@@ -3,7 +3,7 @@ import { store } from "../state/store"
 
 export const fetchPopularProducts = () => {
     
-    fetch(`http://127.0.0.1:8000/products/`)
+    fetch(`http://127.0.0.1:8000/products/home`)
     .then(response => {
                     if (response.status === 200 ) {
                         return response.json()
@@ -11,8 +11,8 @@ export const fetchPopularProducts = () => {
                     }
     )
     .then(data => {
-        console.log(data)
-            store.dispatch(setPopularProductsForCart(data["products"]))
+        
+            store.dispatch(setPopularProductsForCart(data))
         }
     )
 } 

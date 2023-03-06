@@ -12,6 +12,7 @@ import { fetchPopularProducts } from "../../api/fetchPopularProducts"
 // FUNCTIONS
 import { addProductToCart } from "../cart/functions/addProductToCart";
 import { handleHorizontalScrolling } from "../homeProducts/functions/handleHorizontalScrolling"
+import { Link } from "react-router-dom"
 const Cart = () => {
 
     const screenWidth = window.innerWidth > 0 ? window.innerWidth : Screen.width;
@@ -110,12 +111,12 @@ const Cart = () => {
                                                                                 
                                                                             </div>
                                                                             <div  className="add-product-from-cart-button-container">
-                                                                                <div className="product-options-cart-text">ADD</div>
+                                                                                <div onClick={ () => addProductToCart(product)} className="product-options-cart-text">ADD</div>
                                                                                 
                                                                             </div>
                                                                             <div className="details-product-from-cart-button-container">
+                                                                                <Link to={`/product/${product}`}/>
                                                                                 <div className="product-options-cart-text">DETAILS</div>
-                                                                                
                                                                             </div>
                                                                         </div>
                                                                         <div id={`hover-product-cart-black-background-${index}`} className="hover-product-cart-black-background">
@@ -179,7 +180,7 @@ const Cart = () => {
                                             <div id="popular-cookies-snacks" className="popular-products-home">
                                                 
                                                 { 
-                                                popularProducts?.slice(0,12).map( (product) => {
+                                                popularProducts?.map( (product) => {
                                                     {   
                                                         const imageFile = product["product_image_tag"]
                                                         return (
@@ -197,9 +198,6 @@ const Cart = () => {
                                                 <button id="scroll-right-1" onClick ={ () => handleHorizontalScrolling("right",1,"popular-cookies-snacks")} className="horizontal-scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                                             </div>
                                         </div>
-                                        {
-                                            
-                                        }
                                     </div>
                                 </div>
                 }               

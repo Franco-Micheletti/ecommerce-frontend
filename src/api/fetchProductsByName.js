@@ -2,12 +2,14 @@ import { store } from "../state/store";
 import { setSearchedString } from "../state/products/productsSlices";
 import { setProducts } from "../state/products/productsSlices";
 import { setFilters } from "../state/products/productsSlices";
+import { setPagesList } from "../state/pagination/paginationSlices";
 
 export const fetchProductsByName = (string) => {
     
     store.dispatch(setSearchedString(string))
-    
-    fetch(`http://127.0.0.1:8000/products/product_name=${string}`)
+    const page = store.getState().pageReducer
+
+    fetch(`http://127.0.0.1:8000/products/product_name=${string}&page=${page}`)
     .then(response => {
                     if (response.status === 200 ) {
                         return response.json()
@@ -17,6 +19,7 @@ export const fetchProductsByName = (string) => {
     .then(data => {
         store.dispatch(setProducts(data["products"]))
         store.dispatch(setFilters(data["filters"]))    
+        store.dispatch(setPagesList(data["pages"]))
         }    
     )
 
@@ -24,10 +27,9 @@ export const fetchProductsByName = (string) => {
 
 export const fetchAndApplyFilter = (searchInput,appliedFilters) => {
     
+    const page = store.getState().pageReducer
     var urlStr = appliedFilters
-    
     var json = {}
-    
     const strList = urlStr.split("&")
 
     strList.forEach( (filter,index) => {
@@ -50,7 +52,7 @@ export const fetchAndApplyFilter = (searchInput,appliedFilters) => {
 
     const filters = JSON.stringify(json)
     
-    fetch(`http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}`)
+    fetch(`http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}`)
     .then(response=> {
         if(response.status === 200) {
             return response.json()
@@ -59,6 +61,7 @@ export const fetchAndApplyFilter = (searchInput,appliedFilters) => {
     .then(data => {
         store.dispatch(setProducts(data["products"]))
         store.dispatch(setFilters(data["filters"]))
+        store.dispatch(setPagesList(data["pages"]))
         }  
     )
     
