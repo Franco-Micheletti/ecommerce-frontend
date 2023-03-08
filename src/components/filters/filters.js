@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useRef} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import '../../css/filters.css'
@@ -11,21 +11,21 @@ import { setProducts,setFilters,setUrlFiltersString,addFilter } from "../../stat
 import { setMaxPrice,setMinPriceValue,setMaxPriceValue } from "../../state/filters/filtersSlices";
 import { store } from "../../state/store";
 import { AppliedFilters } from "../appliedFilters/appliedFilters";
+import { useSearchParams } from 'react-router-dom';
 
-
-const Filters = (filters) => {
+const Filters = React.forwardRef((filters, ref) => {
     
-    const navigate = useNavigate()
     const dispatch = useDispatch()
-    // const appliedFilters = useSelector( (store) => store.appliedFiltersReducer)
-    // const searchInput = useSelector( (store) => store.stringInputReducer)
+    const [searchParams,setSearchParams] = useSearchParams()
+    const filtersContainer = useRef()
     // Create object with values of each filter to be used by handleShowFilter function
     var filtersNames = createFilterData(filters)
     // Price Range States
     const maxPrice      = useSelector( (store) => store.maxPriceFilterReducer)
     const minPriceValue = useSelector( (store) => store.minPriceValueReducer)
     const maxPriceValue = useSelector( (store) => store.maxPriceValueReducer)
-
+    
+    
     useEffect(() => {
         
         if (filters["filters"]) {
@@ -34,34 +34,54 @@ const Filters = (filters) => {
         }
     },[filters])
 
+    function handleScroll() {
+        const productListRef = ref.current
+        const filtersContainerCurrent = filtersContainer.current
+        if (window.pageYOffset < (productListRef.offsetHeight - filtersContainerCurrent.offsetHeight)) {
+            filtersContainerCurrent.style.top = `${window.pageYOffset}px`
+        }
+    }
+
+    useEffect( () => {
+
+        window.addEventListener("scroll",(handleScroll),true)
+        return () => (
+            window.removeEventListener("scroll",handleScroll,true)
+        )
+
+    },[])
     const handleFilterClick = (filterToApply,toggleActiveId,filterOptionsLength) => {
+        
         dispatch(addFilter(filterToApply))
         const appliedFilters = store.getState().appliedFiltersReducer
+       
         dispatch(setUrlFiltersString(appliedFilters))
-        const urlString = store.getState().urlFiltersStringReducer
-        const searchInput = getStringInputFromLocalStorage()
+        const filterString = store.getState().urlFiltersStringReducer
         
-        fetchAndApplyFilter(searchInput,urlString)
+        const searchInput  = searchParams.get("q" || "")
+        
+        setSearchParams({ q:searchInput,page:1,filters:filterString})
         
         for (let number = 0;number<filterOptionsLength;number++) {
             const otherButton = document.getElementById("label"+filterToApply["filter_name"]+number)
-            otherButton.style.backgroundColor = "#ffffff"
+            otherButton.style.backgroundColor = "transparent"
+            
         }
         
         const radioButtonLabel = document.getElementById(toggleActiveId)
         if (radioButtonLabel.style.backgroundColor === "#2a7dca") {
-            radioButtonLabel.style.backgroundColor = "#ffffff"
+            radioButtonLabel.style.backgroundColor = "transparent"
         } else {
             radioButtonLabel.style.backgroundColor = "#2a7dca"
         }
-           
-        navigate(`/search/${searchInput}/${urlString}`)
+       
         
     }
 
+    
     return (
         
-        <div id="filters-container" className="filters-container">
+        <div ref={filtersContainer} style={{top:"1px"}}id="filters-container" className="filters-container">
             <AppliedFilters />
             <div className="filters-features-container">
                 {   
@@ -74,10 +94,10 @@ const Filters = (filters) => {
                             const maxPriceValue = store.getState().maxPriceValueReducer
                             return (
                                 <>  
-                                    <div key={filter} className="filter-container">
+                                    <div key={filter} id={filter} style={{borderBottom:"0.1px solid rgb(96, 96, 96)"}} className="filter-container">
                                         <div className="filters-title">{filterTitle}</div>
                                         <div id={filter+"toggle"} onClick={() => handleShowFilter(filter,filtersNames)} className="expand-filter-options-container"> 
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
                                         </div>
                                     </div>
                                     <div className="transition-inline">
@@ -155,6 +175,6 @@ const Filters = (filters) => {
         </div>
     )
 
-}
+});
 
 export default Filters;

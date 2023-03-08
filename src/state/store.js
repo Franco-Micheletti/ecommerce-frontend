@@ -12,7 +12,8 @@ import {
         appliedFiltersReducer,
         urlFiltersStringReducer,
         dataLoadingReducer,
-        popularProductsForCartReducer} from './products/productsSlices'
+        popularProductsForCartReducer,
+        totalResultsReducer } from './products/productsSlices'
 // Filters
 import { 
          maxPriceFilterReducer,
@@ -41,6 +42,7 @@ export const store = configureStore({
         maxPriceValueReducer,
         dataLoadingReducer,
         popularProductsForCartReducer,
+        totalResultsReducer,
         // Pagination
         pagesListReducer,
         pageReducer

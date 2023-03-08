@@ -29,7 +29,17 @@ const HomeProducts = () => {
         
         return ( 
             // Show popular products in Cookies & Snack category
-            <div>
+            <div className="body-home">
+                <div className="cards-container">
+                    <div className="tvs-card">
+                        <img className="tvs-card-image" src={require(`../../images/tvs.webp`)}></img>
+                        <div className="cards-text">Get our new 4k TVs directly from our main store.</div>
+                    </div>
+                    <div className="home-card">
+                        <img className="home-card-image" src={require(`../../images/home.webp`)}></img>
+                        <div className="cards-text">Decorate your home with the best furnitures.</div>
+                    </div>
+                </div>
                 <div className="title-popular-products-home">Cookies & Snacks</div>
                 <div className="popular-products-wraper">
                     <div>
@@ -99,11 +109,11 @@ const HomeProducts = () => {
                                 const imageFile = product["product_image_tag"]
                                 return (
                                     <div className="popular-product-item">
-                                    <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
-                                    <button onClick={ () => addProductToCart(product)} className="button-product-add">Add</button> 
-                                    <div className="product-price-search">${product['price']}</div>
-                                    <p className="popular-products-product-name">{product['product_name']}</p>
-                                </div>)
+                                        <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                        <button onClick={ () => addProductToCart(product)} className="button-product-add">Add</button> 
+                                        <div className="product-price-search">${product['price']}</div>
+                                        <p className="popular-products-product-name">{product['product_name']}</p>
+                                    </div>)
                             }
                         )
                         }   

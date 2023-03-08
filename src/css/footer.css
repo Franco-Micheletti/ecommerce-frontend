@@ -1,24 +1,37 @@
 
 .footer-container {
 
-    background-color: rgb(221 230 241);
+    background-color: transparent;
     position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
-    color: white;
-    height: 150px;
+    height: 250px;
     display: inline-flex;
     align-content: center;
+    align-items: center;
     flex-wrap: wrap;
     margin-top: 40px;
+    border: 0.1px solid #c1bdbd;
+    justify-content: center;
 }                       
 
 .footer-info {
 
     padding: 30px;
-    width: 200px;
-    color: rgb(31, 92, 143);
+    width: 250px;
+    color: rgb(0, 0, 0);
     padding-left: 100px;
-    font-size: 15px;
+    font-size: 17px;
+}
+
+.social-media-icon{
+    width: 50px;
+    height: 50px;
+}
+
+.social-media-container{
+
+    gap: 10px;
+    display: flex
 }

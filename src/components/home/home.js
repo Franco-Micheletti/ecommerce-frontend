@@ -13,9 +13,7 @@ const Home = () => {
         
         <div>
             <Navbar />
-            <body className="body-home">
             <HomeProducts />
-            </body>
             <Footer />
         </div>
         

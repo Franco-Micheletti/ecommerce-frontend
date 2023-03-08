@@ -1,16 +1,51 @@
+.cards-container{
+    justify-content: center;
+    display: inline-flex;
+    gap: 35px;
+}
 
+.cards-text{
+    font-size: 29px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.tvs-card, .home-card{
+
+    background-color: #cfcece;
+    height: 600px;
+    width: 800px;
+    border-radius: 20px;
+    font-size: 35px;
+    justify-content: center;
+    display: grid;
+    text-align: center;
+    justify-items: center;
+}
+
+.tvs-card-image, .home-card-image{
+
+    width: 800px;
+    height: 500px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
 .popular-products-product-name{
 
     text-align: left;
     font-size: 15px;
     font-family: sans-serif;
     width: 183px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .home-product-image{
 
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
+    border-radius: 15px;
+    margin-top: 20px;
 }
 
 .title-popular-products-home{
@@ -20,24 +55,25 @@
     font-size: 17px;
     margin-left: 40px;
     font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 
 }
 
 .popular-product-item {
 
     text-align: center;
-    background-color: rgb(255, 255, 255);
-    width: 185px;
-    height: 320px;
+    width: 220px;
+    height: 370px;
+    background-color: #edeeef;
+    box-shadow: rgb(0 0 0 / 99%) 8px -11px 28px -14px;
 }
 
 .popular-products-home {
     
     display: inline-flex;
     min-height: 300px;
-    width: 1157px;
+    width: 1370px;
     align-items: center;
     overflow-x: scroll;
     gap: 10px;
@@ -45,6 +81,7 @@
     scrollbar-width: none;
     transition: 0.3s all ease-in;
     scroll-behavior: smooth;
+    box-shadow: rgb(0 0 0 / 80%) 0px 4px 24px -14px;
 }
 
 .popular-products-home::-webkit-scrollbar {
@@ -68,15 +105,20 @@
 
 .horizontal-scroll-right, .horizontal-scroll-left {
 
-    background-color: rgb(229, 235, 236);
-    width: 40px;
-    height: 40px;
+    
+    width: 50px;
+    height: 50px;
     align-items: center;
     justify-content: center;
-    border-radius: 60%;
+    border-radius: 50%;
     display: inline-flex;
-    border: 0.3px solid #ffffff;
+    margin: -22px;
+    z-index: 3;
+    position: absolute;
+    border: 0;
     
+    fill: white;
+    background-color: #bdbdbd;
 }
 
 .horizontal-scroll-left {
@@ -86,16 +128,19 @@
 
 .horizontal-scroll-right svg{
     transform: rotate(270deg);
+    fill: #ffffff
 }
 
 .horizontal-scroll-left svg{
     transform: rotate(90deg);
+    fill: #ffffff
 }
 
 .horizontal-scroll-right:hover, .horizontal-scroll-left:hover {
 
-    background-color: rgb(205, 224, 241);
-    cursor: pointer;
+    background-color: rgb(153, 153, 153);
+    cursor: pointer;    
+    
 }
 
 

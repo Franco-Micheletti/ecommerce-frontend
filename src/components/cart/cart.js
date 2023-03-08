@@ -10,7 +10,8 @@ import { cartListRemove } from "../../state/cart/cartSlices"
 import { cartCounterDecrease } from "../../state/cart/cartSlices"
 import { fetchPopularProducts } from "../../api/fetchPopularProducts"
 // FUNCTIONS
-import { addProductToCart } from "../cart/functions/addProductToCart";
+import { addProductToCart} from "../cart/functions/addProductToCart";
+import { removeProductFromCart } from "./functions/removeProductFromCart"
 import { handleHorizontalScrolling } from "../homeProducts/functions/handleHorizontalScrolling"
 import { Link } from "react-router-dom"
 const Cart = () => {
@@ -73,12 +74,6 @@ const Cart = () => {
         background.style.display = "inline-flex"
     }
     
-    function handleOptionsRemove(product) {
-        dispatch(cartListRemove(product))
-        dispatch(cartCounterDecrease(1))
-        
-    }
-
     useEffect( () => {
         if (numberOfproductsInCart === 0) {
             fetchPopularProducts()
@@ -107,12 +102,10 @@ const Cart = () => {
                                                                     <div onMouseOut={(e) => {handleMouseOutProductInCart(e,index)}} onMouseOver={(e) => {handleMouseOverProductInCart(e,index)}} className="product-info-item-cart">
                                                                         <div id={`product-options-cart-container-${index}`} className="product-options-cart-container">
                                                                             <div className="remove-product-from-cart-button-container">
-                                                                                <div onClick={() => handleOptionsRemove(product)} className="product-options-cart-text">REMOVE</div>
-                                                                                
+                                                                                <div onClick={() => removeProductFromCart(product)} className="product-options-cart-text">REMOVE</div>
                                                                             </div>
                                                                             <div  className="add-product-from-cart-button-container">
                                                                                 <div onClick={ () => addProductToCart(product)} className="product-options-cart-text">ADD</div>
-                                                                                
                                                                             </div>
                                                                             <div className="details-product-from-cart-button-container">
                                                                                 <Link to={`/product/${product}`}/>
@@ -167,12 +160,13 @@ const Cart = () => {
                                     </div>
                             
                             :   <div className="cart-page">
-                                    <div className="no-products-in-cart-container">
+                                    
                                         <div className="cart-message-container">
                                             <div><img className="empty-cart-image" src={require(`../../images/empty-cart.webp`)}></img></div>
-                                            <div>You haven't added a product yet</div>
-                                            <div>Check out this popular products.</div>
+                                            <div className="no-products-incart-text">You haven't added a product yet</div>
+                                            <div className="no-products-incart-text">Check out this popular products.</div>
                                         </div>
+
                                         <div className="popular-products-wraper">
                                             <div>
                                                 <button id="scroll-left-1" onClick ={ () => handleHorizontalScrolling("left",1,"popular-cookies-snacks")}className="horizontal-scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
@@ -198,7 +192,7 @@ const Cart = () => {
                                                 <button id="scroll-right-1" onClick ={ () => handleHorizontalScrolling("right",1,"popular-cookies-snacks")} className="horizontal-scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                                             </div>
                                         </div>
-                                    </div>
+                                    
                                 </div>
                 }               
                 

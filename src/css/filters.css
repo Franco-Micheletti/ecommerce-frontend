@@ -16,8 +16,7 @@
     background-color: #eeeff0;
 }
 .filter-option-value{
-    color: rgb(14 162 207);
-    font-weight: bold;
+    font-weight: 200;
 }
 
 .applied-filter-container{
@@ -49,27 +48,29 @@
 }
 .filter-items-text {
 
-    color: #7c7c7c;
+    color: #000000;
 }
 .num-result{
 
     margin-left: 40px;
-    color: #979998;
+    color: #3c3c3c;
 }
 
 .applied-filter {
 
-    font-size: 11px;
+    font-size: 12px;
     font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
+    width: -moz-fit-content;
     width: fit-content;
     height: 35px;
     border-radius: 3px;
     display: inline-flex;
-    border: 0.3px solid #cbcbcb;
+    border: 0.3px solid #000000;
     gap: 4px;
     align-items: center;
     justify-content: center;
-    background: #f7f6f6;
+    background: transparent;
+    font-weight: bold;
 }
 
 .selected-filters-list-container {
@@ -92,30 +93,31 @@
 
 .selected-filters-text {
 
-    font-weight: bold ;
-    font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-size: 15px;
-    color:rgb(37, 43, 43) ;
+    font-weight: 600;
+    font-family: serif;
+    font-size: 19px;
+    color: rgb(0 107 139);
     text-align: left;
 
 }
 .filters-container {
     
-    background-color: rgb(255, 255, 255);
+    background-color: #edeeef;
     min-width: 310px;
     text-align: center;
-    box-shadow: rgb(0 0 0 / 80%) 0px 8px 34px -25px;
-    border-radius: 20px;
+    box-shadow: rgb(0 0 0 / 80%) 0px 10px 35px -23px;
+    border-radius: 5px;
     margin-top: 40px;
-    margin-left: 40px;
+    margin-left: 20px;
     margin-bottom: 40px;
-    margin-right: 40px;
+    margin-right: 25px;
     height: -moz-fit-content;
     height: fit-content;
-    transition: all .3s ease-in-out;
+    transition: all .2s ease-in-out;
     align-items: center;
     display: inline-flex;
     flex-direction: column;
+    position: relative;
     
 }
 
@@ -123,7 +125,7 @@
 
     
     height: 615px;
-    width: 250px;
+    width: 300px;
     gap: 3px;
     margin: auto;
     margin-bottom: 20px;
@@ -146,10 +148,9 @@
 
 .filters-title {
     
-    font-weight: bold;
-    font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-size: 15px;
-    color: rgb(0 0 0);
+    font-family: serif;
+    font-size: 16px;
+    color: rgb(50 50 50);
     width: 175px;
     text-align: left;
 }
@@ -158,10 +159,10 @@
 
     font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
     font-size: 14px;
-    width: 240px;
+    width: 260px;
     height: 30px;
     border-radius: 4px;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     border-width: 0;
     align-items: center;
     display: inline-flex;
@@ -189,16 +190,14 @@
 
 .filter-container {
 
-    width: 253px;
+    width: 284px;
     height: 40px;
-    border-radius: 5px;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     border-width: 0;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
     transition: all .3s ease-in-out;
-    border-bottom: 0.1px solid whitesmoke;
 }
 
 .radio-button {
@@ -210,7 +209,7 @@
     height: 20px;  
     width:  20px;
     border: 2px solid #2a7dca;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     box-sizing: border-box;
     border-radius: 2px;
 }

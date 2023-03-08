@@ -170,16 +170,33 @@ export const dataLoadingSlice = createSlice(
     }
 )
 
+export const totalResultsSlice = createSlice (
+
+    {
+        name:'totalResults',
+        initialState:0,
+        reducers:{
+            setTotalResults: (state,action) =>{
+                state = action.payload
+                return state
+            }  
+        }
+    }
+
+
+)
+
 // Export actions
-export const {setProducts}            = productsSlice.actions
-export const {setFilters}             = filtersSlice.actions
-export const {setSearchMade}          = searchMadeSlice.actions
-export const {setSearchedString}      = searchedStringSlice.actions
-export const {setHomeProducts}        = homePageProductsSlice.actions
+export const {setProducts}               = productsSlice.actions
+export const {setFilters}                = filtersSlice.actions
+export const {setSearchMade}             = searchMadeSlice.actions
+export const {setSearchedString}         = searchedStringSlice.actions
+export const {setHomeProducts}           = homePageProductsSlice.actions
 export const {addFilter,removeFilter,resetAppliedFiltersList} = appliedFiltersSlice.actions
-export const {setUrlFiltersString}    = urlFiltersStringSlice.actions
-export const {setDataLoading}         = dataLoadingSlice.actions
+export const {setUrlFiltersString}       = urlFiltersStringSlice.actions
+export const {setDataLoading}            = dataLoadingSlice.actions
 export const {setPopularProductsForCart} = popularProductsForCartSlice.actions
+export const {setTotalResults}           = totalResultsSlice.actions
 // Export reducers
 export const popularProductsForCartReducer  = popularProductsForCartSlice.reducer
 export const stringInputReducer             = searchedStringSlice.reducer
@@ -190,6 +207,6 @@ export const homeProductsReducer            = homePageProductsSlice.reducer
 export const appliedFiltersReducer          = appliedFiltersSlice.reducer
 export const urlFiltersStringReducer        = urlFiltersStringSlice.reducer
 export const dataLoadingReducer             = dataLoadingSlice.reducer
-
+export const totalResultsReducer            = totalResultsSlice.reducer
 
 
