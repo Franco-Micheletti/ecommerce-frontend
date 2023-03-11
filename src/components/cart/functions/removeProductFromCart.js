@@ -1,28 +1,30 @@
 import { store } from '../../../state/store'
-import { cartCounterDecrease} from "../../../state/cart/cartSlices";
-import { cartListRemove,removeOneOfTheSameProduct } from '../../../state/cart/cartSlices';
+import { cartCounterDecrease, quantityDecrease} from "../../../state/cart/cartSlices";
+import { cartListRemove,removeOneOfTheSameProduct,removeFromExpandAddButtonList } from '../../../state/cart/cartSlices';
 import { removeProductFromLocalStorage } from './removeProductFromLocalStorage';
-import { checkIfProductExistInCart } from "./checkIfProductExistInCart"
+import { removeFromExpandObjectLocalStorage } from './expandAddButtonListLocalStorage';
 
-export const removeProductFromCart = (product) => {
+export const removeProductFromCart = (productId) => {
+
+    const expandAddButtonList = store.getState().expandAddButtonListReducer
+    const quantityOfProduct   = expandAddButtonList[productId]["quantity"]
     
-    // Self note - This generates a copy of the object , that is why i used parse followed by stringify
-    const productToRemove = JSON.parse(JSON.stringify(product))
-    // Check if product exist in the cart already ...
-    const listProductsInCart = store.getState().cartListReducer
-    const indexOfRepeatedProduct = checkIfProductExistInCart(listProductsInCart,productToRemove["id"])
-
-    if (indexOfRepeatedProduct !== null)  {
-        // Modify quantity if repeated
-        console.log(productToRemove["product_name"],"is repeated , removing one quantity")
-        store.dispatch(removeOneOfTheSameProduct(indexOfRepeatedProduct))
+    if( quantityOfProduct > 1 ) {
+        console.log("removing one quantity")
+        store.dispatch(removeOneOfTheSameProduct(productId))
+        // Remove from expandAddbutton list
+        store.dispatch(quantityDecrease(productId))
     } else {
-        // Add to list if not repeated
-        store.dispatch(cartListRemove(indexOfRepeatedProduct))
+        console.log("product removed")
+        store.dispatch(cartListRemove(productId))
+        // Remove from expandAddbutton list
+        store.dispatch(removeFromExpandAddButtonList(productId))
     }
-    
-    // Add to local storage
-    removeProductFromLocalStorage(indexOfRepeatedProduct)
-    // Counter increase
+
+    // Remove from local storage
+    removeProductFromLocalStorage(productId)
+    // Remove from expand list local storage
+    removeFromExpandObjectLocalStorage(productId)
+    // Counter decrease
     store.dispatch(cartCounterDecrease(1))
 }

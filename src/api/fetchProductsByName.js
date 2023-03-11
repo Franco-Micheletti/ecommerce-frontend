@@ -1,9 +1,10 @@
 import { store } from "../state/store";
-import { setSearchedString, setTotalResults } from "../state/products/productsSlices";
+import { setSearchedString, setTotalResults,setDataLoading } from "../state/products/productsSlices";
 import { setProducts } from "../state/products/productsSlices";
 import { setFilters } from "../state/products/productsSlices";
 import { setPagesList } from "../state/pagination/paginationSlices";
 import { setPage } from "../state/pagination/paginationSlices";
+import { Navigate } from "react-router-dom";
 export const fetchProductsByName = (string,page) => {
     
     store.dispatch(setSearchedString(string))
@@ -13,17 +14,24 @@ export const fetchProductsByName = (string,page) => {
     .then(response => {
                     if (response.status === 200 ) {
                         return response.json()
-                    } 
+                    } else if (response.status === 404 ){
+                        return 0
+                    }
                     }
     )
-    .then(data => {
-        store.dispatch(setProducts(data["products"]))
-        store.dispatch(setFilters(data["filters"]))    
-        store.dispatch(setPagesList(data["pages"]))
-        store.dispatch(setTotalResults(data["total_results"]))
-        }    
+    .then( data => {
+        if (data === 0 || data["match"] === 0) {
+            store.dispatch(setDataLoading(false))
+        } else {
+            store.dispatch(setDataLoading(true))
+            store.dispatch(setProducts(data["products"]))
+            store.dispatch(setFilters(data["filters"]))  
+            store.dispatch(setPagesList(data["pages"]))
+            store.dispatch(setTotalResults(data["total_results"]))
+        }
+    }    
     )
-
+    
 } 
 
 export const fetchAndApplyFilter = (searchInput,appliedFilters,page) => {
@@ -55,16 +63,25 @@ export const fetchAndApplyFilter = (searchInput,appliedFilters,page) => {
     
     fetch(`http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}`)
     .then(response=> {
-        if(response.status === 200) {
+        if (response.status === 200 ) {
             return response.json()
-        }}
+        } else if (response.status === 404 ){
+            return 0
+        }
+        }
     )
     .then(data => {
-        store.dispatch(setProducts(data["products"]))
-        store.dispatch(setFilters(data["filters"]))
-        store.dispatch(setPagesList(data["pages"]))
-        store.dispatch(setTotalResults(data["total_results"]))
-        }  
+        
+        if (data === 0 || data["match"] === 0) {
+            store.dispatch(setDataLoading(false))
+        } else {
+            store.dispatch(setDataLoading(true))
+            store.dispatch(setProducts(data["products"]))
+            store.dispatch(setFilters(data["filters"]))  
+            store.dispatch(setPagesList(data["pages"]))
+            store.dispatch(setTotalResults(data["total_results"]))
+        }
+    }
     )
     
 } 

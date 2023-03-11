@@ -1,35 +1,64 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useRef} from "react";
 // CSS IMPORTS
 import '../../css/products.css'
 import '../../css/home.css'
 import '../../css/skeleton.css'
 // REDUX
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { resetAppliedFiltersList } from "../../state/products/productsSlices";
 // API
 import { fetchHomeProducts } from "../../api/fetchHomeProducts";
 // FUNCTIONS
 import { addProductToCart } from "../cart/functions/addProductToCart";
+import { removeProductFromCart } from "../cart/functions/removeProductFromCart";
 import { handleHorizontalScrolling } from "./functions/handleHorizontalScrolling";
 // COMPONENTS
 import { TemplateSkeletonHome } from "../templateSkeletonHome"
-
-
+import { useNavigate,createSearchParams } from "react-router-dom";
+// ROUTER
 const HomeProducts = () => {
     
     // States
     const products = useSelector( (store) => store.homeProductsReducer)
     const loaded  = useSelector( (store) => store.dataLoadingReducer)
+    const expandAddButton = useSelector((store) => store.expandAddButtonListReducer)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const prodTypes = useRef([])
 
     useEffect( () => {
         // fetchAllProducts to show at home or different categories of popular products
+        
         fetchHomeProducts()
+
+        for(let i = 1;i<6;i++) {
+            setTimeout(()=> {
+                prodTypes.current[i-1].style.top = 0
+            },i*100)
+        }
     },[]) 
+
+    const goToProductType = (q) => {
+        dispatch(resetAppliedFiltersList())
+        const params = { q: q, page: '1' };
+        navigate({
+        pathname: '/search/',
+        search: `?${createSearchParams(params)}`,
+        });
+    }
 
     if ( typeof products === "object" && products !== null ) {
         
         return ( 
             // Show popular products in Cookies & Snack category
             <div className="body-home">
+                <div className="home-navigate-product-types">
+                    <div onClick={()=> goToProductType("table")} ref={(el) => prodTypes.current[0] = el} className="navigate-product-type-home">Coffe Tables</div>
+                    <div onClick={()=> goToProductType("laptop")} ref={(el) => prodTypes.current[1] = el} className="navigate-product-type-home">Laptops</div>
+                    <div onClick={()=> goToProductType("Energy Drinks")} ref={(el) => prodTypes.current[2] = el} className="navigate-product-type-home">Energy Drinks</div>
+                    <div onClick={()=> goToProductType("Soda Pop")} ref={(el) => prodTypes.current[3] = el} className="navigate-product-type-home">Soda Pop</div>
+                    <div onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[4] = el} className="navigate-product-type-home">Cookies</div>
+                </div>
                 <div className="cards-container">
                     <div className="tvs-card">
                         <img className="tvs-card-image" src={require(`../../images/tvs.webp`)}></img>
@@ -55,7 +84,22 @@ const HomeProducts = () => {
                                 return (
                                     <div className="popular-product-item">
                                         <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
-                                        <button onClick={ () => addProductToCart(product)} className="button-product-add">Add</button> 
+                                        {
+                                        expandAddButton[product["id"]]
+                                            ? <button style={{width: "150px" }} className="button-product-add">
+                                                <div className="expandedAddLessButton" onClick={ () => removeProductFromCart(product["id"])}>
+                                                    <label>-</label>
+                                                </div>
+                                                <div>{expandAddButton[product["id"]]["quantity"]}</div>
+                                                <div className="expandedAddMoreButton" onClick={ () => addProductToCart(product)}>
+                                                    <label>+</label>
+                                                </div>
+                                                </button> 
+
+                                            : <button onClick={ () => addProductToCart(product)} style={{width: "85px" }} className="button-product-add">
+                                                <div>Add</div>
+                                                </button>
+                                        }
                                         <div className="product-price-search">${product['price']}</div>
                                         <p className="popular-products-product-name">{product['product_name']}</p>
                                     </div>
@@ -83,7 +127,22 @@ const HomeProducts = () => {
                                 return (
                                     <div className="popular-product-item">
                                         <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
-                                        <button onClick={ () => addProductToCart(product)} className="button-product-add">Add</button> 
+                                        {
+                                        expandAddButton[product["id"]]
+                                            ? <button style={{width: "150px" }} className="button-product-add">
+                                                <div className="expandedAddLessButton" onClick={ () => removeProductFromCart(product["id"])}>
+                                                    <label>-</label>
+                                                </div>
+                                                <div>{expandAddButton[product["id"]]["quantity"]}</div>
+                                                <div className="expandedAddMoreButton" onClick={ () => addProductToCart(product)}>
+                                                    <label>+</label>
+                                                </div>
+                                                </button> 
+
+                                            : <button onClick={ () => addProductToCart(product)} style={{width: "85px" }} className="button-product-add">
+                                                <div>Add</div>
+                                                </button>
+                                        }
                                         <div className="product-price-search">${product['price']}</div>
                                         <p className="popular-products-product-name">{product['product_name']}</p>
                                     </div>)
@@ -110,7 +169,22 @@ const HomeProducts = () => {
                                 return (
                                     <div className="popular-product-item">
                                         <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
-                                        <button onClick={ () => addProductToCart(product)} className="button-product-add">Add</button> 
+                                        {
+                                        expandAddButton[product["id"]]
+                                            ? <button style={{width: "150px" }} className="button-product-add">
+                                                <div className="expandedAddLessButton" onClick={ () => removeProductFromCart(product["id"])}>
+                                                    <label>-</label>
+                                                </div>
+                                                <div>{expandAddButton[product["id"]]["quantity"]}</div>
+                                                <div className="expandedAddMoreButton" onClick={ () => addProductToCart(product)}>
+                                                    <label>+</label>
+                                                </div>
+                                                </button> 
+
+                                            : <button onClick={ () => addProductToCart(product)} style={{width: "85px" }} className="button-product-add">
+                                                <div>Add</div>
+                                                </button>
+                                        }
                                         <div className="product-price-search">${product['price']}</div>
                                         <p className="popular-products-product-name">{product['product_name']}</p>
                                     </div>)

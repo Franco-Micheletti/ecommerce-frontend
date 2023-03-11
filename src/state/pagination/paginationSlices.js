@@ -19,13 +19,13 @@ export const pageSlice = createSlice(
 
     {
         name:'pageReducer',
-        initialState: 1,
+        initialState: "1",
         reducers:{
             setPage: (state,action) =>{
                 state = action.payload
                 return state
             }
-
+            
         }
     }
 )

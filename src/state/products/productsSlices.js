@@ -1,6 +1,7 @@
 import { createSlice  } from "@reduxjs/toolkit";
 import { appliedFiltersLocalStorage,getAllAppliedFilters } from "../../components/appliedFilters/functions/appliedFiltersLocalStorage";
 import { getStringInputFromLocalStorage,addSearchInputToLocalStorage} from "../../components/navbar/functions/searchStringLocalStorage";
+import { current } from "@reduxjs/toolkit";
 
 export const productsSlice = createSlice(
 
@@ -111,17 +112,18 @@ export const appliedFiltersSlice = createSlice(
                             delete state["features"][action.payload["filter_name"]]
                         }
                         else {
-                            console.Error("Filter name doesn't exist")
+                            console.log("Filter name doesn't exist")
                         }
                     }
                     appliedFiltersLocalStorage("features",true,action.payload)
-                    return state
+                    
                 } else {
                     if (state[action.payload["filter_name"]]) {
                         delete state[action.payload["filter_name"]]
                         appliedFiltersLocalStorage(action.payload["filter_name"],true,action.payload)
                     }
                 }
+                return state
                 
             },
             resetAppliedFiltersList: (state,action) =>{
@@ -150,6 +152,7 @@ export const urlFiltersStringSlice = createSlice(
                 if ( filtersApplied["price"]) {
                     state += "&"+"min_price="+filtersApplied["price"]["min_price"]+"&"+"max_price="+filtersApplied["price"]["max_price"]
                 }
+                
                 return state
             }  
         }
@@ -177,6 +180,7 @@ export const totalResultsSlice = createSlice (
         initialState:0,
         reducers:{
             setTotalResults: (state,action) =>{
+                
                 state = action.payload
                 return state
             }  

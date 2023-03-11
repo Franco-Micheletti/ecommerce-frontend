@@ -1,4 +1,4 @@
-function handleShowFilter(filter,filtersNames) {
+export const toggleFilterValues = (filter,filtersNames) => {
     
     // Rotate svg
     const svgSymbol = document.getElementById(filter+"toggle")
@@ -34,5 +34,3 @@ function handleShowFilter(filter,filtersNames) {
         }
     })         
     }
-
-export default handleShowFilter

@@ -1,3 +1,40 @@
+.home-navigate-product-types{
+    display: inline-flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.navigate-product-type-home:hover{
+    background-color: rgb(233, 233, 233);
+    cursor: pointer;
+    color: black;
+    border: 0.1px solid rgb(185, 185, 185);
+    
+}
+
+
+.navigate-product-type-home{
+
+    height: 27px;
+    width: 120px;
+    background-color: rgb(248, 248, 248);
+    color: #000000;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    font-size: 17px;
+    font-family: serif;
+    box-shadow: rgba(0, 0, 0, 0.89) 0px 1px 5px -3px;
+    font-weight: 500;
+    border: 0.1px solid transparent;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    top: -200px;
+}
+
+
+
 .cards-container{
     justify-content: center;
     display: inline-flex;
@@ -64,9 +101,12 @@
 
     text-align: center;
     width: 220px;
-    height: 370px;
+    height: 430px;
     background-color: #edeeef;
-    box-shadow: rgb(0 0 0 / 99%) 8px -11px 28px -14px;
+    box-shadow: rgb(0 0 0 / 99%) 0px 0px 22px -14px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .popular-products-home {
@@ -81,7 +121,6 @@
     scrollbar-width: none;
     transition: 0.3s all ease-in;
     scroll-behavior: smooth;
-    box-shadow: rgb(0 0 0 / 80%) 0px 4px 24px -14px;
 }
 
 .popular-products-home::-webkit-scrollbar {

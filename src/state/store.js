@@ -1,7 +1,9 @@
 
 import {configureStore} from '@reduxjs/toolkit'
 // Cart 
-import {cartCounterReducer,cartListReducer} from './cart/cartSlices'
+import {cartCounterReducer,
+        cartListReducer,
+        expandAddButtonListReducer} from './cart/cartSlices'
 // Products
 import {
         searchMadeReducer,
@@ -29,6 +31,7 @@ export const store = configureStore({
         // Cart
         cartCounterReducer,
         cartListReducer,
+        expandAddButtonListReducer,
         // Products
         searchMadeReducer,
         stringInputReducer,

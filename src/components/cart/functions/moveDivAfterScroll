@@ -1,0 +1,16 @@
+    // function handleScroll() {
+    //     const productListRef = ref.current
+    //     const filtersContainerCurrent = filtersContainer.current
+    //     if (window.pageYOffset < (productListRef.offsetHeight - filtersContainerCurrent.offsetHeight)) {
+    //         filtersContainerCurrent.style.top = `${window.pageYOffset}px`
+    //     }
+    // }
+
+    // useEffect( () => {
+
+    //     window.addEventListener("scroll",(handleScroll),true)
+    //     return () => (
+    //         window.removeEventListener("scroll",handleScroll,true)
+    //     )
+
+    // },[])

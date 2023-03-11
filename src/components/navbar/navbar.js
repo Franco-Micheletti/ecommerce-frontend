@@ -11,8 +11,8 @@ const Navbar = ({loggedIn = false}) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    let navBar     = useRef()
-    let inputBox   = useRef()
+    const navBar     = useRef()
+    const inputBox   = useRef()
     const searchInput = useSelector( (store) => store.stringInputReducer)
     const cartCounter = useSelector( (store) => store.cartCounterReducer)
     const page        = useSelector((store)=> store.pageReducer)
@@ -77,7 +77,9 @@ const Navbar = ({loggedIn = false}) => {
         
         return () => {
             window.removeEventListener("scroll",navBarTransparent,true)
-            window.removeEventListener("scroll",navBarBackground,true)}
+            window.removeEventListener("scroll",navBarBackground,true)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     return (
         

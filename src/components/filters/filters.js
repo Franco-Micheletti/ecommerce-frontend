@@ -2,8 +2,8 @@ import React,{useEffect,useRef} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import '../../css/filters.css'
-import handleShowFilter from './functions/toggleFilterValues.js'
-import createFilterData from './functions/createFilterData.js'
+import { toggleFilterValues } from './functions/toggleFilterValues.js'
+import { createFilterData } from './functions/createFilterData.js'
 import { getStringInputFromLocalStorage } from "../navbar/functions/searchStringLocalStorage";
 import { addMouseUpEvent } from "./functions/addPriceFilter";
 import { fetchAndApplyFilter } from '../../api/fetchProductsByName'
@@ -13,13 +13,12 @@ import { store } from "../../state/store";
 import { AppliedFilters } from "../appliedFilters/appliedFilters";
 import { useSearchParams } from 'react-router-dom';
 
-const Filters = React.forwardRef((filters, ref) => {
+const Filters = (filters) => {
     
     const dispatch = useDispatch()
     const [searchParams,setSearchParams] = useSearchParams()
-    const filtersContainer = useRef()
     // Create object with values of each filter to be used by handleShowFilter function
-    var filtersNames = createFilterData(filters)
+    const filtersNames = createFilterData(filters)
     // Price Range States
     const maxPrice      = useSelector( (store) => store.maxPriceFilterReducer)
     const minPriceValue = useSelector( (store) => store.minPriceValueReducer)
@@ -34,22 +33,6 @@ const Filters = React.forwardRef((filters, ref) => {
         }
     },[filters])
 
-    function handleScroll() {
-        const productListRef = ref.current
-        const filtersContainerCurrent = filtersContainer.current
-        if (window.pageYOffset < (productListRef.offsetHeight - filtersContainerCurrent.offsetHeight)) {
-            filtersContainerCurrent.style.top = `${window.pageYOffset}px`
-        }
-    }
-
-    useEffect( () => {
-
-        window.addEventListener("scroll",(handleScroll),true)
-        return () => (
-            window.removeEventListener("scroll",handleScroll,true)
-        )
-
-    },[])
     const handleFilterClick = (filterToApply,toggleActiveId,filterOptionsLength) => {
         
         dispatch(addFilter(filterToApply))
@@ -81,8 +64,9 @@ const Filters = React.forwardRef((filters, ref) => {
     
     return (
         
-        <div ref={filtersContainer} style={{top:"1px"}}id="filters-container" className="filters-container">
-            <AppliedFilters />
+        <div id="filters-container" className="filters-container">
+            
+            <AppliedFilters filters={filters["filters"]} filtersNames={filtersNames}/>
             <div className="filters-features-container">
                 {   
                     filters["filters"]
@@ -96,7 +80,7 @@ const Filters = React.forwardRef((filters, ref) => {
                                 <>  
                                     <div key={filter} id={filter} style={{borderBottom:"0.1px solid rgb(96, 96, 96)"}} className="filter-container">
                                         <div className="filters-title">{filterTitle}</div>
-                                        <div id={filter+"toggle"} onClick={() => handleShowFilter(filter,filtersNames)} className="expand-filter-options-container"> 
+                                        <div id={filter+"toggle"} onClick={() => toggleFilterValues(filter,filtersNames)} className="expand-filter-options-container"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
                                         </div>
                                     </div>
@@ -175,6 +159,6 @@ const Filters = React.forwardRef((filters, ref) => {
         </div>
     )
 
-});
+};
 
 export default Filters;

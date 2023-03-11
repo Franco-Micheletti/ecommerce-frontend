@@ -14,6 +14,7 @@ import { addProductToCart} from "../cart/functions/addProductToCart";
 import { removeProductFromCart } from "./functions/removeProductFromCart"
 import { handleHorizontalScrolling } from "../homeProducts/functions/handleHorizontalScrolling"
 import { Link } from "react-router-dom"
+
 const Cart = () => {
 
     const screenWidth = window.innerWidth > 0 ? window.innerWidth : Screen.width;
@@ -23,6 +24,7 @@ const Cart = () => {
     const dispatch = useDispatch()
     const numberOfproductsInCart = useSelector( (store) => store.cartCounterReducer)
     const popularProducts = useSelector( (store) => store.popularProductsForCartReducer)
+    const expandAddButton = useSelector((store) => store.expandAddButtonListReducer)
     // Sum prices
     var totalPrice = 0
     productsInCart?.map( (product) => {
@@ -101,11 +103,11 @@ const Cart = () => {
                                                             return(
                                                                     <div onMouseOut={(e) => {handleMouseOutProductInCart(e,index)}} onMouseOver={(e) => {handleMouseOverProductInCart(e,index)}} className="product-info-item-cart">
                                                                         <div id={`product-options-cart-container-${index}`} className="product-options-cart-container">
-                                                                            <div className="remove-product-from-cart-button-container">
-                                                                                <div onClick={() => removeProductFromCart(product)} className="product-options-cart-text">REMOVE</div>
+                                                                            <div onClick={() => removeProductFromCart(product["id"])} className="remove-product-from-cart-button-container">
+                                                                                <div className="product-options-cart-text">REMOVE</div>
                                                                             </div>
-                                                                            <div  className="add-product-from-cart-button-container">
-                                                                                <div onClick={ () => addProductToCart(product)} className="product-options-cart-text">ADD</div>
+                                                                            <div onClick={ () => addProductToCart(product)} className="add-product-from-cart-button-container">
+                                                                                <div  className="product-options-cart-text">ADD</div>
                                                                             </div>
                                                                             <div className="details-product-from-cart-button-container">
                                                                                 <Link to={`/product/${product}`}/>
@@ -157,6 +159,47 @@ const Cart = () => {
                                                 <button className="cart-checkout-pay-button">Pay</button>
                                             </div>
                                         </div>
+                                        <div className="popular-products-text">Check out this popular products!</div>
+                                        <div className="popular-products-wraper">
+                                            <div>
+                                                <button id="scroll-left-1" onClick ={ () => handleHorizontalScrolling("left",1,"popular-cookies-snacks")}className="horizontal-scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                                            </div>
+                                            <div id="popular-cookies-snacks" className="popular-products-home">
+                                                
+                                                { 
+                                                popularProducts?.map( (product) => {
+                                                    {   
+                                                        const imageFile = product["product_image_tag"]
+                                                        return (
+                                                            <div className="popular-product-item">
+                                                                <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                                                {
+                                                                expandAddButton[product["id"]]
+                                                                    ? <button style={{width: "140px" }} className="button-product-add">
+                                                                        <div className="expandedAddLessButton" onClick={ () => removeProductFromCart(product["id"])}>
+                                                                            <label>-</label>
+                                                                        </div>
+                                                                        <div>{expandAddButton[product["id"]]["quantity"]}</div>
+                                                                        <div className="expandedAddMoreButton" onClick={ () => addProductToCart(product)}>
+                                                                            <label>+</label>
+                                                                        </div>
+                                                                        </button> 
+
+                                                                    : <button onClick={ () => addProductToCart(product)} style={{width: "130px" }} className="button-product-add">
+                                                                        <div>Add</div>
+                                                                        </button>
+                                                                }
+                                                                <div className="product-price-search">${product['price']}</div>
+                                                                <p className="popular-products-product-name">{product['product_name']}</p>
+                                                            </div>)
+                                                    }
+                                                })
+                                                }   
+                                            </div>
+                                            <div>
+                                                <button id="scroll-right-1" onClick ={ () => handleHorizontalScrolling("right",1,"popular-cookies-snacks")} className="horizontal-scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                                            </div>
+                                        </div>
                                     </div>
                             
                             :   <div className="cart-page">
@@ -180,7 +223,22 @@ const Cart = () => {
                                                         return (
                                                             <div className="popular-product-item">
                                                                 <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
-                                                                <button onClick={ () => addProductToCart(product)} className="button-product-add">Add</button> 
+                                                                {
+                                                                expandAddButton[product["id"]]
+                                                                    ? <button style={{width: "140px",gap:"20px"}} className="button-product-add">
+                                                                        <div className="expandedAddLessButton" onClick={ () => removeProductFromCart(product["id"])}>
+                                                                            <label>-</label>
+                                                                        </div>
+                                                                        <div>{expandAddButton[product["id"]]["quantity"]}</div>
+                                                                        <div className="expandedAddMoreButton" onClick={ () => addProductToCart(product)}>
+                                                                            <label>+</label>
+                                                                        </div>
+                                                                        </button> 
+
+                                                                    : <button onClick={ () => addProductToCart(product)} style={{width: "130px"}} className="button-product-add">
+                                                                        <div>Add</div>
+                                                                        </button>
+                                                                }
                                                                 <div className="product-price-search">${product['price']}</div>
                                                                 <p className="popular-products-product-name">{product['product_name']}</p>
                                                             </div>)

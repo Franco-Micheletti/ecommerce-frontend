@@ -1,4 +1,4 @@
-function createFilterData(filters) {
+export const createFilterData = (filters) => {
 
     if(filters["filters"]) { 
     
@@ -18,5 +18,3 @@ function createFilterData(filters) {
     }
     
 }
-
-export default createFilterData
