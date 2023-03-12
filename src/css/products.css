@@ -42,6 +42,10 @@
     margin-top: 40px;
 }
 
+.search-product-image:hover{
+    cursor: pointer;
+}
+
 .results-container{
     display: grid;
     

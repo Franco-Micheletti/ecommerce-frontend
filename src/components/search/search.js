@@ -18,7 +18,7 @@ import { addProductToCart } from "../cart/functions/addProductToCart";
 import { fetchProductsByName,fetchAndApplyFilter } from '../../api/fetchProductsByName';
 import { toggleFiltersContainer } from "./functions/filtersContainer";
 // ROUTER
-import { useSearchParams,useNavigate,Navigate } from 'react-router-dom';
+import { useSearchParams,useNavigate,Navigate,Link } from 'react-router-dom';
 import { removeProductFromCart } from "../cart/functions/removeProductFromCart";
 
 const Search = () => {
@@ -121,11 +121,14 @@ const Search = () => {
 
                                                         ?  products.map( (keys) =>  
                                                                 {
-                                                                    const imageFile = keys["product"]["product_image_tag"]
-                                                                    
+                                                                    const imageFile    = keys["product"]["product_image_tag"]
+                                                                    const formatedName = keys["product"]["product_name"].replaceAll(" ","-").toLowerCase()
+                                                                    const id = keys["product"]["id"]
                                                                     return (
                                                                     <div className="product-item">
+                                                                        <Link to={`/${formatedName}/${id}`}>
                                                                         <img className="search-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                                                        </Link>
                                                                         {
                                                                             expandAddButton[keys["product"]["id"]]
                                                                                 ? <button style={{width: "230px" }} className="button-product-add">

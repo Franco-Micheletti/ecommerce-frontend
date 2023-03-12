@@ -25,6 +25,8 @@ import {
 import {
         pagesListReducer,
         pageReducer} from './pagination/paginationSlices'
+ // Specific Product
+import { specificProductReducer } from './specificProduct/productsSlices'
 
 export const store = configureStore({
     reducer: {
@@ -48,7 +50,9 @@ export const store = configureStore({
         totalResultsReducer,
         // Pagination
         pagesListReducer,
-        pageReducer
+        pageReducer,
+        // Product
+        specificProductReducer
 
     }
 })
