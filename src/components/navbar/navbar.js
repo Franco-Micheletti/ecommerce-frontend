@@ -4,30 +4,74 @@ import '../../css/header.css'
 import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchedString } from '../../state/products/productsSlices'
-import { useNavigate } from "react-router-dom";
+import { setJwtAccess,setJwtRefresh,setRenderUserOptions } from "../../state/user/userSlices";
+import { useNavigate,useLocation } from "react-router-dom";
 import { resetAppliedFiltersList } from "../../state/products/productsSlices";
+import { login } from "./functions/login";
+import { useCookies } from "react-cookie";
 
-const Navbar = ({loggedIn = false}) => {
+const Navbar = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const navBar     = useRef()
-    const inputBox   = useRef()
-    const searchInput = useSelector( (store) => store.stringInputReducer)
-    const cartCounter = useSelector( (store) => store.cartCounterReducer)
-    const page        = useSelector((store)=> store.pageReducer)
-    const [renderUserOptions,setrenderUserOptions] = useState(false)
-    
+    // const location = useLocation()
+    // const fromLocation = location?.state?.from?.pathname || '/'
+    const navBar          = useRef()
+    const inputBox        = useRef()
+    const overlayLogin    = useRef()
+    const loginWindow     = useRef()
+    const searchInput     = useSelector( (store) => store.stringInputReducer)
+    const cartCounter     = useSelector( (store) => store.cartCounterReducer)
+    const page            = useSelector( (store)=> store.pageReducer)
+    const userCredentials = useSelector( (store)=> store.userCredentialsReducer)
+    const renderUserOptions = useSelector( (store)=> store.renderUserOptionsReducer)
 
-    function loginLink(loggedIn) {
+    const [username,setUsername] = useState("")
+    const [password,setPassword] = useState("")
+    const [loading,setLoading]   = useState(false)
+    // const [cookies, setCookie] = useCookies(['access_token', 'refresh_token'])
 
-        loggedIn = true
+    const handleLoginSubmit = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        try {
+            const loginData = await login({username,password})
+            
+            if (loginData["access"] && loginData["refresh"]) {
+                dispatch(setJwtAccess(loginData["access"]))
+                dispatch(setJwtRefresh(loginData["refresh"]))
+                setLoading(false)
+                // navigate(fromLocation,{ replace: true })
+            }
+        } catch (error) {
+            setLoading(false)
+        }
+        
+        // --- Create cookie at browser ---
+
+        // let expires = new Date()
+        // expires.setTime(expires.getTime() + (loginData["expires_in"] * 1000))
+        // setCookie('access_token', loginData["access"], { path: '/',  expires,httpOnly:true})
+        // setCookie('refresh_token', loginData["refresh"], {path: '/', expires,httpOnly:true}) 
     }
+    const clickLoginButton = () => {
+
+        overlayLogin.current.style.display = "block"
+        loginWindow.current.style.display  = "block"
+        overlayLogin.current.addEventListener("click",removeEventListener,true)
+    }
+    
+    const removeEventListener = () => {
+        overlayLogin.current.style.display = "none"
+        loginWindow.current.style.display  = "none"
+        overlayLogin.current.removeEventListener("click",removeEventListener,true)
+    }
+
     function toggleUserOptions() {
         
         !renderUserOptions
-                ? setrenderUserOptions(true)
-                : setrenderUserOptions(false)
+                ? dispatch(setRenderUserOptions(true))
+                : dispatch(setRenderUserOptions(false))
 
     }
 
@@ -50,26 +94,26 @@ const Navbar = ({loggedIn = false}) => {
         navigate(`/search/?q=${searchInput}&page=${page}`)
     }
 
-    loggedIn = true
-
     function navBarBackground() {
         
         if (window.scrollY > 0 && window.scrollY < 100 && navBar.current !== null ) {
-            navBar.current.style.backgroundColor = "#d7d6d6"
+            navBar.current.style.backgroundColor = "#ffffff"
+            navBar.current.style.boxShadow = "0 1px 6px 0 rgba(32, 33, 36, 0.28)";
             window.removeEventListener("scroll",navBarBackground,true)
             window.addEventListener("scroll",navBarTransparent,true)
         } 
     }
     function navBarTransparent() {
-        
+
         if (window.scrollY < 10 && navBar.current !== null ) {
             navBar.current.style.backgroundColor = "transparent"
+            navBar.current.style.boxShadow = "none";
             window.removeEventListener("scroll",navBarTransparent,true)
             window.addEventListener("scroll",navBarBackground,true)
         }
     }
     useEffect( () => {
-        console.log("creating event listener")
+        
         window.addEventListener("scroll",navBarBackground,true)
         setTimeout(()=> {
             inputBox.current.style.marginTop = "0px"
@@ -84,10 +128,23 @@ const Navbar = ({loggedIn = false}) => {
     return (
         
         <header className="header">
+            <div>
+                <div ref={overlayLogin} style={{display:"none"}} className="login-window-background"></div>
+                <div ref={loginWindow} style={{display:"none"}} className="login-window">
+                    <form onSubmit={(e) => handleLoginSubmit(e)}>
+                        <div className="login-inputs-container">
+                            <input placeholder={"user"} value={username} onChange={(e)=> setUsername(e.target.value)} />
+                            <input type="password" placeholder={"password"} value={password} onChange={(e)=> setPassword(e.target.value)} />
+                            <button disabled={loading} type="submit" className="login-window-submit-button">Login</button>
+                            <div className="register-link-container">¿ Don't have an account ? <Link style={{textDecoration: 'none'}}to="/register"><div className="register-link-text">Register</div></Link> </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
             <div ref={navBar} className="header-container">
                 <div className="logo-container">
                     <Link to="/" className="logo-container">
-                        {/* <img className="logo-image" src={require(`../../images/cart.png`)} width="50" height="50"></img> */}
                         <div className="logo-name">
                             <span style={{color: "#000000"}}>CODENAME:</span><span>MARKET </span>  
                         </div>
@@ -100,15 +157,16 @@ const Navbar = ({loggedIn = false}) => {
                     </div>
                     
                 </div>
-                {
-                    loggedIn === true
+                {   
+                    userCredentials["jwt_access"]
                         ? (
                             <>
                                 <div className="user-options-button-container">
+                                <div className="link-favorites"><svg fill="#000000" height="35px" width="35px" version="1.1 "viewBox="0 0 455 455"> <path d="M326.632,10.346c-38.733,0-74.991,17.537-99.132,46.92c-24.141-29.384-60.398-46.92-99.132-46.92 C57.586,10.346,0,67.931,0,138.714c0,55.426,33.05,119.535,98.23,190.546c50.161,54.647,104.728,96.959,120.257,108.626l9.01,6.769 l9.01-6.768c15.529-11.667,70.098-53.978,120.26-108.625C421.949,258.251,455,194.141,455,138.714 C455,67.931,397.414,10.346,326.632,10.346z M334.666,308.974c-41.259,44.948-85.648,81.283-107.169,98.029 c-21.52-16.746-65.907-53.082-107.166-98.03C61.236,244.592,30,185.717,30,138.714c0-54.24,44.128-98.368,98.368-98.368 c35.694,0,68.652,19.454,86.013,50.771l13.119,23.666l13.119-23.666c17.36-31.316,50.318-50.771,86.013-50.771 c54.24,0,98.368,44.127,98.368,98.368C425,185.719,393.763,244.594,334.666,308.974z"></path></svg></div>
                                     <div style={{width:"50px",height:"50px",textDecoration: "none",alignItems:"center",display:"flex"}}>
                                         <Link className="link-to-cart" to="/cart">
-                                        <svg className="svg-cart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#858585"><g><path d="M6.787 15.981l14.11-1.008L23.141 6H5.345L5.06 4.37a1.51 1.51 0 0 0-1.307-1.23l-2.496-.286-.114.994 2.497.286a.502.502 0 0 1 .435.41l1.9 10.853-.826 1.301A1.497 1.497 0 0 0 6 18.94v.153a1.5 1.5 0 1 0 1 0V19h11.5a.497.497 0 0 1 .356.15 1.502 1.502 0 1 0 1.074-.08A1.497 1.497 0 0 0 18.5 18H6.416a.5.5 0 0 1-.422-.768zM19.5 21a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5zm-13 0a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5zM21.86 7l-1.757 7.027-13.188.942L5.52 7z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
-                                        <div className="products-in-cart">{cartCounter}</div>
+                                            <svg className="svg-cart" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#858585"><g><path d="M6.787 15.981l14.11-1.008L23.141 6H5.345L5.06 4.37a1.51 1.51 0 0 0-1.307-1.23l-2.496-.286-.114.994 2.497.286a.502.502 0 0 1 .435.41l1.9 10.853-.826 1.301A1.497 1.497 0 0 0 6 18.94v.153a1.5 1.5 0 1 0 1 0V19h11.5a.497.497 0 0 1 .356.15 1.502 1.502 0 1 0 1.074-.08A1.497 1.497 0 0 0 18.5 18H6.416a.5.5 0 0 1-.422-.768zM19.5 21a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5zm-13 0a.5.5 0 1 1 .5-.5.5.5 0 0 1-.5.5zM21.86 7l-1.757 7.027-13.188.942L5.52 7z"></path><path fill="none" d="M0 0h24v24H0z"></path></g></svg>
+                                            <div className="products-in-cart">{cartCounter}</div>
                                         </Link>
                                     </div>
                                     <button className="expand-user-options-button" onClick={toggleUserOptions}><img className="user-image" src={require(`../../images/user.png`)}></img></button>
@@ -120,8 +178,8 @@ const Navbar = ({loggedIn = false}) => {
                             </>
                         )
                         
-                        : (<div className="login-link">
-                            <button onClick={loginLink}>Login</button>
+                        : (<div onClick={() => clickLoginButton()} className="login-button">
+                            <div>Login</div>
                         </div>)
                 }
                     

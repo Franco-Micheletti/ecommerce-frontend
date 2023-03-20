@@ -1,7 +1,6 @@
 import { createSlice  } from "@reduxjs/toolkit";
 import { appliedFiltersLocalStorage,getAllAppliedFilters } from "../../components/appliedFilters/functions/appliedFiltersLocalStorage";
 import { getStringInputFromLocalStorage,addSearchInputToLocalStorage} from "../../components/navbar/functions/searchStringLocalStorage";
-import { current } from "@reduxjs/toolkit";
 
 export const productsSlice = createSlice(
 
@@ -92,12 +91,12 @@ export const appliedFiltersSlice = createSlice(
         reducers:{
             addFilter: (state,action) =>{
                 if (action.payload["filter_name"] !== "price"){
-                    if (!state["features"]) {
-                        state["features"] = {}
+                    if (!state["properties"]) {
+                        state["properties"] = {}
                     }
                     
-                    appliedFiltersLocalStorage("features",false,action.payload)
-                    state["features"][action.payload["filter_name"]] = action.payload["filter_value"]
+                    appliedFiltersLocalStorage("properties",false,action.payload)
+                    state["properties"][action.payload["filter_name"]] = action.payload["filter_value"]
                 }
                 else {
                     appliedFiltersLocalStorage(action.payload["filter_name"],false,action.payload)
@@ -107,15 +106,15 @@ export const appliedFiltersSlice = createSlice(
             },
             removeFilter: (state,action) =>{
                 if (action.payload["filter_name"] !== "price") {
-                    if (state["features"]) {
-                        if (state["features"][action.payload["filter_name"]]) {
-                            delete state["features"][action.payload["filter_name"]]
+                    if (state["properties"]) {
+                        if (state["properties"][action.payload["filter_name"]]) {
+                            delete state["properties"][action.payload["filter_name"]]
                         }
                         else {
                             console.log("Filter name doesn't exist")
                         }
                     }
-                    appliedFiltersLocalStorage("features",true,action.payload)
+                    appliedFiltersLocalStorage("properties",true,action.payload)
                     
                 } else {
                     if (state[action.payload["filter_name"]]) {
@@ -144,9 +143,9 @@ export const urlFiltersStringSlice = createSlice(
             setUrlFiltersString: (state,action) =>{
                 var filtersApplied = action.payload
                 state = ""
-                if (filtersApplied["features"]) {
-                    Object.keys(filtersApplied["features"]).forEach( (key,index) => {
-                        state += "&"+key+"="+filtersApplied["features"][key]
+                if (filtersApplied["properties"]) {
+                    Object.keys(filtersApplied["properties"]).forEach( (key,index) => {
+                        state += "&"+key+"="+filtersApplied["properties"][key]
                     });
                 }
                 if ( filtersApplied["price"]) {

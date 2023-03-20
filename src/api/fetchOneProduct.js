@@ -1,4 +1,5 @@
 import { setProduct } from "../state/specificProduct/productsSlices"
+import { setVariantOption } from "../state/variants/variantsSlices"
 import {store} from "../state/store"
 
 export const fetchOneProduct = (productId) => {
@@ -11,7 +12,8 @@ export const fetchOneProduct = (productId) => {
                     }
     )
     .then(data => {
-        store.dispatch(setProduct(data))   
+        store.dispatch(setProduct(data))
+        store.dispatch(setVariantOption(data))
         }
     )
 } 

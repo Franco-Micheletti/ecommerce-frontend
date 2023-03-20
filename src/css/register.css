@@ -1,0 +1,65 @@
+.register-text{
+    font-weight: 500;
+    font-size: 19px;
+    font-family: serif;
+    padding-top: 20px;
+    color: rgb(128, 129, 129);
+}
+
+.register-inputs-container {
+    gap: 20px;
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: 400px;
+    height: 520px;
+    margin-top: 50px;
+    box-shadow: 0 1px 2px 1px #00000026;
+    border-radius: 10px;
+    align-content: center;
+    
+}
+
+.register-inputs-container input{
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    color: rgb(46, 44, 44);
+    border: 0;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+}
+
+.register-inputs-container input:last-child {
+
+    margin-bottom: 50px;
+}
+.register-inputs-container input:focus {
+   
+    outline: 0.1px solid rgb(201, 201, 201);
+    
+}
+
+.body-register{
+    width: 100%;
+    height: 578px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-window-submit-button{
+    background-color: rgb(34, 133, 199);
+    width: 100px;
+    height: 35px;
+    color: white;
+    border-radius: 5px;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    cursor:pointer;
+    font-size: 18px;
+    font-family: serif;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+    border: 0;
+}

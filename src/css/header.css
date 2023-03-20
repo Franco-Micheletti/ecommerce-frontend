@@ -1,3 +1,99 @@
+.register-link-text{
+    color: rgb(35, 100, 221);
+    text-decoration: none;
+}
+
+.register-link-container{
+    font-size: 17px;
+    font-family: serif;
+    display: flex;
+    gap: 5px;
+    text-decoration: none;
+}
+
+.login-window-submit-button{
+    background-color: rgb(34, 133, 199);
+    width: 100px;
+    height: 35px;
+    color: white;
+    border-radius: 5px;
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    cursor:pointer;
+    font-size: 18px;
+    font-family: serif;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+    border: 0;
+}
+.login-inputs-container {
+    gap: 20px;
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.login-inputs-container input{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    color: rgb(46, 44, 44);
+    border: 0;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+}
+
+.login-inputs-container input:focus {
+   
+    outline: 0.1px solid rgb(201, 201, 201);
+    
+}
+
+.login-inputs-container input::placeholder{
+    color: rgb(175, 174, 174);
+}
+
+.login-window-background{
+    width: 100vw;
+    height: 300vh;
+    background-color: rgba(0, 0, 0, 0.822);
+    z-index: 6;
+    position: absolute;
+    top: 0;
+}
+
+.login-window{
+    
+    width: 364px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+    position: absolute;
+    background-color: #eef0f1;
+    top: 17vw;
+    left: 72vh;
+    z-index: 6;
+}
+
+.link-favorites{
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    position: static;
+    display: flex;
+    background: transparent;
+    padding: 11px
+}
+
+.link-favorites svg{
+    fill: rgb(151, 151, 151);
+}
+
 .header {
     height: 90px;
     display: flex;
@@ -104,7 +200,7 @@
     margin: 0 auto;
 }
 
-.login-link {
+.login-button {
 
     background-color: rgb(34, 133, 199);
     height: 32px;
@@ -116,6 +212,14 @@
     display: inline-flex;
     justify-content: center;
     margin-right: 50px;
+    margin-left:197px;
+    cursor:pointer;
+    font-size: 18px;
+    font-family: serif;
+}
+
+.login-button:hover{
+    background-color: #0c6ea3;
 }
 
 .user-options-button-container {

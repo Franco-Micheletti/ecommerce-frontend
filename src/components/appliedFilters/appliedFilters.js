@@ -22,7 +22,7 @@ export const AppliedFilters = (filters) => {
 
     useEffect(() => {
         if(Object.keys(appliedFilters).length !== 0 ) {
-            let objectLength = appliedFilters["features"].length
+            let objectLength = appliedFilters["properties"].length
             wrapersFeatures.current = wrapersFeatures.current.slice(0, objectLength)
             removeFilterButtons.current = removeFilterButtons.current.slice(0, objectLength)
         }
@@ -73,13 +73,13 @@ export const AppliedFilters = (filters) => {
                     : <></>
             }
             {
-                appliedFilters["features"]
-                    ? Object.keys(appliedFilters["features"]).map( (key,index) => {
+                appliedFilters["properties"]
+                    ? Object.keys(appliedFilters["properties"]).map( (key,index) => {
 
                         console.log("APPLIED FILTER KEY",key)
-                        console.log("APPLIED FILTER VALUE",appliedFilters["features"][key])
+                        console.log("APPLIED FILTER VALUE",appliedFilters["properties"][key])
                         const filterToRemove = {"filter_name":key,
-                                                "filter_value":appliedFilters["features"][key]}
+                                                "filter_value":appliedFilters["properties"][key]}
                         const optionName = key.charAt(0).toUpperCase()+key.slice(1).replaceAll("_"," ")
                         
                         return (
@@ -91,7 +91,7 @@ export const AppliedFilters = (filters) => {
                                 <div ref={el => wrapersFeatures.current[index] = el} className="wraper-remove-applied-filter">
                                     <div className="applied-filter-container">
                                         <div>{optionName}</div>
-                                        <div className="filter-option-value">{appliedFilters["features"][key]}</div>
+                                        <div className="filter-option-value">{appliedFilters["properties"][key]}</div>
                                     </div>
                                 </div>
                             </div>

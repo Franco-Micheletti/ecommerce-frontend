@@ -1,3 +1,47 @@
+.variant-text-preview-container{
+    display: flex;
+    width: fit-content;
+    gap: 8px;
+    
+}
+.variant-property-text{
+    font-weight: bold;
+    font-size: 17px;
+    font-family: serif;
+    
+}
+.variant-value-text{
+
+    color: #0099ff;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: serif;
+    
+}
+
+
+.right-panel-variants{
+
+    height: fit-content;
+    margin-top: 15px;
+}
+
+.variants-options-container{
+
+    width: fit-content;
+    gap: 7px;
+    display: grid;
+    margin-bottom: 7px;
+}
+.variant-values-list-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 5px;
+
+}
+
 .star-fill{
     content: "\f198";
 }
@@ -13,31 +57,49 @@
     margin-top: 10px;
 }
 
-.color-brown{
-    background-color: #5c4c3d;
-}
-.color-white{
-    background-color: white;
-}
-
-.color-beige{
-    background-color: beige;
-}
-
-.color-variation-item{
+.color-variant-item{
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    border: 2px solid rgb(235, 234, 234);
+    border: 3px solid transparent;
+    font-size: 10px;
+    font-family: serif;
+    box-shadow: 0 1px 2px 1px #00000026;
+    
+}
+
+.color-variant-item:hover {
+    cursor: pointer;
+    border: 3px solid rgb(49 144 187);
+}
+
+.width-variant-item{
+
+    border-radius: 10px;
+    width: 48px;
+    height: 48px;
+    border: 1px groove rgb(197 197 197);
+    font-size: 16px;
+    font-family: serif;
+    align-items: center;
+    justify-content: center;
+    display: inline-grid;
+
+}
+
+.width-variant-item:hover{
+    cursor: pointer;
+    border: 1px solid rgb(26, 78, 146);
 }
 
 .product-right-panel{
-    display: inline-grid;
+
+    display: block;
     width: 395px;
+    height: 510px;
     border-radius: 5px;
-    gap: 10px;
-    justify-content: center;
     box-shadow: 0 1px 2px 1px #00000026;
+    padding: 20px;
 
 }
 
@@ -47,7 +109,7 @@
     display: inline-grid;
     gap: 10px;
     width: 350px;
-    height: inherit;
+    height: fit-content;
     align-items: flex-start;
     justify-content: center;
     justify-items: center;
@@ -129,6 +191,9 @@
     margin-bottom: 20px
 }
 
+.product-detailed-page-add-button:hover{
+    cursor: pointer;
+}
 .button-scroll-up-container{
     align-items: center;
     justify-content: center;

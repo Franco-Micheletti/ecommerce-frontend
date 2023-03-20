@@ -117,36 +117,37 @@ const Search = () => {
                                                 </div>
                                                 <div ref={productListRef} className="products-list-container">
                                                 {
-                                                    products.length > 1
+                                                    products.length >= 1
 
-                                                        ?  products.map( (keys) =>  
+                                                        ?  products.map( (product) =>  
                                                                 {
-                                                                    const imageFile    = keys["product"]["product_image_tag"]
-                                                                    const formatedName = keys["product"]["product_name"].replaceAll(" ","-").toLowerCase()
-                                                                    const id = keys["product"]["id"]
+                                                                    const imageFile    = product["product_image_tag"]
+                                                                    const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
+                                                                    const id = product["id"]
                                                                     return (
                                                                     <div className="product-item">
+                                                                        <div className="add-to-favorites-container-search"><svg fill="#000000" height="35px" width="35px" version="1.1 "viewBox="0 0 455 455"> <path d="M326.632,10.346c-38.733,0-74.991,17.537-99.132,46.92c-24.141-29.384-60.398-46.92-99.132-46.92 C57.586,10.346,0,67.931,0,138.714c0,55.426,33.05,119.535,98.23,190.546c50.161,54.647,104.728,96.959,120.257,108.626l9.01,6.769 l9.01-6.768c15.529-11.667,70.098-53.978,120.26-108.625C421.949,258.251,455,194.141,455,138.714 C455,67.931,397.414,10.346,326.632,10.346z M334.666,308.974c-41.259,44.948-85.648,81.283-107.169,98.029 c-21.52-16.746-65.907-53.082-107.166-98.03C61.236,244.592,30,185.717,30,138.714c0-54.24,44.128-98.368,98.368-98.368 c35.694,0,68.652,19.454,86.013,50.771l13.119,23.666l13.119-23.666c17.36-31.316,50.318-50.771,86.013-50.771 c54.24,0,98.368,44.127,98.368,98.368C425,185.719,393.763,244.594,334.666,308.974z"></path></svg></div>
                                                                         <Link to={`/${formatedName}/${id}`}>
                                                                         <img className="search-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
                                                                         </Link>
                                                                         {
-                                                                            expandAddButton[keys["product"]["id"]]
+                                                                            expandAddButton[product["id"]]
                                                                                 ? <button style={{width: "230px" }} className="button-product-add">
-                                                                                    <div className="expandedAddLessButton" onClick={ () => removeProductFromCart(keys["product"]["id"])}>
+                                                                                    <div className="expandedAddLessButton" onClick={ () => removeProductFromCart(product["id"])}>
                                                                                         <label>-</label>
                                                                                     </div>
-                                                                                    <div>{expandAddButton[keys["product"]["id"]]["quantity"]}</div>
-                                                                                    <div className="expandedAddMoreButton" onClick={ () => addProductToCart(keys["product"])}>
+                                                                                    <div>{expandAddButton[product["id"]]["quantity"]}</div>
+                                                                                    <div className="expandedAddMoreButton" onClick={ () => addProductToCart(product)}>
                                                                                         <label>+</label>
                                                                                     </div>
                                                                                 </button> 
 
-                                                                                : <button onClick={ () => addProductToCart(keys["product"])} style={{width: "85px" }} className="button-product-add">
+                                                                                : <button onClick={ () => addProductToCart(product)} style={{width: "85px" }} className="button-product-add">
                                                                                     <div>Add</div>
                                                                                 </button>
                                                                         }
-                                                                        <div className="product-price-search">${keys["product"]['price']}</div>
-                                                                        <p className="product-name-search">{keys["product"]['product_name']}</p>
+                                                                        <div className="product-price-search">${product['price']}</div>
+                                                                        <p className="product-name-search">{product['product_name']}</p>
                                                                     </div>)
                                                                 }
                                                             )

@@ -25,8 +25,15 @@ import {
 import {
         pagesListReducer,
         pageReducer} from './pagination/paginationSlices'
- // Specific Product
+// Specific Product
 import { specificProductReducer } from './specificProduct/productsSlices'
+// Variants
+import { variantOptionsReducer,variantValuePreviewReducer } from './variants/variantsSlices' 
+// Favorites
+import { favoritesListReducer } from './favorites/favoritesSlices'
+// User
+import { userCredentialsReducer,renderUserOptionsReducer} from './user/userSlices'
+
 
 export const store = configureStore({
     reducer: {
@@ -52,7 +59,15 @@ export const store = configureStore({
         pagesListReducer,
         pageReducer,
         // Product
-        specificProductReducer
+        specificProductReducer,
+        // Variants
+        variantOptionsReducer,
+        variantValuePreviewReducer,
+        // Favorites
+        favoritesListReducer,
+        // User
+        userCredentialsReducer,
+        renderUserOptionsReducer
 
     }
 })

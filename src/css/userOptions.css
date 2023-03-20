@@ -3,11 +3,11 @@
     width: 300px;
     height: 200px;
     border-radius: 20px;
-    background-color: rgb(136, 152, 172);
+    background-color: #edeeef;
     right: 20px;
     position: absolute;
     top: 99px;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 8px 34px -25px;
+    box-shadow: 0 1px 2px 1px #00000026;
     z-index: 991;
     overflow: hidden;
 }   
@@ -28,7 +28,8 @@
 .log-out:hover, .manage-account:hover {
 
     cursor: pointer;
-    background-color: rgb(122, 148, 182);
+    background-color: rgb(203, 205, 207);
+    box-shadow: 0 1px 2px 1px #00000026;
 }
 
 .logout-text {

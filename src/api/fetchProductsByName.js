@@ -14,7 +14,7 @@ export const fetchProductsByName = (string,page) => {
     .then(response => {
                     if (response.status === 200 ) {
                         return response.json()
-                    } else if (response.status === 404 ){
+                    } else if (response.status === 404 || response.status === 400 ){
                         return 0
                     }
                     }
@@ -52,10 +52,10 @@ export const fetchAndApplyFilter = (searchInput,appliedFilters,page) => {
             }
             json["price"][filter[0]] = filter[1]
         } else {
-            if ( !json["features"]) {
-                json["features"] = {}
+            if ( !json["properties"]) {
+                json["properties"] = {}
             }
-            json["features"][filter[0]] = filter[1]
+            json["properties"][filter[0]] = filter[1]
         }
     })
 

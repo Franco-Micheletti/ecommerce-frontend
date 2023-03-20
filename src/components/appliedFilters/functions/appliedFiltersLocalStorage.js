@@ -19,54 +19,43 @@
  * true if you want to remove a filter or false if you want to a add filter
  */
 export const appliedFiltersLocalStorage = (key,remove,filter=null) => {
-    // Get json of applied filters
-    if ( key && !filter ){
+    if ( key && remove !== null && filter ) {
         
-        const appliedFilters = window.localStorage.getItem("applied_filters")
-        if (appliedFilters !== null) {
-            return JSON.parse(appliedFilters[key])
-        } else {
-            return {}
-        }
-        
-        // Adds or removes a filter
-    } else if ( key && remove !== null && filter ) {
-        
-            if (window.localStorage.getItem("applied_filters")) {
-                
-                const appliedFiltersInLocalStorage = window.localStorage.getItem("applied_filters")
-                const appliedFilters = JSON.parse(appliedFiltersInLocalStorage)
+        if (window.localStorage.getItem("applied_filters")) {
+            
+            const appliedFiltersInLocalStorage = window.localStorage.getItem("applied_filters")
+            const appliedFilters = JSON.parse(appliedFiltersInLocalStorage)
 
-                if (remove === false ) {
-                    if ( typeof filter === "object" && Array.isArray(filter) === false ) {
-                        if (!appliedFilters[key]) {
-                            appliedFilters[key] = {}
-                        }
-                        appliedFilters[key][filter["filter_name"]] = filter["filter_value"]
-                        window.localStorage.setItem("applied_filters",JSON.stringify(appliedFilters))
-                        
-                        
-                    } else {
-                        console.error("Error inside Local Storage Function: Applied Filters - Filter parameter is not an object")
+            if (remove === false ) {
+                if ( typeof filter === "object" && Array.isArray(filter) === false ) {
+                    if (!appliedFilters[key]) {
+                        appliedFilters[key] = {}
                     }
-                    
-                } else {
-                    delete appliedFilters[key][filter["filter_name"]]
-                    window.localStorage.setItem("applied_filters",JSON.stringify(appliedFilters))
-                }
-            }   // If key doesn't exist in local storage we create it and then we add the filter
-            else {
-
-                if (remove === false) {
-                    const appliedFilters = {}
-                    appliedFilters[key] = {}
                     appliedFilters[key][filter["filter_name"]] = filter["filter_value"]
                     window.localStorage.setItem("applied_filters",JSON.stringify(appliedFilters))
+                    
+                    
                 } else {
-                    console.error("Error inside Local Storage Function: Applied Filters - There is no filters to remove!")
+                    console.error("Error inside Local Storage Function: Applied Filters - Filter parameter is not an object")
                 }
                 
-            }  
+            } else {
+                delete appliedFilters[key][filter["filter_name"]]
+                window.localStorage.setItem("applied_filters",JSON.stringify(appliedFilters))
+            }
+        }   // If key doesn't exist in local storage we create it and then we add the filter
+        else {
+
+            if (remove === false) {
+                const appliedFilters = {}
+                appliedFilters[key] = {}
+                appliedFilters[key][filter["filter_name"]] = filter["filter_value"]
+                window.localStorage.setItem("applied_filters",JSON.stringify(appliedFilters))
+            } else {
+                console.error("Error inside Local Storage Function: Applied Filters - There is no filters to remove!")
+            }
+            
+        }  
     }
     else {
         console.error("Error inside Local Storage Function: Applied Filters - Invalid parameters or null values\n"
