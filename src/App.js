@@ -6,9 +6,11 @@ import Search from './components/search/search';
 import { UserAccount } from './components/UserAccount';
 import { ProductDetails } from './components/productDetails/productDetails'
 import { PersistLogin } from './components/persistLogin';
-import { Register } from './components/register';
+import { Register } from './components/register/register';
+import { ActivateAccount } from './components/activateAccount';
 
 function App() {
+  
   return (
     <div className="App">
       <Routes>
@@ -18,6 +20,7 @@ function App() {
           <Route path ="/register" element = {<Register />}    />
           <Route path ='/cart'     element = {<Cart />}    />
           <Route path='/account'   element = {<UserAccount />}    />
+          <Route path='/activate'  element = {<ActivateAccount />}    />
           <Route exact path ='/:productName/:productId' element = {<ProductDetails />} />
           <Route path = '*' element = {<h1 style={{textAlign: "center"}}>404 Not Found</h1>} />
         </Route>  

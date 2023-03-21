@@ -17,7 +17,7 @@ export const PersistLogin = () => {
             try {
                 await getNewAccessToken()
             } catch (error) {
-                console.log(error?.response)
+                
             } finally {
                 isMounted && setLoading(false)
             }

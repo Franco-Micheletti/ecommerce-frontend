@@ -5,20 +5,14 @@
     
 }
 .variant-property-text{
-    font-weight: bold;
     font-size: 17px;
     font-family: serif;
-    
 }
 .variant-value-text{
-
     color: #0099ff;
     font-size: 17px;
-    font-weight: 600;
     font-family: serif;
-    
 }
-
 
 .right-panel-variants{
 
@@ -105,7 +99,6 @@
 
 .right-panel-basic{
     margin-top: 20px;
-    background-color: #ffffff;
     display: inline-grid;
     gap: 10px;
     width: 350px;

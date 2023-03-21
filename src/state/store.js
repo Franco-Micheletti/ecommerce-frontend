@@ -32,7 +32,11 @@ import { variantOptionsReducer,variantValuePreviewReducer } from './variants/var
 // Favorites
 import { favoritesListReducer } from './favorites/favoritesSlices'
 // User
-import { userCredentialsReducer,renderUserOptionsReducer} from './user/userSlices'
+import { userCredentialsReducer,
+        renderUserOptionsReducer,
+        registrationFormDataReducer,
+        formErrorsReducer,
+        userDataReducer} from './user/userSlices'
 
 
 export const store = configureStore({
@@ -67,7 +71,10 @@ export const store = configureStore({
         favoritesListReducer,
         // User
         userCredentialsReducer,
-        renderUserOptionsReducer
+        renderUserOptionsReducer,
+        registrationFormDataReducer,
+        formErrorsReducer,
+        userDataReducer
 
     }
 })

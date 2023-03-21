@@ -68,7 +68,7 @@ const Search = () => {
         searchInput && page
             ?<div>
                 <Navbar />
-                <body className="body-search">
+                <div className="body-search">
                     {
                         products && filters && pagesList
                             
@@ -183,7 +183,7 @@ const Search = () => {
                                     ? <TemplateSkeletonSearch />
                                     : <div>NO PRODUCT FOUND</div>
                     }
-                </body>
+                </div>
                 <Footer />
             </div>
 

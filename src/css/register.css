@@ -1,3 +1,27 @@
+
+.field-error-container{
+    color: red;
+    font-size: 14px;
+    font-family: serif;
+    font-weight: 500;
+    width: 308px;
+    justify-content: center;
+    display: inline-flex;
+    gap: 1px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field-error-container label {
+    width: 308px;
+    margin-left: 50px;
+}
+
+.field-error-container label:nth-child(1){
+    margin-left: 7px;
+    margin-bottom: 5px;
+}
+
 .register-text{
     font-weight: 500;
     font-size: 19px;
@@ -13,12 +37,10 @@
     justify-content: center;
     justify-items: center;
     width: 400px;
-    height: 520px;
-    margin-top: 50px;
-    box-shadow: 0 1px 2px 1px #00000026;
+    height: fit-content;
+    box-shadow: 0px 0px 5px 4px #00000026;
     border-radius: 10px;
     align-content: center;
-    
 }
 
 .register-inputs-container input{
@@ -27,7 +49,7 @@
     border-radius: 5px;
     color: rgb(46, 44, 44);
     border: 0;
-    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+    box-shadow: rgb(123 122 122 / 65%) 0px 0px 3px 1px;
 }
 
 .register-inputs-container input:last-child {
@@ -41,11 +63,12 @@
 }
 
 .body-register{
-    width: 100%;
-    height: 578px;
+    width: 100vw;
+    height: 89vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .register-window-submit-button{
@@ -62,4 +85,32 @@
     font-family: serif;
     box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
     border: 0;
+    margin-bottom: 30px;
+}
+
+.footer-container{
+    margin-top: 0;
+}
+
+.App{
+    /* background-image: linear-gradient(343deg, #d9d9d9, #509aaf); */
+    background: -webkit-linear-gradient(right, #cfcfcf, white);
+}
+
+@media ( max-width: 480px) {
+    .body-register{
+        height:661px;
+        align-items: baseline;
+    }
+    .register-inputs-container{
+        box-shadow:none;
+    }
+    .register-inputs-container input:nth-child(6){
+        width: 268px;
+        height: 32px;
+    }
+    .register-inputs-container input{
+        width: 265px;
+        height: 30px
+    }
 }

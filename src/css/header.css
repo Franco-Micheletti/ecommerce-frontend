@@ -1,3 +1,17 @@
+
+.field-error-container-login{
+    color: red;
+    font-size: 14px;
+    font-family: serif;
+    font-weight: 500;
+    width: 308px;
+    justify-content: center;
+    display: inline-flex;
+    gap: 1px;
+    flex-direction: column;
+    align-items: center;
+}
+
 .register-link-text{
     color: rgb(35, 100, 221);
     text-decoration: none;
@@ -33,7 +47,8 @@
     justify-content: center;
     justify-items: center;
     width: 100%;
-    margin-top: 50px;
+
+
 }
 
 .login-inputs-container input{
@@ -67,7 +82,7 @@
 .login-window{
     
     width: 364px;
-    height: 250px;
+    height: 300px;
     border-radius: 5px;
     box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
     position: absolute;
@@ -75,6 +90,9 @@
     top: 17vw;
     left: 72vh;
     z-index: 6;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
 
 .link-favorites{
@@ -260,7 +278,7 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    width: 100%;
+    width: 100vw;
     background-color: transparent
 }
 
@@ -303,6 +321,22 @@
     transition: all 1s ease-in-out;
 }
 
+.input-box-container-no-login{
+    width: 672px;
+    height: 20px;
+    margin-right: 43px;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 0.01px solid #b1afaf;
+    border-radius: 20px;
+    border-end-end-radius: 0px;
+    border-start-end-radius: 0px;
+    margin-top: -224px;
+    transition: all 1s ease-in-out;
+}
+
 .input-box-container:hover{
     border: 0.01px solid #0c6ea3;
 }
@@ -313,6 +347,14 @@
 .link-to-cart{
     display: inline-flex;
     text-decoration: none;
+}
+
+.cart-container{
+    width:"50px";
+    height:"50px";
+    text-decoration: "none";
+    align-items: "center";
+    display:"flex";
 }
 
 @media(max-width: 2560px){
@@ -327,20 +369,17 @@
     .input-box-container {
         width: 40%;
     }
-    .logo-name{
-        display: none;
-    }
 }
 
 @media ( max-width: 592px ) {
     .input-box-container {
         width: 200px;
     }
+    .input-box-container-no-login {
+        width: 200px;
+    }
     .input-box-style{
         width: 150px;
-    }
-    .logo-name{
-        display: none;
     }
     .user-options-button-container{
         margin-right: 0;
@@ -363,10 +402,12 @@
     
     .header-container{
         gap: 20px;
+        justify-content: center;
     }
     .input-box-container {
-        width: 46%;
+        width: 79px;
         height: 5px;
+        margin-right: 15px;
     }
     .logo-image{
         width: 30px;
@@ -374,12 +415,13 @@
         margin-left: 7px;
     }
     .input-box-style{
-        width: 120px;
+        width: 85px;
         font-size: 10px;
     }
     .search-button{
         width: 36px;
         height: 27px;
+        right:-36px
     }
     .scope-icon{
         width: 15px;
@@ -387,8 +429,7 @@
     }
     .user-options-button-container{
         margin-right: 0;
-        gap: 7px;
-        margin-right: 10px;
+        gap: 1px;
     }
     .user-image{
         width: 30px;
@@ -406,4 +447,58 @@
         display: inline-grid;
         font-size: 13px;
     }
+    .login-button{
+        width: 50px;
+        height: 25px;
+        font-size: 12px;
+        margin-right:0;
+        margin-left: 28px;
+    }
+    .logo-container{
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+        font-size: 18px;
+        margin: 0
+    }
+    .login-window{
+        top: 90px;
+        left: 27px;
+        width: 265px;
+        height: 250px;
+    }
+    .register-link-container{
+        font-size: 14px;
+    }
+    .login-window-submit-button{
+        width: 67px;
+        height: 25px;
+        font-size: 16px;
+    }
+    .login-inputs-container input {
+        width: 175px;
+        height: 26px;
+        font-size: 11px;
+    }
+    .logo-name{
+        gap:0
+    }
+    .link-favorites{
+        width: 20px;
+        height: 20px;
+    }
+    .svg-cart,.user-image{
+        width: 25px;
+        height: 25px;
+    }
+    .cart-container{
+        width: 25px;
+        height: 25px;
+    }
+    .input-box-container-no-login{
+        width: 79px;
+        height: 5px;
+        margin-right: 15px;
+    }
+    
 }

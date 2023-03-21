@@ -28,7 +28,13 @@ const HomeProducts = () => {
 
     useEffect( () => {
         // fetchAllProducts to show at home or different categories of popular products
-        
+        window.scrollTo(
+            {
+                top: 0,
+                left: 0,
+                behavior: 'instant'
+            }
+        )
         fetchHomeProducts()
 
         for(let i = 1;i<6;i++) {
@@ -102,7 +108,7 @@ const HomeProducts = () => {
                                                 </div>
                                                 </button> 
 
-                                            : <button onClick={ () => addProductToCart(product)} style={{width: "85px" }} className="button-product-add">
+                                            : <button onClick={ () => addProductToCart(product)} className="button-product-add">
                                                 <div>Add</div>
                                                 </button>
                                         }
@@ -145,7 +151,7 @@ const HomeProducts = () => {
                                                 </div>
                                                 </button> 
 
-                                            : <button onClick={ () => addProductToCart(product)} style={{width: "85px" }} className="button-product-add">
+                                            : <button onClick={ () => addProductToCart(product)} className="button-product-add">
                                                 <div>Add</div>
                                                 </button>
                                         }
@@ -187,7 +193,7 @@ const HomeProducts = () => {
                                                 </div>
                                                 </button> 
 
-                                            : <button onClick={ () => addProductToCart(product)} style={{width: "85px" }} className="button-product-add">
+                                            : <button onClick={ () => addProductToCart(product)} className="button-product-add">
                                                 <div>Add</div>
                                                 </button>
                                         }

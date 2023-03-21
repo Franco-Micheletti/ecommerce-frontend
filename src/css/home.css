@@ -148,12 +148,12 @@
 
     text-align: center;
     width: 220px;
-    height: 385px;
+    height: 400px;
     background-color: #edeeef;
-    box-shadow: rgb(0 0 0 / 99%) 0px 0px 22px -14px;
     border-radius: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
+    box-shadow: 0 1px 1px 1px #00000026;
 }
 
 .popular-products-home {
@@ -249,6 +249,7 @@
         width: 770px;
         min-height: 180px;
         margin-top: 0px;
+        padding: 10px;
     }
     
 }
@@ -299,9 +300,10 @@
         height: 150px;
     }
     .popular-products-home{
-        width: 320px;
+        width: 228px;
         min-height: 180px;
         margin-top: 0px;
+        gap:0px
     }
     .home-product-image{
         width: 60px;
@@ -320,27 +322,28 @@
     .horizontal-scroll-left, .horizontal-scroll-right{
         width: 25px;
         height: 25px;
-        margin-right: 10px;
-        margin-left: 10px
+        margin-right: 0;
+        margin-left: 0;
+        margin:-14px;
     }
     .body-home {
         justify-content: center;
     }
     .popular-products-home{
-        width: 235px;
+        width: 228px;
         min-height: 181px;
+        padding: 0;
     }
     .title-popular-products-home{
         font-size: 8px;
     }
     .popular-product-item{
-        width: 73px;
-        height: 150px;
-    }
-    .popular-products-home{
-        width: 236px;
-        min-height: 180px;
-        margin-top: 0px;
+        width: 75px;
+        height: 200px;
+        box-shadow: 0 0px 0px 1px #00000026;
+        padding: 1px;
+        margin-left: 2px;
+        margin-right: 2px;
     }
     .home-product-image{
         width: 60px;
@@ -349,5 +352,35 @@
     .popular-products-product-name{
         font-size: 8px;
         width: 80px;
+        
     }
+    .navigate-product-type-home{
+        height: 15px;
+        width: 45px;
+        font-size: 7px;
+    }
+    .tvs-card-image, .home-card-image{
+        width: inherit;
+        height: 70px;
+    }
+    .tvs-card,.home-card{
+        height: 120px;
+        width: 100px;
+    }
+    .cards-text{
+        padding: 10px;
+        font-size: 8px;
+    }
+    .add-to-favorites-container-home{
+        top: 21px;
+        left: 58px;
+        width: 11px;
+        height: 11px
+    }
+    .popular-products-product-name{
+        font-size: 6px;
+        width: 50px;
+        padding: 10px;
+    }
+    
 }

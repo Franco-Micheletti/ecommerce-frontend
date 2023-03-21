@@ -1,7 +1,11 @@
+import { addformError,resetFormErrors } from "../../../state/user/userSlices"
+import { store } from "../../../state/store"
 
 export const login = async ({username,password}) => {
-    
-    const jsonObject = fetch(`http://127.0.0.1:8000/login/`, {
+
+    store.dispatch(resetFormErrors())
+
+    const response = await fetch(`http://127.0.0.1:8000/login/`, {
         method: 'POST',
         credentials:'include',
         headers: {
@@ -12,10 +16,15 @@ export const login = async ({username,password}) => {
     }).then((response)=>{
         if (response.status === 200) {
             return response.json()
+        } else {
+            return response.json()
         }
     })
 
+    if (response["message"] !== "Login Successfully")
+        store.dispatch(addformError(response["message"]))
+    else {
+        return response
+    }
     
-    
-    return jsonObject
 } 
