@@ -30,7 +30,7 @@ import { specificProductReducer } from './specificProduct/productsSlices'
 // Variants
 import { variantOptionsReducer,variantValuePreviewReducer } from './variants/variantsSlices' 
 // Favorites
-import { favoritesListReducer } from './favorites/favoritesSlices'
+import { favoritesListReducer,favoritesIconChangeListReducer,showFavoritesPreviewReducer } from './favorites/favoritesSlices'
 // User
 import { userCredentialsReducer,
         renderUserOptionsReducer,
@@ -69,6 +69,8 @@ export const store = configureStore({
         variantValuePreviewReducer,
         // Favorites
         favoritesListReducer,
+        favoritesIconChangeListReducer,
+        showFavoritesPreviewReducer,
         // User
         userCredentialsReducer,
         renderUserOptionsReducer,

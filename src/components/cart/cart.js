@@ -12,7 +12,7 @@ import { fetchPopularProducts } from "../../api/fetchPopularProducts"
 // FUNCTIONS
 import { addProductToCart} from "../cart/functions/addProductToCart";
 import { removeProductFromCart } from "./functions/removeProductFromCart"
-import { handleHorizontalScrolling } from "../homeProducts/functions/handleHorizontalScrolling"
+
 import { Link } from "react-router-dom"
 
 const Cart = () => {
@@ -162,7 +162,7 @@ const Cart = () => {
                                         <div className="popular-products-text">Check out this popular products!</div>
                                         <div className="popular-products-wraper">
                                             <div>
-                                                <button id="scroll-left-1" onClick ={ () => handleHorizontalScrolling("left",1,"popular-cookies-snacks")}className="horizontal-scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                                                <button id="scroll-left-1" className="horizontal-scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                                             </div>
                                             <div id="popular-cookies-snacks" className="popular-products-home">
                                                 
@@ -170,9 +170,13 @@ const Cart = () => {
                                                 popularProducts?.map( (product) => {
                                                     {   
                                                         const imageFile = product["product_image_tag"]
+                                                        const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
+                                                        const id = product["id"]
                                                         return (
                                                             <div className="popular-product-item">
-                                                                <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                                               <Link to={`/${formatedName}/${id}`}>
+                                                                    <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                                                </Link>
                                                                 {
                                                                 expandAddButton[product["id"]]
                                                                     ? <button style={{width: "140px" }} className="button-product-add">
@@ -197,7 +201,7 @@ const Cart = () => {
                                                 }   
                                             </div>
                                             <div>
-                                                <button id="scroll-right-1" onClick ={ () => handleHorizontalScrolling("right",1,"popular-cookies-snacks")} className="horizontal-scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                                                <button id="scroll-right-1"  className="horizontal-scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                                             </div>
                                         </div>
                                     </div>
@@ -212,7 +216,7 @@ const Cart = () => {
 
                                         <div className="popular-products-wraper">
                                             <div>
-                                                <button id="scroll-left-1" onClick ={ () => handleHorizontalScrolling("left",1,"popular-cookies-snacks")}className="horizontal-scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                                                <button id="scroll-left-1" className="horizontal-scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                                             </div>
                                             <div id="popular-cookies-snacks" className="popular-products-home">
                                                 
@@ -247,7 +251,7 @@ const Cart = () => {
                                                 }   
                                             </div>
                                             <div>
-                                                <button id="scroll-right-1" onClick ={ () => handleHorizontalScrolling("right",1,"popular-cookies-snacks")} className="horizontal-scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                                                <button id="scroll-right-1"  className="horizontal-scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                                             </div>
                                         </div>
                                     

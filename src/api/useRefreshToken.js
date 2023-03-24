@@ -1,5 +1,7 @@
 import { store } from "../state/store"
 import { setJwtAccess, setJwtRefresh } from "../state/user/userSlices"
+import { getFavoritesProductsOfUser } from "./getFavoritesProductsOfUser"
+import jwt from "jwt-decode"
 
 export const getNewAccessToken = async () => {
     
@@ -22,7 +24,8 @@ export const getNewAccessToken = async () => {
 
     store.dispatch(setJwtAccess(response["jwt_access"]))
     store.dispatch(setJwtRefresh(response["jwt_refresh"]))
-
+    let id = jwt(response["jwt_access"])["user_id"]
+    getFavoritesProductsOfUser(id)
 }
 
 

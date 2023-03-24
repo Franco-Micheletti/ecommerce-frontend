@@ -8,6 +8,7 @@ import { ProductDetails } from './components/productDetails/productDetails'
 import { PersistLogin } from './components/persistLogin';
 import { Register } from './components/register/register';
 import { ActivateAccount } from './components/activateAccount';
+import { Favorites } from './components/favorites';
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
           <Route path ='/cart'     element = {<Cart />}    />
           <Route path='/account'   element = {<UserAccount />}    />
           <Route path='/activate'  element = {<ActivateAccount />}    />
+          <Route path='/favorites' element = {<Favorites />}    />
           <Route exact path ='/:productName/:productId' element = {<ProductDetails />} />
           <Route path = '*' element = {<h1 style={{textAlign: "center"}}>404 Not Found</h1>} />
         </Route>  

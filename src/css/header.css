@@ -71,28 +71,32 @@
 }
 
 .login-window-background{
-    width: 100vw;
+    width: 300vw;
     height: 300vh;
     background-color: rgba(0, 0, 0, 0.822);
     z-index: 6;
     position: absolute;
     top: 0;
+    left: 0;
 }
 
 .login-window{
     
-    width: 364px;
-    height: 300px;
     border-radius: 5px;
     box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
-    position: absolute;
+    position: fixed;
     background-color: #eef0f1;
-    top: 17vw;
-    left: 72vh;
     z-index: 6;
     align-items: center;
     justify-content: center;
     display: flex;
+    width: 290px;
+    height: 270px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 40%;
 }
 
 .link-favorites{
@@ -105,9 +109,10 @@
     position: static;
     display: flex;
     background: transparent;
-    padding: 11px
 }
-
+.link-favorites:hover{
+    cursor: pointer;
+}
 .link-favorites svg{
     fill: rgb(151, 151, 151);
 }
@@ -120,6 +125,7 @@
     top: 0;
     z-index: 1;
     width: 100%;
+    justify-content: center;
 }
 
 .products-in-cart{
@@ -154,7 +160,6 @@
 
 .scope-icon {
 
-    color: snow;
     width: 25px;
     height: 25px;
     display: block;
@@ -168,15 +173,11 @@
     background-color: #dbdada;
     height: 42px;
     width: 62px;
-    border: 0;
-    margin-left: -12px;
     border-start-end-radius: 20px;
     border-end-end-radius: 20px;
     justify-content: center;
     display: grid;
     align-items: center;
-    right: -62px;
-    position: absolute;
     border: 0.1px solid #818181;
 }
 
@@ -214,26 +215,23 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-left: 40px;
-    margin: 0 auto;
+    
 }
 
 .login-button {
 
     background-color: rgb(34, 133, 199);
-    height: 32px;
-    width: 100px;
+    width: 88px;
     height: 35px;
     color: white;
     border-radius: 5px;
     align-items: center;
     display: inline-flex;
     justify-content: center;
-    margin-right: 50px;
-    margin-left:197px;
-    cursor:pointer;
+    cursor: pointer;
     font-size: 18px;
     font-family: serif;
+    padding: 5px;
 }
 
 .login-button:hover{
@@ -247,8 +245,6 @@
     align-items: center;
     gap: 30px;
     margin: 0 auto;
-
-    
 }   
 
 .expand-user-options-button {
@@ -257,12 +253,10 @@
     width: 50px;
     border: 0;
     background-color: transparent;
-
 }
 .expand-user-options-button:hover {
 
     cursor:pointer;
-    
 }
 
 .user-image {
@@ -278,20 +272,23 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    width: 100vw;
-    background-color: transparent
+    width: 90vw;
+    background-color: transparent;
+    justify-content: space-between;
 }
+
 
 .input-box-style {
 
-    background-color: transparent;
-    color: black;
-    border-width: 0;
+    align-items: center;
+    display: flex;
     width: 100%;
-    height: 20px;
-    position: relative;
-    font-size:15px;
-    border-radius: 20px;
+    height: 38px;
+    border: 0.01px solid #b1afaf;
+    background: transparent;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    padding-left: 10px;
 }
 
 .input-box-style:focus {
@@ -313,7 +310,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    border: 0.01px solid #b1afaf;
     border-radius: 20px;
     border-end-end-radius: 0px;
     border-start-end-radius: 0px;
@@ -322,14 +318,12 @@
 }
 
 .input-box-container-no-login{
-    width: 672px;
+    width: 38vw;
     height: 20px;
-    margin-right: 43px;
     padding: 10px;
     position: relative;
     display: flex;
     align-items: center;
-    border: 0.01px solid #b1afaf;
     border-radius: 20px;
     border-end-end-radius: 0px;
     border-start-end-radius: 0px;
@@ -350,155 +344,106 @@
 }
 
 .cart-container{
-    width:"50px";
-    height:"50px";
-    text-decoration: "none";
-    align-items: "center";
-    display:"flex";
+    text-decoration: none;
+    display: inline-grid;
 }
-
-@media(max-width: 2560px){
-    .input-box-container{
-        width: 46%;
-    }
-    
+.input-logo-container{
+    display: contents;
 }
 
 
-@media(max-width:1000px){
-    .input-box-container {
-        width: 40%;
+@media ( min-width: 280px) and (max-width: 608px ) {
+    .login-button{
+        width: 50px;
+        height: auto;
     }
-}
-
-@media ( max-width: 592px ) {
-    .input-box-container {
-        width: 200px;
-    }
-    .input-box-container-no-login {
-        width: 200px;
-    }
-    .input-box-style{
-        width: 150px;
-    }
-    .user-options-button-container{
-        margin-right: 0;
-        gap: 11px;
-    }
-    .products-in-cart{
-        width: 20px;
-        height: 20px;
-    }
-    .link-to-cart{
-        display: inline-flex;
-        text-decoration: none;
-    }
-    .search-button{
-        margin-left: 0px;
-    }
-}
-
-@media ( min-width: 320px ) and ( max-width: 609px ) {
-    
-    .header-container{
-        gap: 20px;
+    .header{
+        height: auto;
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 1;
         justify-content: center;
+        padding-top: 1rem;
     }
-    .input-box-container {
-        width: 79px;
-        height: 5px;
-        margin-right: 15px;
+    .header-container{
+        height: 167px;
+        display: contents;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background-color: transparent;
     }
-    .logo-image{
-        width: 30px;
-        height: 30px;
-        margin-left: 7px;
+    .input-box-container{
+        width: 75vw;
+        height: auto;
+        border: 0;
     }
     .input-box-style{
-        width: 85px;
+        height: 20px;
+        border: 1px solid #00000040;
         font-size: 10px;
     }
     .search-button{
-        width: 36px;
-        height: 27px;
-        right:-36px
+        border: 1px solid #00000040;
+        height: auto;
+        width: 100%;
     }
     .scope-icon{
-        width: 15px;
-        height: 15px;
+        width: 18px;
+        height: 20px;
+        display: block;
+        fill: #000000;
     }
     .user-options-button-container{
+        flex-direction: column;
+        justify-content: right;
+        background-color: rgb(225 226 226);
+        border-radius: 10px;
+        padding: 3px;
+        align-items: center;
+        gap: 0;
         margin-right: 0;
-        gap: 1px;
-    }
-    .user-image{
-        width: 30px;
-        height: 30px;
-    }
-    .cart-shop-icon{
-        width: 25px;
-        height: 25px;
-    }
-    .products-in-cart{
-        width: 20px;
-        height: 20px;
-        right: 14px;
-        bottom: 4px;
-        display: inline-grid;
-        font-size: 13px;
-    }
-    .login-button{
-        width: 50px;
-        height: 25px;
-        font-size: 12px;
-        margin-right:0;
-        margin-left: 28px;
-    }
-    .logo-container{
-        width: 20px;
-        height: 20px;
-        margin-left: 15px;
-        font-size: 18px;
-        margin: 0
-    }
-    .login-window{
-        top: 90px;
-        left: 27px;
-        width: 265px;
-        height: 250px;
-    }
-    .register-link-container{
-        font-size: 14px;
-    }
-    .login-window-submit-button{
-        width: 67px;
-        height: 25px;
-        font-size: 16px;
-    }
-    .login-inputs-container input {
-        width: 175px;
-        height: 26px;
-        font-size: 11px;
-    }
-    .logo-name{
-        gap:0
+        margin: 0;
     }
     .link-favorites{
-        width: 20px;
-        height: 20px;
+        width: 1.6rem;
+        height: auto;
     }
-    .svg-cart,.user-image{
-        width: 25px;
-        height: 25px;
+    .svg-cart{
+        width: 2rem;
+        height: auto;
+    }
+    .user-image{
+        width: 2rem;
+        height: auto;
+    }
+    .input-box-container:hover{
+        border: 0
+    }
+    .products-in-cart{
+        font-size: 12px;
+        width: 17px;
+        height: 17px;
+        color: #000000;
+        background: #d0d0d0;
+        border-radius: 50%;
+        text-align: center;
+        position: relative;
+        right: 3vw;
+        bottom: 0vh
+    }
+    .input-logo-container{
+        justify-content: center;
+        display: inline-grid;
     }
     .cart-container{
-        width: 25px;
-        height: 25px;
+        width: 72%;
     }
     .input-box-container-no-login{
-        width: 79px;
-        height: 5px;
-        margin-right: 15px;
+        width: auto;
+        padding-right: 20px;
+        padding-top: 10px;
+        padding-left: 20px
     }
-    
 }

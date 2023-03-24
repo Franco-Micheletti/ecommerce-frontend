@@ -1,55 +1,39 @@
 
-.add-to-favorites-container-home{
+.to-favorite-icon-home,.to-favorite-icon-home-added{
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 31px;
+    height: 31px;
     align-items: center;
     justify-content: center;
     text-align: center;
     display: flex;
     position: relative;
-    top: 31px;
-    left: 158px;
+    top: 26px;
+    left: 171px;
     display: flex;
     background: #edeeef;
 }
 
-.added-favorite-container{
-
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    display: flex;
-    position: relative;
-    top: 41px;
-    left: 158px;
-    display: flex;
-    background: #edeeef;
-}
-.added-favorite-container svg{
-
-    width: 45px;
-    height: 45px;
-    
+.to-favorite-icon-home:hover, .to-favorite-icon-home-added:hover{
+    cursor: pointer;
 }
 
-.added-favorite-container path{
-    fill: rgb(49 144 187);
-}
-.add-to-favorites-container-home svg{
+.to-favorite-icon-home svg,.to-favorite-icon-home-added svg{
+
     width: 25px;
     height: 25px;
-    fill: rgb(49 144 187)
+    stroke-width: 1.2;
     
+}
+.to-favorite-icon-home svg{
+    fill: transparent;
 }
 
 .home-navigate-product-types{
     display: inline-flex;
     gap: 10px;
-    margin-bottom: 30px;
+    padding: 20px;
+    justify-content: center;
 }
 
 .navigate-product-type-home:hover{
@@ -62,15 +46,15 @@
 
 .navigate-product-type-home{
 
-    height: 27px;
-    width: 120px;
+    min-height: 3vh;
+    min-width: 11vw;
     background-color: rgb(248, 248, 248);
     color: #000000;
     border-radius: 10px;
     align-items: center;
     justify-content: center;
     display: inline-flex;
-    font-size: 17px;
+    font-size: calc(100% / var(--min-height));
     font-family: serif;
     box-shadow: rgba(0, 0, 0, 0.89) 0px 1px 5px -3px;
     font-weight: 500;
@@ -78,58 +62,60 @@
     position: relative;
     transition: all 0.2s ease-in-out;
     top: -200px;
+    padding: 5px;
 }
-
-
 
 .cards-container{
     justify-content: center;
     display: inline-flex;
     gap: 35px;
+    padding: 40px;
 }
 
 .cards-text{
     font-size: 29px;
     color: white;
     font-family: sans-serif;
+    padding: 20px;
 }
 
 .tvs-card, .home-card{
 
-    background-color: #cfcece;
-    height: 600px;
-    width: 800px;
+    background-color: #a8a3a3;
+    width: 100%;
+    height: auto;
     border-radius: 20px;
     font-size: 35px;
     justify-content: center;
     display: grid;
     text-align: center;
     justify-items: center;
+    box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
 }
 
 .tvs-card-image, .home-card-image{
 
-    width: 800px;
-    height: 500px;
+    width: 100%;
+    height: auto;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    
 }
 .popular-products-product-name{
 
     text-align: left;
     font-size: 15px;
-    font-family: sans-serif;
-    width: 183px;
-    padding-left: 20px;
-    padding-right: 20px;
+    font-family: serif;
+    width: 180px;
+    padding: 20px;
+    height: 110px;
 }
 
 .home-product-image{
 
-    width: 140px;
-    height: 140px;
+    width: 80%;
+    height: auto;
     border-radius: 15px;
-    margin-top: 10px;
 }
 
 .title-popular-products-home{
@@ -137,30 +123,32 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: left;
     font-size: 17px;
-    margin-left: 40px;
     font-weight: bold;
     padding-top: 30px;
     padding-bottom: 30px;
-
+    padding-left: 20vw;
 }
 
 .popular-product-item {
 
     text-align: center;
-    width: 220px;
-    height: 400px;
+    width: 230px;
+    height: fit-content;
     background-color: #edeeef;
     border-radius: 15px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 1px 1px #00000026;
+    box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
+    margin-left: 10px;
+    
 }
 
+.popular-product-item:hover{
+    box-shadow: rgb(0 0 0 / 90%) 0px 0px 8px -2px;
+}
 .popular-products-home {
     
     display: inline-flex;
     min-height: 300px;
-    width: 1370px;
+    width: 1440px;
     align-items: center;
     overflow-x: scroll;
     gap: 10px;
@@ -168,6 +156,7 @@
     scrollbar-width: none;
     transition: 0.3s all ease-in;
     scroll-behavior: smooth;
+    padding: 10px;
 }
 
 .popular-products-home::-webkit-scrollbar {
@@ -192,34 +181,32 @@
 .horizontal-scroll-right, .horizontal-scroll-left {
 
     
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     display: inline-flex;
-    margin: -22px;
     z-index: 0;
-    position: absolute;
+    position: static;
     border: 0;
-    
     fill: white;
     background-color: #bdbdbd;
-}
-
-.horizontal-scroll-left {
-
-    visibility: hidden;
+    
 }
 
 .horizontal-scroll-right svg{
     transform: rotate(270deg);
-    fill: #ffffff
+    fill: #ffffff;
+    width: 35px;
+    height: 35px;
 }
 
 .horizontal-scroll-left svg{
     transform: rotate(90deg);
-    fill: #ffffff
+    fill: #ffffff;
+    width: 35px;
+    height: 35px;
 }
 
 .horizontal-scroll-right:hover, .horizontal-scroll-left:hover {
@@ -229,158 +216,99 @@
     
 }
 
-
-
-@media(max-width:2560px) {
-    .body-home{
-        justify-content: center;
-    }
-
-}
-@media ( max-width: 1400px) {
-
-    .horizontal-scroll-left, .horizontal-scroll-right{
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-        margin-left: 10px
-    }
-    .popular-products-home{
-        width: 770px;
-        min-height: 180px;
-        margin-top: 0px;
-        padding: 10px;
-    }
-    
+.button-product-add-home{
+    background-color: rgb(49 144 187);
+    border-radius: 30px;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 30px;
+    width: 85px;
+    border: 0;
+    color: #ffffff;
+    box-shadow: rgb(0 0 0 / 80%) 0px 0px 3px -1px;
+    position: static;
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
-@media ( max-width: 1024px) {
 
-    .horizontal-scroll-left, .horizontal-scroll-right{
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-        margin-left: 10px
-    }
-    .popular-product-item{
-        width: 73px;
-        height: 150px;
-    }
-    .popular-products-home{
-        width: 408px;
-        min-height: 180px;
-        margin-top: 0px;
-    }
-    .home-product-image{
-        width: 60px;
-        height: 60px;
-    }
-    .title-popular-products-home{
-        font-size: 8px;
-    }
-    .popular-products-product-name{
-        font-size: 8px;
-        width: 80px;
+
+@media ( min-width: 1200px) and (max-width: 2400px ) { 
+    .popular-products-home {
+        max-width: 945px;
     }
 }
 
-@media ( max-width: 768px) {
-    .popular-products-home{
-        width: 330px;
-        min-height: 181px;
-    }
-    .horizontal-scroll-left, .horizontal-scroll-right{
-        width: 25px;
-        height: 25px;
-        margin-right: 10px;
-        margin-left: 10px
-    }
-    .popular-product-item{
-        width: 73px;
-        height: 150px;
-    }
-    .popular-products-home{
-        width: 228px;
-        min-height: 180px;
-        margin-top: 0px;
-        gap:0px
-    }
-    .home-product-image{
-        width: 60px;
-        height: 60px;
-    }
-    .title-popular-products-home{
-        font-size: 8px;
-    }
-    .popular-products-product-name{
-        font-size: 8px;
-        width: 80px;
+@media ( min-width: 850px) and (max-width: 1200px ) { 
+    .popular-products-home {
+        max-width: 705px;
     }
 }
 
-@media ( max-width: 480px) {
-    .horizontal-scroll-left, .horizontal-scroll-right{
-        width: 25px;
-        height: 25px;
-        margin-right: 0;
-        margin-left: 0;
-        margin:-14px;
-    }
-    .body-home {
-        justify-content: center;
-    }
-    .popular-products-home{
-        width: 228px;
-        min-height: 181px;
-        padding: 0;
-    }
-    .title-popular-products-home{
-        font-size: 8px;
-    }
-    .popular-product-item{
-        width: 75px;
-        height: 200px;
-        box-shadow: 0 0px 0px 1px #00000026;
-        padding: 1px;
-        margin-left: 2px;
-        margin-right: 2px;
-    }
-    .home-product-image{
-        width: 60px;
-        height: 60px;
-    }
-    .popular-products-product-name{
-        font-size: 8px;
-        width: 80px;
-        
-    }
-    .navigate-product-type-home{
-        height: 15px;
-        width: 45px;
-        font-size: 7px;
-    }
-    .tvs-card-image, .home-card-image{
-        width: inherit;
-        height: 70px;
-    }
-    .tvs-card,.home-card{
-        height: 120px;
-        width: 100px;
+@media ( min-width: 608px ) and ( max-width: 850px){ 
+    .popular-products-home {
+        max-width: 465px;
     }
     .cards-text{
-        padding: 10px;
-        font-size: 8px;
+        font-size: 18px;
     }
-    .add-to-favorites-container-home{
-        top: 21px;
-        left: 58px;
-        width: 11px;
-        height: 11px
+}
+
+@media ( min-width: 280px) and ( max-width: 608px) { 
+    .popular-products-home {
+        max-width: 218px;
+    }
+    .cards-text{
+        font-size: 0.7rem;
+    }
+    .navigate-product-type-home{
+        font-size: 11px;
+        background-color: rgb(242 242 242);
+        padding-left: 10px;
+        min-height: auto;
+        width: 20vw;
     }
     .popular-products-product-name{
-        font-size: 6px;
-        width: 50px;
-        padding: 10px;
+        font-size: 15px;
+        width: 11rem;
+        height: 135px;
+    }
+    .popular-product-item{
+        width: 100%;
+        margin-left: 0;
+    }
+    .horizontal-scroll-left,.horizontal-scroll-right{
+        width:  35px;
+        height: 35px;
+    }
+    .horizontal-scroll-left svg ,.horizontal-scroll-right svg{
+        width:  auto;
+        height: auto;
+    }
+    .cards-container{
+        display: inline-grid;
+        gap: 30px;
+    }
+    .home-navigate-product-types{
+        display: inline-flex;
+        gap: 10px;
+        justify-content: center;
+        padding: 0px;
+        flex-wrap: wrap;
+       
+    }
+    .title-popular-products-home{
+        width: 73vw;
+    }
+    .body-home{
+        justify-items: center;
     }
     
+
 }
+
+

@@ -1,5 +1,6 @@
+import { setFavoritesIconChangeList } from "../../../state/favorites/favoritesSlices"
 import { store } from "../../../state/store"
-import { deleteUserCredentials,setRenderUserOptions} from "../../../state/user/userSlices"
+import { deleteUserCredentials,setRenderUserOptions, setUserData} from "../../../state/user/userSlices"
 
 export const logout = async () => {
     
@@ -19,6 +20,8 @@ export const logout = async () => {
     if (jsonObject["message"] === "Logout successfully") {
         store.dispatch(deleteUserCredentials())
         store.dispatch(setRenderUserOptions(false))
+        store.dispatch(setUserData({}))
+        store.dispatch(setFavoritesIconChangeList([]))
     }
     
 } 

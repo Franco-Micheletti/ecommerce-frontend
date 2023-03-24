@@ -1,4 +1,5 @@
 import React, { useEffect,useRef} from "react";
+import jwt from "jwt-decode";
 // CSS IMPORTS
 import '../../css/home.css'
 import '../../css/userOptions.css' 
@@ -17,6 +18,7 @@ import { useSelector } from "react-redux";
 import { addProductToCart } from "../cart/functions/addProductToCart";
 import { fetchProductsByName,fetchAndApplyFilter } from '../../api/fetchProductsByName';
 import { toggleFiltersContainer } from "./functions/filtersContainer";
+import { addProductToUserFavorites,removeProductFromUserFavorites } from "../../api/favoriteProduct";
 // ROUTER
 import { useSearchParams,useNavigate,Navigate,Link } from 'react-router-dom';
 import { removeProductFromCart } from "../cart/functions/removeProductFromCart";
@@ -30,13 +32,17 @@ const Search = () => {
     const totalResults    = useSelector((store) => store.totalResultsReducer)
     const expandAddButton = useSelector((store) => store.expandAddButtonListReducer)
     const dataLoading     = useSelector((store) => store.dataLoadingReducer)
+    const favoritesIconChange = useSelector((store) => store.favoritesIconChangeListReducer)
     const productListRef  = useRef()
-    const navigate        = useNavigate()
     const [ searchParams,setSearchParams] = useSearchParams()
     const searchInput    = searchParams.get("q" || null)
     const page           = searchParams.get("page" || null)
     const filtersApplied = searchParams.get("filters" || "")
-    
+
+    const userCredentials = store.getState().userCredentialsReducer
+    if (Object.keys(userCredentials).length > 0) {
+        var userId = jwt(userCredentials["jwt_access"])["user_id"]
+    }
     useEffect(  () => {
         
         if (searchInput && page) {
@@ -120,13 +126,21 @@ const Search = () => {
                                                     products.length >= 1
 
                                                         ?  products.map( (product) =>  
-                                                                {
+                                                                {   
                                                                     const imageFile    = product["product_image_tag"]
                                                                     const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
                                                                     const id = product["id"]
                                                                     return (
                                                                     <div className="product-item">
-                                                                        <div className="add-to-favorites-container-search"><svg fill="#000000" height="35px" width="35px" version="1.1 "viewBox="0 0 455 455"> <path d="M326.632,10.346c-38.733,0-74.991,17.537-99.132,46.92c-24.141-29.384-60.398-46.92-99.132-46.92 C57.586,10.346,0,67.931,0,138.714c0,55.426,33.05,119.535,98.23,190.546c50.161,54.647,104.728,96.959,120.257,108.626l9.01,6.769 l9.01-6.768c15.529-11.667,70.098-53.978,120.26-108.625C421.949,258.251,455,194.141,455,138.714 C455,67.931,397.414,10.346,326.632,10.346z M334.666,308.974c-41.259,44.948-85.648,81.283-107.169,98.029 c-21.52-16.746-65.907-53.082-107.166-98.03C61.236,244.592,30,185.717,30,138.714c0-54.24,44.128-98.368,98.368-98.368 c35.694,0,68.652,19.454,86.013,50.771l13.119,23.666l13.119-23.666c17.36-31.316,50.318-50.771,86.013-50.771 c54.24,0,98.368,44.127,98.368,98.368C425,185.719,393.763,244.594,334.666,308.974z"></path></svg></div>
+                                                                        {   
+                                                                        favoritesIconChange.includes(product["id"]) === true
+                                                                            ?   <div onClick={() => removeProductFromUserFavorites(product["id"],userId)} className="to-favorite-icon-added">
+                                                                                    <svg viewBox="0 0 24 24" fill="#3b82a0" stroke="#5baea0"><path fillRule="evenodd" clipRule="evenodd" d="M11.9694 22C12.5756 22 12.9181 21.4709 13.8945 20.435C15.115 19.1402 16.2918 17.9336 17.1462 17.0272C19.6691 14.3511 20.661 13.3356 21.3649 12.5433C23.2357 10.4378 23.4784 7.51229 22.2097 5.29142C20.6101 2.49159 18.2247 2 16.9421 2C15.6594 2 14.7421 2.49159 13.1221 3.75703L11.9989 4.8084L10.9063 3.75703C9.1489 2.25488 7.87646 2 7.05939 2C6.37842 2 3.5339 2.00043 1.70086 5.29142C0.363371 7.6927 1.0623 10.6507 2.76628 12.5433C3.07139 12.8822 4.32884 14.1998 6.51094 16.572C7.3895 17.5272 8.63263 18.8407 9.54781 19.8382C10.0663 20.4034 11.3631 22 11.9694 22Z" stroke="#3b82a0"></path></svg>
+                                                                                </div>
+                                                                            :   <div onClick={() => addProductToUserFavorites(product["id"],userId)} className="to-favorite-icon">
+                                                                                    <svg viewBox="0 0 24 24" fill="#3b82a0" stroke="#5baea0"><path fillRule="evenodd" clipRule="evenodd" d="M11.9694 22C12.5756 22 12.9181 21.4709 13.8945 20.435C15.115 19.1402 16.2918 17.9336 17.1462 17.0272C19.6691 14.3511 20.661 13.3356 21.3649 12.5433C23.2357 10.4378 23.4784 7.51229 22.2097 5.29142C20.6101 2.49159 18.2247 2 16.9421 2C15.6594 2 14.7421 2.49159 13.1221 3.75703L11.9989 4.8084L10.9063 3.75703C9.1489 2.25488 7.87646 2 7.05939 2C6.37842 2 3.5339 2.00043 1.70086 5.29142C0.363371 7.6927 1.0623 10.6507 2.76628 12.5433C3.07139 12.8822 4.32884 14.1998 6.51094 16.572C7.3895 17.5272 8.63263 18.8407 9.54781 19.8382C10.0663 20.4034 11.3631 22 11.9694 22Z" stroke="#3b82a0"></path></svg>
+                                                                                </div>
+                                                                        }
                                                                         <Link to={`/${formatedName}/${id}`}>
                                                                         <img className="search-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
                                                                         </Link>
