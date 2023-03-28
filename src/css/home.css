@@ -1,4 +1,11 @@
 
+.home-product-types-image{
+
+    width: 2rem;
+    height: 2rem;
+    border-radius: 7px;
+}
+
 .to-favorite-icon-home,.to-favorite-icon-home-added{
     border-radius: 50%;
     width: 31px;
@@ -47,7 +54,7 @@
 .navigate-product-type-home{
 
     min-height: 3vh;
-    min-width: 11vw;
+    min-width: 3vw;
     background-color: rgb(248, 248, 248);
     color: #000000;
     border-radius: 10px;
@@ -63,6 +70,7 @@
     transition: all 0.2s ease-in-out;
     top: -200px;
     padding: 5px;
+    gap: 10px;
 }
 
 .cards-container{

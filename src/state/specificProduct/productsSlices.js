@@ -15,5 +15,29 @@ export const specificProductSlice = createSlice(
     }
 
 )
+
+export const userReviewSlice = createSlice(
+
+    {
+        name:'userReviewReducer',
+        initialState: {"text":"",
+                       "score":""},
+        reducers:{
+            setReviewText: (state,action) =>{
+                state["text"] = action.payload
+                return state
+            },
+            setReviewScore: (state,action) =>{
+                state["score"] = action.payload
+                return state
+            }
+        }
+    }
+)
+
+
 export const {setProduct}   = specificProductSlice.actions
 export const specificProductReducer = specificProductSlice.reducer
+
+export const {setReviewText,setReviewScore}   = userReviewSlice.actions
+export const userReviewReducer = userReviewSlice.reducer

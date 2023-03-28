@@ -188,6 +188,7 @@ const Navbar = () => {
                                             <div className="products-in-cart">{cartCounter}</div>
                                         </Link>
                                     </div>
+                                    
                                     <button className="expand-user-options-button" onClick={toggleUserOptions}><img alt={"user-small"} className="user-image" src={require(`../../images/user.png`)}></img></button>
                                 </div>
                                 {   renderUserOptions === true

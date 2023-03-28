@@ -7,7 +7,7 @@ import { fetchOneProduct } from "../../api/fetchOneProduct";
 // Redux
 import { useSelector,useDispatch } from "react-redux";
 import { updateVariantOption,setVariantValuePreview } from "../../state/variants/variantsSlices";
-
+import { setReviewScore, setReviewText } from "../../state/specificProduct/productsSlices";
 import { store } from "../../state/store";
 // Css
 import '../../css/productDetails.css';
@@ -15,6 +15,7 @@ import '../../css/productDetails.css';
 import { removeProductFromCart } from "../cart/functions/removeProductFromCart";
 import { addProductToCart } from "../cart/functions/addProductToCart";
 import { getProductVariantId } from "./functions/getProductVariantId";
+import { handleSubmitReview } from "./functions/handleSubmitReview";
 // Router
 import { useParams,useNavigate } from "react-router-dom";
 
@@ -26,6 +27,9 @@ export const ProductDetails = () => {
     const expandAddButton      = useSelector((store) => store.expandAddButtonListReducer)
     const variantOptions       = useSelector((store) => store.variantOptionsReducer)
     const variantValuePreview  = useSelector((store) => store.variantOptionsReducer)
+    const reviewText           = useSelector((store) => store.userReviewReducer)
+    const reviewSubmitted      = useSelector((store) => store.reviewSubmittedReducer)
+    const userCredentials       = useSelector( (store)=> store.userCredentialsReducer)
     // Screen width
     let [screenWidth,setScreenWidth] = useState(window.innerWidth > 0 ? window.innerWidth : Screen.width)
     // Hooks
@@ -45,6 +49,16 @@ export const ProductDetails = () => {
             fetchOneProduct(productId)
         }
     }, [productId])
+
+    useEffect(()=> {
+        window.scrollTo(
+            {
+                top: 1600,
+                left: 0,
+                behavior: 'instant'
+            }
+        )
+    },[reviewSubmitted])
     
     const handleUpdateVariantOption = (property,value) => {
 
@@ -70,7 +84,7 @@ export const ProductDetails = () => {
                     ?   <div className="product-page-container">
                             <div className="product-data-container">
                                 {
-                                    screenWidth > 480
+                                    screenWidth > 650
 
                                         ?   <div className="product-images-panel">
                                                 <div>
@@ -194,6 +208,114 @@ export const ProductDetails = () => {
                                 <div>
                                 
                                 </div>
+                            </div>
+                            <div className="user-reviews-panel">
+                               { 
+                                productData["logged_user_review"]
+
+                                    ?   <div>
+                                            <div className="reviews-title">Your review of this product</div>
+                                            <div className="user-review">
+
+                                                <div className="review-user-info-container">
+                                                    <img className="user-profile-image" src={require(`../../images/${productData["logged_user_review"]["user"]["profile_image_tag"]}.webp`)}></img>
+                                                    {productData["logged_user_review"]["user"]["username"]}
+                                                    <div className="review-date">{productData["logged_user_review"]["date"]}</div>
+                                                </div>
+                                                {   
+                                                    productData["logged_user_review"]["score"] === 1 
+                                                        ? <span className="review-score">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+                                                        :  productData["logged_user_review"]["score"] === 2
+                                                                ? <span className="review-score">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+                                                                : productData["logged_user_review"]["score"] === 3
+                                                                    ? <span className="review-score">&#9734;&#9733;&#9733;&#9734;&#9734;</span>
+                                                                    : productData["logged_user_review"]["score"] === 4
+                                                                        ? <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                                                        : <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                                }
+                                                <div className="review-text">{productData["logged_user_review"]["text"]}</div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    :   <></>
+                                }
+                                
+                                {
+                                    productData["reviews"]
+                                        
+                                        ?   <div style={{display:"inline-grid"}}>
+                                                <div className="reviews-title">Product's reviews</div>
+                                                <div className="reviews-container">
+                                                {
+                                                    productData["reviews"].map( (review) => {
+                                                        
+                                                        return (
+                                                            <div className="user-review">
+
+                                                                <div className="review-user-info-container">
+                                                                    <img className="user-profile-image" src={require(`../../images/${review["user"]["profile_image_tag"]}.webp`)}></img>
+                                                                    {review["user"]["username"]}
+                                                                    <div className="review-date">{review["date"]}</div>
+                                                                </div>
+                                                                {   
+                                                                    review["score"] === 1 
+                                                                        ? <span className="review-score">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+                                                                        :  review["score"] === 2
+                                                                                ? <span className="review-score">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+                                                                                : review["score"] === 3
+                                                                                    ? <span className="review-score">&#9734;&#9733;&#9733;&#9734;&#9734;</span>
+                                                                                    : review["score"] === 4
+                                                                                        ? <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                                                                        : <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                                                }
+                                                                <div className="review-text">{review["text"]}</div>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                                </div>
+                                                <div className="text-no-review"> 
+                                                    <label style={{marginTop:"20px"}}>Write a review for this product!</label>
+                                                    <form onSubmit={(e) => handleSubmitReview(e,productData["basic"]["id"])} className="new-review-form">
+                                                        <select className="score-select" onChange={(e) => dispatch(setReviewScore(e.target.value))} value={reviewText["score"]} type={""}>
+                                                            <option value={""}>--Select score--</option>
+                                                            <option value={1}>1</option>
+                                                            <option value={2}>2</option>
+                                                            <option value={3}>3</option>
+                                                            <option value={4}>4</option>
+                                                            <option value={5}>5</option>
+                                                        </select>
+                                                        <textarea onChange={(e) => dispatch(setReviewText(e.target.value))} value={reviewText["text"]} className="new-review-text-box" type={"text"}></textarea>
+                                                        <button type="submit" className="new-review-submit">Send</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        :   userCredentials["jwt_access"] && productData["logged_user_review"] === null
+                                                ?   productData["logged_user_review"] === null
+                                                        :   <div className="text-no-review"> 
+                                                                <label>This is too quiet.</label>
+                                                                <label>Break the silence and write a review for this product!</label>
+                                                                <form onSubmit={(e) => handleSubmitReview(e,productData["basic"]["id"])} className="new-review-form">
+                                                                    <select className="score-select" onChange={(e) => dispatch(setReviewScore(e.target.value))} value={reviewText["score"]} type={""}>
+                                                                        <option value={""}>--Select score--</option>
+                                                                        <option value={1}>1</option>
+                                                                        <option value={2}>2</option>
+                                                                        <option value={3}>3</option>
+                                                                        <option value={4}>4</option>
+                                                                        <option value={5}>5</option>
+                                                                    </select>
+                                                                    <textarea onChange={(e) => dispatch(setReviewText(e.target.value))} value={reviewText["text"]} className="new-review-text-box" type={"text"}></textarea>
+                                                                    <button type="submit" className="new-review-submit">Send</button>
+                                                                </form>
+                                                            </div>
+                                                        ? <label className="existing-review-message">Delete your existing review or edit it if you have changed your mind!</label>
+
+                                                :   <div className="text-no-review"> 
+                                                        <label>This is too quiet.</label>
+                                                        <label>Log in to write a review for this product!</label>
+                                                    </div>
+                                }
                             </div>
                         </div>
                     : <></>

@@ -240,11 +240,9 @@
 
 .user-options-button-container {
 
-    margin-right: 60px;
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin: 0 auto;
+    gap: 0px;
 }   
 
 .expand-user-options-button {
@@ -274,7 +272,8 @@
     z-index: 1;
     width: 90vw;
     background-color: transparent;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 40px;
 }
 
 
@@ -303,9 +302,8 @@
 
 .input-box-container {
 
-    width: 672px;
+    width: 30vw;
     height: 20px;
-    margin: 0 auto;
     padding: 10px;
     position: relative;
     display: flex;
@@ -341,6 +339,7 @@
 .link-to-cart{
     display: inline-flex;
     text-decoration: none;
+    padding-left: 30px;
 }
 
 .cart-container{
@@ -445,5 +444,8 @@
         padding-right: 20px;
         padding-top: 10px;
         padding-left: 20px
+    }
+    .link-to-cart{
+        padding-left: 0;
     }
 }

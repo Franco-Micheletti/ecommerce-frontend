@@ -51,7 +51,7 @@ const HomeProducts = () => {
         // fetchAllProducts to show at home or different categories of popular products
         fetchHomeProducts()
 
-        for(let i = 1;i<6;i++) {
+        for(let i = 1;i<7;i++) {
             setTimeout(()=> {
                 prodTypes.current[i-1].style.top = 0
             },i*100)
@@ -82,11 +82,29 @@ const HomeProducts = () => {
             // Show popular products in Cookies & Snack category
             <div className="body-home">
                 <div className="home-navigate-product-types">
-                    <div onClick={()=> goToProductType("table")} ref={(el) => prodTypes.current[0] = el} className="navigate-product-type-home">Coffe Tables</div>
-                    <div onClick={()=> goToProductType("laptop")} ref={(el) => prodTypes.current[1] = el} className="navigate-product-type-home">Laptops</div>
-                    <div onClick={()=> goToProductType("Energy Drinks")} ref={(el) => prodTypes.current[2] = el} className="navigate-product-type-home">Energy Drinks</div>
-                    <div onClick={()=> goToProductType("Soda Pop")} ref={(el) => prodTypes.current[3] = el} className="navigate-product-type-home">Soda Pop</div>
-                    <div onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[4] = el} className="navigate-product-type-home">Cookies</div>
+                    <div onClick={()=> goToProductType("table")} ref={(el) => prodTypes.current[0] = el} className="navigate-product-type-home">
+                        <img className="home-product-types-image" src={require(`../../images/coffe-tables.webp`)}></img>
+                        <label>Coffe Tables</label>
+                    </div>
+                    <div onClick={()=> goToProductType("laptop")} ref={(el) => prodTypes.current[1] = el} className="navigate-product-type-home">
+                    <img className="home-product-types-image" src={require(`../../images/laptops.webp`)}></img>
+                        <label>Laptops</label>
+                    </div>
+                    <div onClick={()=> goToProductType("Energy Drinks")} ref={(el) => prodTypes.current[2] = el} className="navigate-product-type-home">
+                        <img className="home-product-types-image" src={require(`../../images/energy-drinks.webp`)}></img>
+                        <label>Energy Drinks</label>
+                    </div>
+                    <div onClick={()=> goToProductType("Soda Pop")} ref={(el) => prodTypes.current[3] = el} className="navigate-product-type-home">
+                    <img className="home-product-types-image" src={require(`../../images/sodas.webp`)}></img>
+                        <label>Soda Pop</label>
+                    </div>
+                    <div onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[4] = el} className="navigate-product-type-home">
+                        <img className="home-product-types-image" src={require(`../../images/cookies.webp`)}></img>
+                        <label>Cookies</label>
+                    </div>
+                    <div onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[5] = el} className="navigate-product-type-home">
+                        <label>More</label>
+                    </div>
                 </div>
                 <div className="cards-container">
                     <div className="tvs-card">

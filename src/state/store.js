@@ -26,7 +26,9 @@ import {
         pagesListReducer,
         pageReducer} from './pagination/paginationSlices'
 // Specific Product
-import { specificProductReducer } from './specificProduct/productsSlices'
+import { specificProductReducer,userReviewReducer } from './specificProduct/productsSlices'
+// Reviews
+import { reviewSubmittedReducer } from './reviews/reviewsSlices'
 // Variants
 import { variantOptionsReducer,variantValuePreviewReducer } from './variants/variantsSlices' 
 // Favorites
@@ -64,6 +66,7 @@ export const store = configureStore({
         pageReducer,
         // Product
         specificProductReducer,
+        userReviewReducer,
         // Variants
         variantOptionsReducer,
         variantValuePreviewReducer,
@@ -76,7 +79,9 @@ export const store = configureStore({
         renderUserOptionsReducer,
         registrationFormDataReducer,
         formErrorsReducer,
-        userDataReducer
+        userDataReducer,
+        // Reviews
+        reviewSubmittedReducer
 
     }
 })

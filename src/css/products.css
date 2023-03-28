@@ -100,7 +100,7 @@
 }
 
 .results {
-    display: inline-grid;
+    /* display: inline-grid; */
     margin-top: 40px;
 }
 .title-results {
