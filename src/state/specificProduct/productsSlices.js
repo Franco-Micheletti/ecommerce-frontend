@@ -16,10 +16,10 @@ export const specificProductSlice = createSlice(
 
 )
 
-export const userReviewSlice = createSlice(
+export const reviewFormDataSlice = createSlice(
 
     {
-        name:'userReviewReducer',
+        name:'reviewFormDataReducer',
         initialState: {"text":"",
                        "score":""},
         reducers:{
@@ -39,5 +39,5 @@ export const userReviewSlice = createSlice(
 export const {setProduct}   = specificProductSlice.actions
 export const specificProductReducer = specificProductSlice.reducer
 
-export const {setReviewText,setReviewScore}   = userReviewSlice.actions
-export const userReviewReducer = userReviewSlice.reducer
+export const {setReviewText,setReviewScore}   = reviewFormDataSlice.actions
+export const reviewFormDataReducer = reviewFormDataSlice.reducer

@@ -1,4 +1,10 @@
 
+.toggle-sort-button{
+    cursor: pointer;
+}
+.toggle-sort-button:hover{
+    color: rgb(26, 158, 190);
+}
 
 .all-pages-container{
     display: flex;

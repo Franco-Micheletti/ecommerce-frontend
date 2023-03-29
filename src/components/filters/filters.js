@@ -37,7 +37,7 @@ const Filters = (filters) => {
         
         dispatch(addFilter(filterToApply))
         const appliedFilters = store.getState().appliedFiltersReducer
-       
+        
         dispatch(setUrlFiltersString(appliedFilters))
         const filterString = store.getState().urlFiltersStringReducer
         

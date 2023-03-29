@@ -106,8 +106,8 @@ const Navbar = () => {
     function navBarBackground() {
         
         if (window.scrollY > 0 && window.scrollY < 100 && navBar.current !== null ) {
-            navBar.current.style.backgroundColor = "#ffffff"
-            navBar.current.style.boxShadow = "0 1px 6px 0 rgba(32, 33, 36, 0.28)";
+            // navBar.current.style.backgroundColor = "#ffffff"
+            // navBar.current.style.boxShadow = "0 1px 6px 0 rgba(32, 33, 36, 0.28)";
             window.removeEventListener("scroll",navBarBackground,true)
             window.addEventListener("scroll",navBarTransparent,true)
         } 
@@ -115,8 +115,8 @@ const Navbar = () => {
     function navBarTransparent() {
 
         if (window.scrollY < 10 && navBar.current !== null ) {
-            navBar.current.style.backgroundColor = "transparent"
-            navBar.current.style.boxShadow = "none";
+            // navBar.current.style.backgroundColor = "transparent"
+            // navBar.current.style.boxShadow = "none";
             window.removeEventListener("scroll",navBarTransparent,true)
             window.addEventListener("scroll",navBarBackground,true)
         }

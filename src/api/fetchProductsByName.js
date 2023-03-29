@@ -5,12 +5,24 @@ import { setFilters } from "../state/products/productsSlices";
 import { setPagesList } from "../state/pagination/paginationSlices";
 import { setPage } from "../state/pagination/paginationSlices";
 import { Navigate } from "react-router-dom";
-export const fetchProductsByName = (string,page) => {
+
+export const fetchProductsByName = (string,page,orderByList) => {
     
     store.dispatch(setSearchedString(string))
     store.dispatch(setPage(page))
+    
+    if (orderByList) {
+        
+        // Sort list to string
+        // if (orderByList.length > 1) {
+        console.log(orderByList)
+        
+        var apiUrl = `http://127.0.0.1:8000/products/product_name=${string}&page=${page}&order_by=${orderByList}`
+    } else {
+        var apiUrl = `http://127.0.0.1:8000/products/product_name=${string}&page=${page}`
+    }
 
-    fetch(`http://127.0.0.1:8000/products/product_name=${string}&page=${page}`)
+    fetch(apiUrl)
     .then(response => {
                     if (response.status === 200 ) {
                         return response.json()
@@ -34,9 +46,10 @@ export const fetchProductsByName = (string,page) => {
     
 } 
 
-export const fetchAndApplyFilter = (searchInput,appliedFilters,page) => {
+export const fetchAndApplyFilter = (searchInput,page,appliedFilters,orderByList=null) => {
     
     store.dispatch(setPage(page))
+    
     var urlStr = appliedFilters
     var json = {}
     const strList = urlStr.split("&")
@@ -61,7 +74,18 @@ export const fetchAndApplyFilter = (searchInput,appliedFilters,page) => {
 
     const filters = JSON.stringify(json)
     
-    fetch(`http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}`)
+    if (orderByList) {
+        
+        // Sort list to string
+        // if (orderByList.length > 1) {
+        console.log(orderByList)
+        
+        var apiUrl = `http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}&order_by=${orderByList}`
+    } else {
+        var apiUrl = `http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}`
+    }
+    
+    fetch(apiUrl)
     .then(response=> {
         if (response.status === 200 ) {
             return response.json()

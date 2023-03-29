@@ -13,7 +13,8 @@ import Filters from '../filters/filters'
 import { TemplateSkeletonSearch } from "../templateSkeletonSearch";
 // REDUX
 import { store } from "../../state/store";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { addOrderByToList,removeOrderByFromList } from "../../state/filters/filtersSlices";
 // FUNCTIONS
 import { addProductToCart } from "../cart/functions/addProductToCart";
 import { fetchProductsByName,fetchAndApplyFilter } from '../../api/fetchProductsByName';
@@ -34,10 +35,16 @@ const Search = () => {
     const dataLoading     = useSelector((store) => store.dataLoadingReducer)
     const favoritesIconChange = useSelector((store) => store.favoritesIconChangeListReducer)
     const productListRef  = useRef()
+    const priceAsc        = useRef()
+    const priceDesc       = useRef()
+    const dateAsc         = useRef()
+    const dateDesc        = useRef()
+    const dispatch        = useDispatch()
     const [ searchParams,setSearchParams] = useSearchParams()
-    const searchInput    = searchParams.get("q" || null)
-    const page           = searchParams.get("page" || null)
-    const filtersApplied = searchParams.get("filters" || "")
+    const searchInput     = searchParams.get("q" || null)
+    const page            = searchParams.get("page" || null)
+    const filtersApplied  = searchParams.get("filters" || "")
+    const orderByList     = searchParams.get("orderBy" || "")
 
     const userCredentials = store.getState().userCredentialsReducer
     if (Object.keys(userCredentials).length > 0) {
@@ -54,20 +61,51 @@ const Search = () => {
                 }
             )
             if (searchInput.length > 1) {
-                if ( searchInput && page && !filtersApplied) {
-                    fetchProductsByName(searchInput,page)
+                if ( searchInput && page && !filtersApplied ) {
+                    fetchProductsByName(searchInput,page,orderByList)
                 }
-                else if ( searchInput && page && filtersApplied  ) {
-                    fetchAndApplyFilter(searchInput,filtersApplied,page)
+                else if ( searchInput && page && filtersApplied ) {
+                    fetchAndApplyFilter(searchInput,page,filtersApplied,orderByList)
                 }
             }
         }
         
-    },[searchInput,filtersApplied,page])
+    },[searchInput,filtersApplied,page,orderByList])
 
-    // useEffect(()=> {
+    const handleSelectOrderBy = (orderByString,element,elementAlt) => {
         
-    // },[expandAddButton])
+        // Get the list of all the active order by options
+        var orderByList = store.getState().orderByListReducer
+
+        // Remove alternate order by if exist
+        orderByList.forEach(string => {
+            if (string.replace("-","") === orderByString.replace("-","")) {
+                elementAlt.current.style.color = "#585858"
+                dispatch(removeOrderByFromList(string))
+            }
+        });
+
+        // Toggle add / remove from list
+        if (orderByList.includes(orderByString) !== true) {
+            element.current.style.color = "#22C779"
+            dispatch(addOrderByToList(orderByString))
+        } else {
+            element.current.style.color = "#585858"
+            dispatch(removeOrderByFromList(orderByString))
+        }
+
+        // Get updated list and set search params
+        orderByList = store.getState().orderByListReducer
+        const orderByListToString = orderByList.toString()
+        
+        if (filtersApplied === null) {
+            setSearchParams({ q:searchInput,page:page,orderBy:orderByListToString})
+        } else {
+            setSearchParams({ q:searchInput,page:page,filters:filtersApplied,orderBy:orderByListToString})
+        }
+        
+
+    }
     
     
     return (
@@ -93,28 +131,34 @@ const Search = () => {
                                                         <label>Sort by</label>
                                                         <div className="show-order-by-options"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
                                                             <div className="order-by-options-list">
-                                                                <div id="order-by-price"      className="order-by-option">
-                                                                    <div>↑</div><div>↓</div>
+                                                                <div id="order-by-price" className="order-by-option">
+                                                                    <div ref={priceAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("price",priceAsc,priceDesc) } >↑</div>
+                                                                    <div ref={priceDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-price",priceDesc,priceAsc)  } >↓</div>
                                                                     <label>Price</label>
                                                                 </div>
-                                                                <div id="order-by-dtetime"    className="order-by-option">
-                                                                    <div>↑</div><div>↓</div>
-                                                                    <label>Datetime</label>
+                                                                <div id="order-by-datetime" className="order-by-option">
+                                                                    <div ref={dateAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("date",dateAsc,dateDesc) }> ↑</div>
+                                                                    <div ref={dateDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-date",dateDesc,dateAsc)  }> ↓</div>
+                                                                    <label>Date</label>
                                                                 </div>
                                                                 <div id="order-by-popularity" className="order-by-option">
-                                                                    <div>↑</div><div>↓</div>
+                                                                    <div className="toggle-sort-button">↑</div>
+                                                                    <div className="toggle-sort-button">↓</div>
                                                                     <label>Popularity</label>
                                                                 </div>
                                                                 <div id="order-by-creview"    className="order-by-option">
-                                                                    <div>↑</div><div>↓</div>
+                                                                    <div className="toggle-sort-button">↑</div>
+                                                                    <div className="toggle-sort-button">↓</div>
                                                                     <label>Customer Review</label>
                                                                 </div>
                                                                 <div id="order-by-pack"       className="order-by-option">
-                                                                    <div>↑</div><div>↓</div>
+                                                                    <div className="toggle-sort-button">↑</div>
+                                                                    <div className="toggle-sort-button">↓</div>
                                                                     <label>Pack #</label>
                                                                 </div>
                                                                 <div id="order-by-speed"      className="order-by-option">
-                                                                    <div>↑</div><div>↓</div>
+                                                                    <div className="toggle-sort-button">↑</div>
+                                                                    <div className="toggle-sort-button">↓</div>
                                                                     <label>Speed</label>
                                                                 </div>
                                                             </div>

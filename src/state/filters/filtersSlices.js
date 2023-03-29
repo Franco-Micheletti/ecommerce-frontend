@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,current } from "@reduxjs/toolkit";
 
 export const maxPriceFilterSlice = createSlice(
 
@@ -45,12 +45,40 @@ export const maxPriceValueSlice = createSlice(
     }
 )
 
+export const orderByListSlice = createSlice(
+
+    {
+        name:'orderByListReducer',
+        initialState: [],
+        reducers:{
+            addOrderByToList: (state,action) => {
+                
+                const string = action.payload
+                state.push(string)
+
+                return state
+            },
+            removeOrderByFromList: (state,action) => {
+                
+                const string = action.payload
+                state.splice(state.indexOf(string),1)
+                
+                return state
+            }
+            
+        }
+    }
+)
+
 
 // Export actions
 export const {setMaxPrice} = maxPriceFilterSlice.actions
 export const {setMinPriceValue} = minPriceValueSlice.actions
 export const {setMaxPriceValue} = maxPriceValueSlice.actions
+export const {addOrderByToList,removeOrderByFromList} = orderByListSlice.actions
+
 // Export reducers
 export const maxPriceFilterReducer = maxPriceFilterSlice.reducer
-export const minPriceValueReducer = minPriceValueSlice.reducer
-export const maxPriceValueReducer = maxPriceValueSlice.reducer
+export const minPriceValueReducer  = minPriceValueSlice.reducer
+export const maxPriceValueReducer  = maxPriceValueSlice.reducer
+export const orderByListReducer    = orderByListSlice.reducer

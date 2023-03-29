@@ -185,8 +185,6 @@ export const totalResultsSlice = createSlice (
             }  
         }
     }
-
-
 )
 
 // Export actions

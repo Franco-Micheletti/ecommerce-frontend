@@ -1,3 +1,6 @@
+
+
+
 .existing-review-message{
     font-size: 24px;
     font-family: serif;
@@ -78,6 +81,7 @@
     max-width: 500px;
     min-width: 200px;
     min-height:300px;
+    max-height: 300px;
     height: fit-content;
     background-color: transparent;
     box-shadow: 0 1px 2px 1px #00000026;
@@ -126,7 +130,7 @@
 }
 .reviews-title{
 
-    font-size: 23px;
+    font-size: 19px;
     font-family: serif;
     color: rgb(0, 0, 0);
     font-weight: 700;
@@ -136,6 +140,9 @@
     width: -moz-fit-content;
     width: fit-content;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    
 }
 
 .user-reviews-panel{
@@ -148,6 +155,8 @@
     width: 72.5%;
     padding: 20px;
     padding-bottom: 100px;
+    background-color: var(--background-card);
+    border-radius: 10px;
 }
 
 .reviews-container{
@@ -167,7 +176,8 @@
     min-width: 180px;
     max-width: 350px;
     border-radius:8px;
-    background-color: white;
+    background-color: var(--background-card-2);
+    color: var(--text-color-card-2);
 }
 
 .variant-text-preview-container{
@@ -307,10 +317,10 @@
 }
 
 
-.product-all-info{
+.product-specifications{
 
     color: #000000;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 1px 2px 1px #00000026;
     display: inline-grid;
     justify-content: left;
@@ -319,6 +329,7 @@
     height: fit-content;
     padding: 20px;
     margin-top: 40px;
+    background-color: var(--background-card);
 }
 
 .retailer-name{
@@ -437,13 +448,15 @@
 
 .product-data-container{
 
-    width: 80%;
+    width: 74.9%;
     justify-content: center;
     align-items: center;
     display: inline-flex;
     border-radius: 10px;
     gap: 20px;
     margin-top: 30px;
+    background-color: var(--background-card);
+    box-shadow: 0 1px 2px 1px #00000026;
 }
 
 .small-images-container{

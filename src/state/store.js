@@ -20,13 +20,14 @@ import {
 import { 
          maxPriceFilterReducer,
          minPriceValueReducer,
-         maxPriceValueReducer } from './filters/filtersSlices'
+         maxPriceValueReducer,
+         orderByListReducer } from './filters/filtersSlices'
 // Pagination
 import {
         pagesListReducer,
         pageReducer} from './pagination/paginationSlices'
 // Specific Product
-import { specificProductReducer,userReviewReducer } from './specificProduct/productsSlices'
+import { specificProductReducer,reviewFormDataReducer } from './specificProduct/productsSlices'
 // Reviews
 import { reviewSubmittedReducer } from './reviews/reviewsSlices'
 // Variants
@@ -55,18 +56,20 @@ export const store = configureStore({
         homeProductsReducer,
         appliedFiltersReducer,
         urlFiltersStringReducer,
-        maxPriceFilterReducer,
-        minPriceValueReducer,
-        maxPriceValueReducer,
         dataLoadingReducer,
         popularProductsForCartReducer,
         totalResultsReducer,
+        // Filters
+        maxPriceFilterReducer,
+        minPriceValueReducer,
+        maxPriceValueReducer,
+        orderByListReducer,
         // Pagination
         pagesListReducer,
         pageReducer,
         // Product
         specificProductReducer,
-        userReviewReducer,
+        reviewFormDataReducer,
         // Variants
         variantOptionsReducer,
         variantValuePreviewReducer,
