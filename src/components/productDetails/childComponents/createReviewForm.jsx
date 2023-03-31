@@ -18,7 +18,7 @@ export const CreateReviewForm = ({productData}) => {
             <option value={4}>4</option>
             <option value={5}>5</option>
         </select>
-        <textarea onChange={(e) => dispatch(setReviewText(e.target.value))} value={reviewFormData["text"]} className="new-review-text-box" type={"text"}></textarea>
+        <textarea onChange={(e) => dispatch(setReviewText(e.target.value))} value={reviewFormData["text"]} className="new-review-text-box" type={""}></textarea>
         <button type="submit" className="new-review-submit">Send</button>
         </form>
     )

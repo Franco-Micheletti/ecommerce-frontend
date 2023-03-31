@@ -7,9 +7,9 @@ import { fetchOneProduct } from "../../api/fetchOneProduct";
 // Redux
 import { useSelector,useDispatch } from "react-redux";
 import { store } from "../../state/store";
+import { setReviewSubmitted } from "../../state/reviews/reviewsSlices"
 // Css
 import '../../css/productDetails.css';
-// Functions
 // Router
 import { useParams } from "react-router-dom";
 // Childs
@@ -55,6 +55,7 @@ export const ProductDetails = () => {
                 behavior: 'instant'
             }
         )
+        dispatch(setReviewSubmitted(false))
     },[reviewSubmitted])
     
     
@@ -67,7 +68,7 @@ export const ProductDetails = () => {
                     ?   <div className="product-page-container">
                             <div className="product-data-container">
                                 
-                                <ImagesPanel productData={productData}/>
+                                <ImagesPanel productData = {productData}/>
 
                                 <div className="product-right-panel">
                                     
@@ -98,7 +99,7 @@ export const ProductDetails = () => {
 
                                 {
                                 productData["reviews"]
-                                    ?   <div>
+                                    ?   <div style={{display:"inline-grid"}}>
                                             <div style={{display:"inline-grid"}}>
                                                 <div className="reviews-title">Product's reviews</div>
                                                 <div className="reviews-container">
@@ -112,19 +113,38 @@ export const ProductDetails = () => {
                                                     }
                                                 </div>
                                             </div>
-                                            <CreateReviewForm productData={productData}/>
+                                            {
+                                                userCredentials["jwt_access"]
+
+                                                    ?  productData["logged_user_review"]
+                                                            ?   <label className="existing-review-message">Delete your existing review or edit it if you have changed your mind!</label>
+
+                                                            :   <div>
+                                                                    <div className="review-login-check-text">Write a review for this product!</div>
+                                                                    <CreateReviewForm productData={productData}/>
+                                                                </div>
+                                                    
+                                                        
+                                                    :   <div className="review-login-check-text">Log in to write a review for this product!</div>
+                                            }
+                                            
                                         </div>
-                                    :   <div className="text-no-review"> 
-                                            <label>This is too quiet.</label>
+                                    :   <div className="text-no-review">
+                                            {
+                                                productData["logged_user_review"]
+                                                   ? <></>
+                                                   : <div className="review-login-check-text">This is too quiet.</div>
+                                            } 
+                                            
                                             {
                                             userCredentials["jwt_access"]
                                                 ?   productData["logged_user_review"]
                                                         ?   <label className="existing-review-message">Delete your existing review or edit it if you have changed your mind!</label>
                                                         :   <div> 
-                                                                <label>Break the silence and write a review for this product!</label>
+                                                                <div className="review-login-check-text">Break the silence and write a review for this product!</div>
                                                                 <CreateReviewForm productData={productData}/>
                                                             </div>
-                                                :   <label>Log in to write a review for this product!</label>
+                                                :   <div className="review-login-check-text">Log in to write a review for this product!</div>
                                             }
                                         </div>
                                 }

@@ -1,10 +1,68 @@
 
+.review-form-errors{
+    color: red;
+    margin-top: 15px;
+    font-size: 14px;
+    justify-content: center;
+    display: flex;
+}
 
+.update-review-text-box{
+    width: 270px;
+    max-width: 270px;
+    min-width: 200px;
+    min-height: 300px;
+    max-height: 300px;
+    height: -moz-fit-content;
+    height: fit-content;
+    background-color: transparent;
+    box-shadow: 0 1px 2px 1px #00000026;
+    border-radius: 10px;
+    text-align: start;
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 17px;
+}
+
+.review-logged-options{
+
+    align-items: center;
+    justify-content: right;
+    font-size: 14px;
+    font-family: serif;
+    color: rgb(5, 103, 148);
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+}
+
+.review-logged-options button:hover{
+    cursor: pointer;
+    background-color: rgb(184, 182, 182);
+    color: white;
+}
+
+.review-logged-options button{
+    color: rgb(5, 103, 148);
+    border-radius: 5px;
+    border: 0;
+    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 3px 0px;
+    padding: 9px;
+}
+
+
+.review-login-check-text{
+    font-size: 24px;
+    font-family: serif;
+    padding-left: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+}
 
 .existing-review-message{
     font-size: 24px;
     font-family: serif;
-    padding: 10px;
+    padding: 20px;
     font-weight: 500;
 }
 .review-date{
@@ -23,6 +81,7 @@
 
 .score-select option{
     padding: 2px 5px;
+    background-color: var(--background-card-2);
 }
 
 .new-review-form{
@@ -30,6 +89,7 @@
     display: inline-grid;
     align-items: center;
     justify-content: left;
+    padding-left: 20px;
 }
 
 .new-review-form input{
@@ -114,6 +174,8 @@
     font-weight: 300;
     padding-left: 20px;
     padding-top: 5px;
+    overflow-wrap: anywhere;
+    line-height: 1.4rem;
 }
 .review-user-info-container{
     display: flex;
@@ -130,7 +192,7 @@
 }
 .reviews-title{
 
-    font-size: 19px;
+    font-size: 21px;
     font-family: serif;
     color: rgb(0, 0, 0);
     font-weight: 700;
@@ -139,10 +201,9 @@
     height: 40px;
     width: -moz-fit-content;
     width: fit-content;
-    margin-top: 20px;
+    margin-left: 20px;
     display: flex;
     align-items: center;
-    
 }
 
 .user-reviews-panel{
@@ -166,7 +227,7 @@
     justify-content: left;
     align-items: center;
     align-items: flex-start;
-    padding: 20px;
+    margin-left: 20px;
 }
 .user-review{
     background-color: transparent;

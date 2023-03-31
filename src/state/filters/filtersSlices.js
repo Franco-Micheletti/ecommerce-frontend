@@ -55,14 +55,12 @@ export const orderByListSlice = createSlice(
                 
                 const string = action.payload
                 state.push(string)
-
                 return state
             },
             removeOrderByFromList: (state,action) => {
                 
                 const string = action.payload
                 state.splice(state.indexOf(string),1)
-                
                 return state
             }
             

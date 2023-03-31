@@ -20,7 +20,7 @@ const UserOptions = () => {
         if (Object.keys(userData).length === 0) {
             getUserData(id)
         }
-    }, [userData])
+    }, [])
     
     const handleOnClickLogOut = () => {
         logout()

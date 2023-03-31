@@ -13,10 +13,6 @@ export const fetchProductsByName = (string,page,orderByList) => {
     
     if (orderByList) {
         
-        // Sort list to string
-        // if (orderByList.length > 1) {
-        console.log(orderByList)
-        
         var apiUrl = `http://127.0.0.1:8000/products/product_name=${string}&page=${page}&order_by=${orderByList}`
     } else {
         var apiUrl = `http://127.0.0.1:8000/products/product_name=${string}&page=${page}`
@@ -75,10 +71,6 @@ export const fetchAndApplyFilter = (searchInput,page,appliedFilters,orderByList=
     const filters = JSON.stringify(json)
     
     if (orderByList) {
-        
-        // Sort list to string
-        // if (orderByList.length > 1) {
-        console.log(orderByList)
         
         var apiUrl = `http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}&order_by=${orderByList}`
     } else {

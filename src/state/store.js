@@ -29,7 +29,8 @@ import {
 // Specific Product
 import { specificProductReducer,reviewFormDataReducer } from './specificProduct/productsSlices'
 // Reviews
-import { reviewSubmittedReducer } from './reviews/reviewsSlices'
+import { reviewSubmittedReducer,
+         reviewErrorReducer } from './reviews/reviewsSlices'
 // Variants
 import { variantOptionsReducer,variantValuePreviewReducer } from './variants/variantsSlices' 
 // Favorites
@@ -84,7 +85,8 @@ export const store = configureStore({
         formErrorsReducer,
         userDataReducer,
         // Reviews
-        reviewSubmittedReducer
+        reviewSubmittedReducer,
+        reviewErrorReducer
 
     }
 })

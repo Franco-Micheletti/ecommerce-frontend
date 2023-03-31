@@ -5,9 +5,9 @@ export const handleSubmitReview = async (e,product_id) => {
 
         e.preventDefault()
 
-        const reviewData = store.getState().userReviewReducer
+        const reviewData = store.getState().reviewFormDataReducer
         
-        const response = await fetch(`http://127.0.0.1:8000/product/review/product_id=${product_id}`, {
+        const response = await fetch(`http://127.0.0.1:8000/product/review/create/product_id=${product_id}`, {
             method: 'POST',
             credentials:'include',
             headers: {

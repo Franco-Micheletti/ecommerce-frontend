@@ -1,4 +1,4 @@
-import React, { useEffect,useRef} from "react";
+import React, { useEffect,useRef, useState} from "react";
 import jwt from "jwt-decode";
 // CSS IMPORTS
 import '../../css/home.css'
@@ -26,20 +26,24 @@ import { removeProductFromCart } from "../cart/functions/removeProductFromCart";
 
 const Search = () => {
 
-    const filters         = useSelector((store)=> store.filtersReducer)
-    const products        = useSelector((store)=> store.productsReducer)
-    const pagesList       = useSelector((store)=> store.pagesListReducer)
-    const pageSelected    = useSelector((store) => store.pageReducer)
-    const totalResults    = useSelector((store) => store.totalResultsReducer)
-    const expandAddButton = useSelector((store) => store.expandAddButtonListReducer)
-    const dataLoading     = useSelector((store) => store.dataLoadingReducer)
+    // States
+    const filters             = useSelector((store)=> store.filtersReducer)
+    const products            = useSelector((store)=> store.productsReducer)
+    const pagesList           = useSelector((store)=> store.pagesListReducer)
+    const pageSelected        = useSelector((store) => store.pageReducer)
+    const totalResults        = useSelector((store) => store.totalResultsReducer)
+    const expandAddButton     = useSelector((store) => store.expandAddButtonListReducer)
+    const dataLoading         = useSelector((store) => store.dataLoadingReducer)
     const favoritesIconChange = useSelector((store) => store.favoritesIconChangeListReducer)
+    const [showSortWindow,setShowSortWindow] = useState()
+    // Use ref
     const productListRef  = useRef()
     const priceAsc        = useRef()
     const priceDesc       = useRef()
     const dateAsc         = useRef()
     const dateDesc        = useRef()
     const dispatch        = useDispatch()
+    // Search params
     const [ searchParams,setSearchParams] = useSearchParams()
     const searchInput     = searchParams.get("q" || null)
     const page            = searchParams.get("page" || null)
@@ -73,27 +77,22 @@ const Search = () => {
     },[searchInput,filtersApplied,page,orderByList])
 
     const handleSelectOrderBy = (orderByString,element,elementAlt) => {
-        
-        // Get the list of all the active order by options
-        var orderByList = store.getState().orderByListReducer
 
-        // Remove alternate order by if exist
-        orderByList.forEach(string => {
-            if (string.replace("-","") === orderByString.replace("-","")) {
-                elementAlt.current.style.color = "#585858"
-                dispatch(removeOrderByFromList(string))
-            }
-        });
-
+        let orderByList = store.getState().orderByListReducer
         // Toggle add / remove from list
         if (orderByList.includes(orderByString) !== true) {
             element.current.style.color = "#22C779"
             dispatch(addOrderByToList(orderByString))
+            // Remove alternate
+            if (orderByList.includes(elementAlt.current.id) === true) {
+                elementAlt.current.style.color = "#585858"
+                dispatch(removeOrderByFromList(elementAlt.current.id))
+            } 
         } else {
             element.current.style.color = "#585858"
             dispatch(removeOrderByFromList(orderByString))
         }
-
+        
         // Get updated list and set search params
         orderByList = store.getState().orderByListReducer
         const orderByListToString = orderByList.toString()
@@ -101,6 +100,7 @@ const Search = () => {
         if (filtersApplied === null) {
             setSearchParams({ q:searchInput,page:page,orderBy:orderByListToString})
         } else {
+            
             setSearchParams({ q:searchInput,page:page,filters:filtersApplied,orderBy:orderByListToString})
         }
         
@@ -127,40 +127,40 @@ const Search = () => {
                                                     <svg viewBox="0 0 24 24" focusable="false" style={{pointeEvents: "none",display: "block",width: "100%",height: "100%"}}><g><path d="M21,6H3V5h18V6z M21,11H3v1h18V11z M21,17H3v1h18V17z"></path></g></svg>
                                                     </button>
                                                     <span className="title-results"><h4>Results for:</h4><label>"{ searchInput }" ( {totalResults} )</label></span>
-                                                    <div className="order-by-container">
+                                                    <div onClick={showSortWindow ? () => setShowSortWindow(false) : () => setShowSortWindow(true)} className="order-by-container">
                                                         <label>Sort by</label>
-                                                        <div className="show-order-by-options"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
-                                                            <div className="order-by-options-list">
-                                                                <div id="order-by-price" className="order-by-option">
-                                                                    <div ref={priceAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("price",priceAsc,priceDesc) } >↑</div>
-                                                                    <div ref={priceDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-price",priceDesc,priceAsc)  } >↓</div>
-                                                                    <label>Price</label>
-                                                                </div>
-                                                                <div id="order-by-datetime" className="order-by-option">
-                                                                    <div ref={dateAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("date",dateAsc,dateDesc) }> ↑</div>
-                                                                    <div ref={dateDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-date",dateDesc,dateAsc)  }> ↓</div>
-                                                                    <label>Date</label>
-                                                                </div>
-                                                                <div id="order-by-popularity" className="order-by-option">
-                                                                    <div className="toggle-sort-button">↑</div>
-                                                                    <div className="toggle-sort-button">↓</div>
-                                                                    <label>Popularity</label>
-                                                                </div>
-                                                                <div id="order-by-creview"    className="order-by-option">
-                                                                    <div className="toggle-sort-button">↑</div>
-                                                                    <div className="toggle-sort-button">↓</div>
-                                                                    <label>Customer Review</label>
-                                                                </div>
-                                                                <div id="order-by-pack"       className="order-by-option">
-                                                                    <div className="toggle-sort-button">↑</div>
-                                                                    <div className="toggle-sort-button">↓</div>
-                                                                    <label>Pack #</label>
-                                                                </div>
-                                                                <div id="order-by-speed"      className="order-by-option">
-                                                                    <div className="toggle-sort-button">↑</div>
-                                                                    <div className="toggle-sort-button">↓</div>
-                                                                    <label>Speed</label>
-                                                                </div>
+                                                        <svg style={{rotate: showSortWindow ? "180deg" : "0deg" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
+                                                        
+                                                        <div style={{visibility: showSortWindow ? "visible" : "hidden"}} className="order-by-options-list">
+                                                            <div id="order-by-price" className="order-by-option">
+                                                                <div id={"price"} ref={priceAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("price",priceAsc,priceDesc) } >↑</div>
+                                                                <div id={"-price"} ref={priceDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-price",priceDesc,priceAsc)  } >↓</div>
+                                                                <label>Price</label>
+                                                            </div>
+                                                            <div id="order-by-datetime" className="order-by-option">
+                                                                <div id={"date"}  ref={dateAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("date",dateAsc,dateDesc) }> ↑</div>
+                                                                <div id={"-date"} ref={dateDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-date",dateDesc,dateAsc)  }> ↓</div>
+                                                                <label>Date</label>
+                                                            </div>
+                                                            <div id="order-by-popularity" className="order-by-option">
+                                                                <div className="toggle-sort-button">↑</div>
+                                                                <div className="toggle-sort-button">↓</div>
+                                                                <label>Popularity</label>
+                                                            </div>
+                                                            <div id="order-by-creview"    className="order-by-option">
+                                                                <div className="toggle-sort-button">↑</div>
+                                                                <div className="toggle-sort-button">↓</div>
+                                                                <label>Customer Review</label>
+                                                            </div>
+                                                            <div id="order-by-pack"       className="order-by-option">
+                                                                <div className="toggle-sort-button">↑</div>
+                                                                <div className="toggle-sort-button">↓</div>
+                                                                <label>Pack #</label>
+                                                            </div>
+                                                            <div id="order-by-speed"      className="order-by-option">
+                                                                <div className="toggle-sort-button">↑</div>
+                                                                <div className="toggle-sort-button">↓</div>
+                                                                <label>Speed</label>
                                                             </div>
                                                         </div>
                                                     </div>

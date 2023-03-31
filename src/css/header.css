@@ -329,10 +329,6 @@
     transition: all 1s ease-in-out;
 }
 
-.input-box-container:hover{
-    border: 0.01px solid #0c6ea3;
-}
-
 .input-box-container:target{
     border: 0.01px solid #0c6ea3;
 }
@@ -416,9 +412,6 @@
     .user-image{
         width: 2rem;
         height: auto;
-    }
-    .input-box-container:hover{
-        border: 0
     }
     .products-in-cart{
         font-size: 12px;
