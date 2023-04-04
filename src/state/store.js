@@ -27,20 +27,24 @@ import {
         pagesListReducer,
         pageReducer} from './pagination/paginationSlices'
 // Specific Product
-import { specificProductReducer,reviewFormDataReducer } from './specificProduct/productsSlices'
+import { specificProductReducer,
+        reviewFormDataReducer,
+        bigImageReducer,
+        mouseOverImagesReducer } from './specificProduct/productsSlices'
 // Reviews
 import { reviewSubmittedReducer,
-         reviewErrorReducer } from './reviews/reviewsSlices'
+         reviewErrorReducer,
+         updateReviewReducer } from './reviews/reviewsSlices'
 // Variants
 import { variantOptionsReducer,variantValuePreviewReducer } from './variants/variantsSlices' 
 // Favorites
 import { favoritesListReducer,favoritesIconChangeListReducer,showFavoritesPreviewReducer } from './favorites/favoritesSlices'
 // User
 import { userCredentialsReducer,
-        renderUserOptionsReducer,
-        registrationFormDataReducer,
-        formErrorsReducer,
-        userDataReducer} from './user/userSlices'
+         renderUserOptionsReducer,
+         registrationFormDataReducer,
+         formErrorsReducer,
+         userDataReducer} from './user/userSlices'
 
 
 export const store = configureStore({
@@ -68,9 +72,11 @@ export const store = configureStore({
         // Pagination
         pagesListReducer,
         pageReducer,
-        // Product
+        // Specific Product
         specificProductReducer,
         reviewFormDataReducer,
+        bigImageReducer,
+        mouseOverImagesReducer,
         // Variants
         variantOptionsReducer,
         variantValuePreviewReducer,
@@ -86,7 +92,8 @@ export const store = configureStore({
         userDataReducer,
         // Reviews
         reviewSubmittedReducer,
-        reviewErrorReducer
+        reviewErrorReducer,
+        updateReviewReducer
 
     }
 })

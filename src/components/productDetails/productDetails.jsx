@@ -46,16 +46,19 @@ export const ProductDetails = () => {
 
     useEffect(()=> {
 
-        fetchOneProduct(productId)
+        if (reviewSubmitted === true) {
+            fetchOneProduct(productId)
         
-        window.scrollTo(
-            {
-                top: 1600,
-                left: 0,
-                behavior: 'instant'
-            }
-        )
-        dispatch(setReviewSubmitted(false))
+            window.scrollTo(
+                {
+                    top: 1600,
+                    left: 0,
+                    behavior: 'instant'
+                }
+            )
+            dispatch(setReviewSubmitted(false))
+        }
+        
     },[reviewSubmitted])
     
     

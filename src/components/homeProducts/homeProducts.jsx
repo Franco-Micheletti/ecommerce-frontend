@@ -33,11 +33,18 @@ const HomeProducts = () => {
     
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const prodTypes = useRef([])
+    const prodTypes     = useRef([])
+    const groceriesCard = useRef()
+    const boxesAnimation = useRef()
     const popularCookieSnacks = useRef()
     const popularLaptops = useRef()
     const popularCoffeTables = useRef()
-    
+    const box1 = useRef()
+    const box2 = useRef()
+    const box3 = useRef()
+    const box4 = useRef()
+    const box5 = useRef()
+    const box6 = useRef()
 
     useEffect( () => {
         
@@ -54,8 +61,26 @@ const HomeProducts = () => {
         for(let i = 1;i<7;i++) {
             setTimeout(()=> {
                 prodTypes.current[i-1].style.top = 0
-            },i*100)
+            },i*200)
         }
+        setTimeout(()=> {
+            groceriesCard.current.style.marginTop = 0
+            box1.current.style.top = "-555px"
+            box1.current.style.left = "-555px"
+            box2.current.style.top = "-1135px"
+            box2.current.style.left = "-328px"
+            box3.current.style.top = "-876px"
+            box3.current.style.left = "1065px"
+            box4.current.style.top = "-950px"
+            box4.current.style.left = "1100px"
+            box5.current.style.top = "-1100px"
+            box5.current.style.left = "1200px"
+            box6.current.style.top = "700px"
+            box6.current.style.left = "900px"
+        },200)
+        setTimeout(()=> {
+            boxesAnimation.current.style.display = "none"
+        },1000)
     },[]) 
 
     const goToProductType = (q) => {
@@ -81,39 +106,109 @@ const HomeProducts = () => {
         return ( 
             // Show popular products in Cookies & Snack category
             <div className="body-home">
-                <div className="home-navigate-product-types">
-                    <div onClick={()=> goToProductType("table")} ref={(el) => prodTypes.current[0] = el} className="navigate-product-type-home">
-                        <img className="home-product-types-image" src={require(`../../images/coffe-tables.webp`)}></img>
-                        <label>Coffe Tables</label>
+                <div className="home-first">
+                    <div className="home-navigate-product-types">
+                        <div onClick={()=> goToProductType("table")} ref={(el) => prodTypes.current[0] = el} className="navigate-product-type-home">
+                            <img className="home-product-types-image" src={require(`../../images/coffe-tables.webp`)}></img>
+                            <label>Coffe Tables</label>
+                        </div>
+                        <div onClick={()=> goToProductType("laptop")} ref={(el) => prodTypes.current[1] = el} className="navigate-product-type-home">
+                        <img className="home-product-types-image" src={require(`../../images/laptops.webp`)}></img>
+                            <label>Laptops</label>
+                        </div>
+                        <div onClick={()=> goToProductType("Energy Drinks")} ref={(el) => prodTypes.current[2] = el} className="navigate-product-type-home">
+                            <img className="home-product-types-image" src={require(`../../images/energy-drinks.webp`)}></img>
+                            <label>Energy Drinks</label>
+                        </div>
+                        <div onClick={()=> goToProductType("Soda Pop")} ref={(el) => prodTypes.current[3] = el} className="navigate-product-type-home">
+                        <img className="home-product-types-image" src={require(`../../images/sodas.webp`)}></img>
+                            <label>Soda Pop</label>
+                        </div>
+                        <div onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[4] = el} className="navigate-product-type-home">
+                            <img className="home-product-types-image" src={require(`../../images/cookies.webp`)}></img>
+                            <label>Cookies</label>
+                        </div>
+                        <div style={{justifyContent:"center"}} onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[5] = el} className="navigate-product-type-home">
+                            <label>More</label>
+                        </div>
                     </div>
-                    <div onClick={()=> goToProductType("laptop")} ref={(el) => prodTypes.current[1] = el} className="navigate-product-type-home">
-                    <img className="home-product-types-image" src={require(`../../images/laptops.webp`)}></img>
-                        <label>Laptops</label>
+                    <div ref={groceriesCard} className="groceries-card">
+                        <img alt={"groceries-card"} className="groceries-card-image" src={require(`../../images/groceries.webp`)}></img>
+                        <div className="cards-text">Every grocery you need, we have it !</div>
                     </div>
-                    <div onClick={()=> goToProductType("Energy Drinks")} ref={(el) => prodTypes.current[2] = el} className="navigate-product-type-home">
-                        <img className="home-product-types-image" src={require(`../../images/energy-drinks.webp`)}></img>
-                        <label>Energy Drinks</label>
-                    </div>
-                    <div onClick={()=> goToProductType("Soda Pop")} ref={(el) => prodTypes.current[3] = el} className="navigate-product-type-home">
-                    <img className="home-product-types-image" src={require(`../../images/sodas.webp`)}></img>
-                        <label>Soda Pop</label>
-                    </div>
-                    <div onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[4] = el} className="navigate-product-type-home">
-                        <img className="home-product-types-image" src={require(`../../images/cookies.webp`)}></img>
-                        <label>Cookies</label>
-                    </div>
-                    <div onClick={()=> goToProductType("Cookies")} ref={(el) => prodTypes.current[5] = el} className="navigate-product-type-home">
-                        <label>More</label>
+                </div>
+                <div ref={boxesAnimation} className="boxes-animation">
+                    <div className="box-container">
+                        <img ref={box1} style={{top: "-36px",left: "382px"}} className="box" src={require(`../../images/box.png`)}></img>
+                        <img ref={box2} style={{top: "-36px",left: "382px"}}className="box" src={require(`../../images/box.png`)}></img>
+                        <img ref={box3} style={{top: "21px",left: "-11px"}}className="box" src={require(`../../images/box.png`)}></img>
+                        <img ref={box4} style={{top: "33px",left: "-72px"}}className="box" src={require(`../../images/box.png`)}></img>
+                        <img ref={box5} style={{top: "41px",left: "-129px"}}className="box" src={require(`../../images/box.png`)}></img>
+                        <img ref={box6} style={{top: "-82px",left: "-523px"}}className="box" src={require(`../../images/box.png`)}></img>
                     </div>
                 </div>
                 <div className="cards-container">
-                    <div className="tvs-card">
-                        <img alt={"tvs-card"} className="tvs-card-image" src={require(`../../images/tvs.webp`)}></img>
-                        <div className="cards-text">Get our new 4k TVs directly from our main store.</div>
+                    <div style={{display:"flex"}} className="tv-audio-panel">
+                        <div className="tvs-card">
+                            <img alt={"tvs-card"} className="tvs-card-image" src={require(`../../images/tvs.webp`)}></img>
+                            <div className="cards-text">Get our new 4k TVs directly from our main store.</div>
+                        </div>
+                        <div className="home-navigate-product-types">
+                            <div onClick={()=> goToProductType("table")} className="navigate-tv-audio">
+                                <img className="home-product-types-image" src={require(`../../images/coffe-tables.webp`)}></img>
+                                <label>Coffe Tables</label>
+                            </div>
+                            <div onClick={()=> goToProductType("laptop")} className="navigate-tv-audio">
+                            <img className="home-product-types-image" src={require(`../../images/laptops.webp`)}></img>
+                                <label>Laptops</label>
+                            </div>
+                            <div onClick={()=> goToProductType("Energy Drinks")} className="navigate-tv-audio">
+                                <img className="home-product-types-image" src={require(`../../images/energy-drinks.webp`)}></img>
+                                <label>Energy Drinks</label>
+                            </div>
+                            <div onClick={()=> goToProductType("Soda Pop")} className="navigate-tv-audio">
+                            <img className="home-product-types-image" src={require(`../../images/sodas.webp`)}></img>
+                                <label>Soda Pop</label>
+                            </div>
+                            <div onClick={()=> goToProductType("Cookies")} className="navigate-tv-audio">
+                                <img className="home-product-types-image" src={require(`../../images/cookies.webp`)}></img>
+                                <label>Cookies</label>
+                            </div>
+                            <div style={{justifyContent:"center"}} onClick={()=> goToProductType("Cookies")} className="navigate-tv-audio">
+                                <label>More</label>
+                            </div>
+                        </div>
                     </div>
-                    <div className="home-card">
-                        <img alt={"home-card"} className="home-card-image" src={require(`../../images/home.webp`)}></img>
-                        <div className="cards-text">Decorate your home with the best furnitures.</div>
+                    <div style={{display:"flex"}} className="home-panel">
+                        <div className="home-card">
+                            <img alt={"home-card"} className="home-card-image" src={require(`../../images/home.webp`)}></img>
+                            <div className="cards-text">Decorate your home with the best furnitures.</div>
+                        </div>
+                        <div className="home-navigate-product-types">
+                            <div onClick={()=> goToProductType("table")} className="navigate-home-furnitures">
+                                <img className="home-product-types-image" src={require(`../../images/coffe-tables.webp`)}></img>
+                                <label>Coffe Tables</label>
+                            </div>
+                            <div onClick={()=> goToProductType("laptop")} className="navigate-home-furnitures">
+                            <img className="home-product-types-image" src={require(`../../images/laptops.webp`)}></img>
+                                <label>Laptops</label>
+                            </div>
+                            <div onClick={()=> goToProductType("Energy Drinks")} className="navigate-home-furnitures">
+                                <img className="home-product-types-image" src={require(`../../images/energy-drinks.webp`)}></img>
+                                <label>Energy Drinks</label>
+                            </div>
+                            <div onClick={()=> goToProductType("Soda Pop")} className="navigate-home-furnitures">
+                            <img className="home-product-types-image" src={require(`../../images/sodas.webp`)}></img>
+                                <label>Soda Pop</label>
+                            </div>
+                            <div onClick={()=> goToProductType("Cookies")} className="navigate-home-furnitures">
+                                <img className="home-product-types-image" src={require(`../../images/cookies.webp`)}></img>
+                                <label>Cookies</label>
+                            </div>
+                            <div style={{justifyContent:"center"}} onClick={()=> goToProductType("Cookies")} className="navigate-home-furnitures">
+                                <label>More</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="title-popular-products-home">Cookies & Snacks</div>
@@ -126,6 +221,7 @@ const HomeProducts = () => {
                         products.map( (product) =>
                             
                             {   
+                                console.log(product)
                                 const imageFile = product["product_image_tag"]
                                 const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
                                 const id = product["id"]
@@ -141,7 +237,7 @@ const HomeProducts = () => {
                                                     </div>
                                         }
                                         <Link to={`/${formatedName}/${id}`}>
-                                            <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                            <img className="home-product-image" src={require(`../../images/${imageFile}-1.webp`)}></img>
                                         </Link>
                                         {
                                         expandAddButton[product["id"]]
@@ -160,6 +256,27 @@ const HomeProducts = () => {
                                                 </button>
                                         }
                                         <div className="product-price-search">${product['price']}</div>
+                                        {   
+                                            product['reviews']
+                                                ?   <div className="avg-score">
+                                                        <div className="stars">
+                                                        {   
+                                                            product['avg_score'] >= 1 && product['avg_score'] < 1.5
+                                                                ? <span className="review-score">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+                                                                :  product['avg_score'] >= 1.5 && product['avg_score'] < 2.5
+                                                                        ? <span className="review-score">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+                                                                        : product['avg_score'] >= 2.5 && product['avg_score'] < 3.5
+                                                                            ? <span className="review-score">&#9734;&#9733;&#9733;&#9734;&#9734;</span>
+                                                                            : product['avg_score'] >= 3.5 && product['avg_score'] < 4.5
+                                                                                ? <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                                                                : <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                                        }
+                                                        </div>
+                                                        <div className="total-reviews">{product['reviews'].length}</div>
+                                                    </div>
+                                                :   <></>
+                                        }
+                                       
                                         <div className="popular-products-product-name">{product['product_name']}</div>
                                     </div>
                                     )
@@ -197,7 +314,7 @@ const HomeProducts = () => {
                                                 </div>
                                     }
                                     <Link to={`/${formatedName}/${id}`}>
-                                        <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                        <img className="home-product-image" src={require(`../../images/${imageFile}-1.webp`)}></img>
                                     </Link>
                                     {
                                     expandAddButton[product["id"]]
@@ -253,7 +370,7 @@ const HomeProducts = () => {
                                                 </div>
                                     }
                                     <Link to={`/${formatedName}/${id}`}>
-                                        <img className="home-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                        <img className="home-product-image" src={require(`../../images/${imageFile}-1.webp`)}></img>
                                     </Link>
                                     {
                                     expandAddButton[product["id"]]

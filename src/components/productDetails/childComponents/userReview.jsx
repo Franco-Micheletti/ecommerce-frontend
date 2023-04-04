@@ -6,26 +6,26 @@ import { store } from "../../../state/store";
 import { handleDeleteReview } from "../functions/handleDeleteReview";
 import { UpdateReviewForm } from "./updateReviewForm";
 import { setReviewScore, setReviewText} from "../../../state/specificProduct/productsSlices"
+import { setUpdateReview } from "../../../state/reviews/reviewsSlices";
 
 export const UserReview = ({review}) => {
 
-    const userData        = useSelector((store) => store.userDataReducer)
-    const reviewSubmitted = useSelector((store) => store.reviewSubmittedReducer)
-    const [updateReview,setUpdateReview] = useState(false)
+    const userData      = useSelector((store) => store.userDataReducer)
+    const updateReview  = useSelector((store) => store.updateReviewReducer)
+    const userCredentials = store.getState().userCredentialsReducer
     const dispatch = useDispatch()
 
     useEffect(() => {
         
-        const userCredentials = store.getState().userCredentialsReducer
         if (Object.keys(userCredentials).length > 0 && Object.keys(userData).length === 0) {
             let id = jwt(userCredentials["jwt_access"])["user_id"]
             getUserData(id)
         }
-    }, [])
+    }, [userCredentials])
 
     useEffect(()=>{
 
-        if (updateReview === true) {
+        if (updateReview === true && userData["id"] === review["user"]["id"]) {
             dispatch(setReviewScore(review["score"]))
             dispatch(setReviewText(review["text"]))
         }
@@ -36,10 +36,9 @@ export const UserReview = ({review}) => {
     return ( 
         
         <div className="user-review">
-
-            {
-                updateReview
-                    ? <UpdateReviewForm reviewId={review["id"]} reviewText={review["text"]} reviewScore={review["score"]}/>
+            {   
+                updateReview && userData["id"] === review["user"]["id"]
+                    ? <UpdateReviewForm reviewId={review["id"]}/>
                     
                     :   <div>
                             <div className="review-user-info-container">
@@ -62,7 +61,7 @@ export const UserReview = ({review}) => {
                                 {
                                     userData["id"] === review["user"]["id"]
                                         ?   <div className="review-logged-options">
-                                                <button onClick={() => setUpdateReview(true) }>Edit</button> <button onClick={() => handleDeleteReview(review["id"])} >Delete</button>
+                                                <button onClick={() => dispatch(setUpdateReview(true)) }>Edit</button> <button onClick={() => handleDeleteReview(review["id"])} >Delete</button>
                                             </div>
                                         :   <></>
                                 }

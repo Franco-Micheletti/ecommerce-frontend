@@ -290,6 +290,7 @@
     transform: translateZ(0);
     opacity: 0;
     background-color: #1e1e1e;
+    transition: 0.3s ease-in-out;
 }
 
 @media(max-width:2460px) {

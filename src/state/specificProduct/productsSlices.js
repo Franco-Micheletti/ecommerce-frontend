@@ -35,9 +35,46 @@ export const reviewFormDataSlice = createSlice(
     }
 )
 
+export const bigImageSlice = createSlice(
+
+    {
+        name:'bigImageReducer',
+        initialState: null,
+        reducers:{
+            setBigImage: (state,action) =>{
+                state = action.payload
+                return state
+            },
+           
+        }
+    }
+)
+
+// Remove this one
+export const mouseOverImagesSlice = createSlice(
+
+    {
+        name:'mouseOverImagesReducer',
+        initialState: "",
+        reducers:{
+            setTempBigImage: (state,action) =>{
+                state = action.payload
+                return state
+            },
+           
+        }
+    }
+)
 
 export const {setProduct}   = specificProductSlice.actions
 export const specificProductReducer = specificProductSlice.reducer
 
 export const {setReviewText,setReviewScore}   = reviewFormDataSlice.actions
 export const reviewFormDataReducer = reviewFormDataSlice.reducer
+
+export const {setBigImage}   = bigImageSlice.actions
+export const bigImageReducer = bigImageSlice.reducer
+
+export const {setTempBigImage}      = mouseOverImagesSlice.actions
+export const mouseOverImagesReducer = mouseOverImagesSlice.reducer
+

@@ -33,9 +33,9 @@ export const updateReviewSlice = createSlice(
 
     {
         name:'updateReviewReducer',
-        initialState: null,
+        initialState: false,
         reducers:{
-            setReviewUpdate: (state,action) =>{
+            setUpdateReview: (state,action) =>{
                 state = action.payload
                 return state
             }
@@ -49,5 +49,5 @@ export const reviewSubmittedReducer = reviewSubmittedSlice.reducer
 export const { setReviewError } = reviewErrorSlice.actions
 export const reviewErrorReducer = reviewErrorSlice.reducer
 
-export const { setReviewError } = reviewErrorSlice.actions
-export const reviewErrorReducer = reviewErrorSlice.reducer
+export const { setUpdateReview } = updateReviewSlice.actions
+export const updateReviewReducer = updateReviewSlice.reducer

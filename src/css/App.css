@@ -1,13 +1,24 @@
 
 .App{
-    background-color: #e9e9e9;
+    /* First theme */
+    /* background-color: #e9e9e9; */
+    /* 2nd theme */
+    background-color: white;
 }
 
 :root{
     
-    --background-card: #f7f8f5;
+    /* First theme */
+    /* --background-card: #f7f8f5;
     --background-card-2: #edefee;
     --text-color-card-2: #000000;
     --background-header: #f7f8f5;
-    --background-footer: #f7f8f5;
+    --background-footer: #f7f8f5; */
+    /* 2nd theme */
+    --background-card: transparent;
+    --background-card-2: transparent;
+    --text-color-card-2: #000000;
+    --background-header: white;
+    --background-footer: white;
+
 }

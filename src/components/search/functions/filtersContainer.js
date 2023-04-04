@@ -27,6 +27,7 @@ export const toggleFiltersContainer = () => {
     } else {
         
         filtersContainer.style.display = "block"
+        filtersContainer.style.backgroundColor = "white"
         setTimeout( () => {
             filtersContainer.style.marginLeft = "1%"
             filtersContainer.style.left = "1%"

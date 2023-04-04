@@ -42,7 +42,7 @@ export const FavoritesPreviewWindow = () => {
                                 return (
                                     
                                     <div className="favorite-product-item">
-                                        <img className="favorite-product-image" src={require(`../images/${product["product_image_tag"]}.webp`)}></img>
+                                        <img className="favorite-product-image" src={require(`../images/${product["product_image_tag"]}-1.webp`)}></img>
                                         {   
                                         screenWidth < 480
                                             ? product["product_name"].length > 120

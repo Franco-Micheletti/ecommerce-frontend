@@ -136,11 +136,13 @@
     text-align: center;
     display: flex;
     position: relative;
-    background-color: #edeeef;
+    background-color: #ffffff;
     left: 81%;
     top: 5%;
 }
-
+.to-favorite-icon:hover,.to-favorite-icon-added:hover{
+    cursor: pointer;
+}
 .to-favorite-icon svg , .to-favorite-icon-added svg{
     width: 25px;
     height: 25px;

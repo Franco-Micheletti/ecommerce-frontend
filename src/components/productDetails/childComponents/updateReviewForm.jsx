@@ -2,9 +2,9 @@ import React from "react"
 import { useDispatch,useSelector } from "react-redux";
 import { handleUpdateReview } from "../functions/handleUpdateReview";
 import { setReviewScore, setReviewText} from "../../../state/specificProduct/productsSlices"
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
-export const UpdateReviewForm = ({reviewId,reviewText,reviewScore}) => {
+export const UpdateReviewForm = ({reviewId}) => {
 
     const dispatch = useDispatch()
 

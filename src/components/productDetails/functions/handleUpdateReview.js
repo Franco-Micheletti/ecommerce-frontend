@@ -1,6 +1,5 @@
 import { store } from "../../../state/store"
-import { setReviewSubmitted } from "../../../state/reviews/reviewsSlices"
-import { setReviewError } from "../../../state/reviews/reviewsSlices";
+import { setReviewSubmitted,setUpdateReview,setReviewError} from "../../../state/reviews/reviewsSlices"
 
 export const handleUpdateReview = async (e,review_id) => {
 
@@ -20,6 +19,7 @@ export const handleUpdateReview = async (e,review_id) => {
             if (response.status === 200) {
                 store.dispatch(setReviewSubmitted(true))
                 store.dispatch(setUpdateReview(false))
+                store.dispatch(setReviewError(null))
                 return response.json()
             } else {
                 return response.json()

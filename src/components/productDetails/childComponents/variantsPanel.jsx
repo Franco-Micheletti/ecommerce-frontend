@@ -4,6 +4,8 @@ import { store } from "../../../state/store"
 import { updateVariantOption,setVariantValuePreview } from "../../../state/variants/variantsSlices"
 import { getProductVariantId } from "../functions/getProductVariantId"
 import { useNavigate } from "react-router-dom"
+import { setBigImage } from "../../../state/specificProduct/productsSlices"
+
 export const VariantsPanel = ({productData,productName}) => {
 
     const dispatch = useDispatch()
@@ -13,6 +15,7 @@ export const VariantsPanel = ({productData,productName}) => {
 
     const handleUpdateVariantOption = (property,value) => {
 
+        dispatch(setBigImage(null))
         const newVariantOption = {"property":property,
                                   "value":value}
         dispatch(updateVariantOption(newVariantOption))
@@ -46,7 +49,9 @@ export const VariantsPanel = ({productData,productName}) => {
                                             productData["variant_options"][property].map( (value) => {
                                                 if (property === "color"){
                                                     return (
-                                                        <div onMouseOver={ () => handleMouseOverVariantValue(property,value)} onClick={()=> handleUpdateVariantOption(property,value)} style={{backgroundColor: value}} className="color-variant-item"></div>
+                                                        <div onMouseOver={ () => handleMouseOverVariantValue(property,value)} onClick={()=> handleUpdateVariantOption(property,value)} className="color-variant-item">
+                                                            <img className="variant-color-image" src={require(`./../../../images/${productData["basic"]["generic_image_tag"]}-${value}-color.webp`)}></img>
+                                                        </div>
                                                     )
                                                 } else {
                                                     return (

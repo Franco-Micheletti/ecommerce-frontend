@@ -85,11 +85,11 @@ const Search = () => {
             dispatch(addOrderByToList(orderByString))
             // Remove alternate
             if (orderByList.includes(elementAlt.current.id) === true) {
-                elementAlt.current.style.color = "#585858"
+                elementAlt.current.style.color = "#000000"
                 dispatch(removeOrderByFromList(elementAlt.current.id))
             } 
         } else {
-            element.current.style.color = "#585858"
+            element.current.style.color = "#000000"
             dispatch(removeOrderByFromList(orderByString))
         }
         
@@ -124,7 +124,7 @@ const Search = () => {
                                             <div className="results-container">
                                                 <div className="button-title-results-wraper">
                                                     <button id="button-show-filters-container" onClick={toggleFiltersContainer} className="button-show-filters-container">
-                                                    <svg viewBox="0 0 24 24" focusable="false" style={{pointeEvents: "none",display: "block",width: "100%",height: "100%"}}><g><path d="M21,6H3V5h18V6z M21,11H3v1h18V11z M21,17H3v1h18V17z"></path></g></svg>
+                                                        <svg viewBox="0 0 24 24" focusable="false" style={{pointeEvents: "none",display: "block",width: "100%",height: "100%"}}><g><path d="M21,6H3V5h18V6z M21,11H3v1h18V11z M21,17H3v1h18V17z"></path></g></svg>
                                                     </button>
                                                     <span className="title-results"><h4>Results for:</h4><label>"{ searchInput }" ( {totalResults} )</label></span>
                                                     <div onClick={showSortWindow ? () => setShowSortWindow(false) : () => setShowSortWindow(true)} className="order-by-container">
@@ -186,7 +186,7 @@ const Search = () => {
                                                                                 </div>
                                                                         }
                                                                         <Link to={`/${formatedName}/${id}`}>
-                                                                        <img className="search-product-image" src={require(`../../images/${imageFile}.webp`)}></img>
+                                                                        <img className="search-product-image" src={require(`../../images/${imageFile}-1.webp`)}></img>
                                                                         </Link>
                                                                         {
                                                                             expandAddButton[product["id"]]
