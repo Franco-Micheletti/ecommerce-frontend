@@ -19,13 +19,13 @@ export const addProductToCart = (product) => {
     
     if (indexOfRepeatedProduct !== null)  {
         // Modify quantity if repeated
-        console.log(productNew["product_name"],"is repeated modifying quantity")
+        
         store.dispatch(addOneMoreOfTheSameProduct(indexOfRepeatedProduct))
         // Increase quantity in expandAddButton list
         store.dispatch(quantityIncrease( productNew["id"] ))
     } else {
         // Add to list if not repeated
-        console.log("The product does not exist! , adding to list ...")
+        
         store.dispatch(cartListAdd(productNew))
         // Add expandAddButton list
         store.dispatch(addToExpandAddButtonList(productNew["id"] ))

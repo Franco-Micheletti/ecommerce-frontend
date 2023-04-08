@@ -27,8 +27,6 @@ export const addProductToLocalStorage = (product) => {
                 window.localStorage.setItem("cart_products",JSON.stringify(productsList))
             }  
         }
-        else {
-            console.log("Local Storage Function: Key was not provided or product parameter is not an object.")
-        }
+        
           
 }

@@ -39,17 +39,17 @@ export const cartProductsLocalStorage = (key,product=null,remove) => {
                 // Modify the quantity of the product if the product already exists
                 // Add the product to the list if it does not exist.
                 if (remove === false){
-                    console.log("Adding product to the local storage")
+                    
                     indexExistingProduct === null
                         ? productsList.push(product)
                         : productsList[indexExistingProduct]["quantity"] += 1
                 } else { 
                     if ( product["quantity"] > 1 ) {
-                        console.log("quantity is higher than 1 , removing one quantity")
+                        
                         productsList[indexExistingProduct]["quantity"] -= 1
                     }
                     else {
-                        console.log("quantity is 1 , removing product")
+                        
                         productsList.splice(indexExistingProduct,1)
                     }
                 } 

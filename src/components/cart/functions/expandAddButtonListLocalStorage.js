@@ -19,8 +19,6 @@ export const addToExpandObjectLocalStorage = (productId) =>{
             const objectToString = JSON.stringify( object )
             window.localStorage.setItem("expand_object",objectToString)
         }
-    } else {
-        console.log("EXPAND ADD BUTTON OBJECT - ProductId not provided")
     }
 }
 

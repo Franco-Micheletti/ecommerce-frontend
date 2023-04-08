@@ -10,12 +10,12 @@ export const removeProductFromCart = (productId) => {
     const quantityOfProduct   = expandAddButtonList[productId]["quantity"]
     
     if( quantityOfProduct > 1 ) {
-        console.log("removing one quantity")
+        
         store.dispatch(removeOneOfTheSameProduct(productId))
         // Remove from expandAddbutton list
         store.dispatch(quantityDecrease(productId))
     } else {
-        console.log("product removed")
+        
         store.dispatch(cartListRemove(productId))
         // Remove from expandAddbutton list
         store.dispatch(removeFromExpandAddButtonList(productId))
