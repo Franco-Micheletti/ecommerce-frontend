@@ -3,11 +3,18 @@ import { setReviewSubmitted,setUpdateReview,setReviewError} from "../../../state
 
 export const handleUpdateReview = async (e,review_id) => {
 
-        e.preventDefault()
 
+        if (process.env.REACT_APP_PRODUCTION === 'true'){
+            var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+        } else {
+            var url = 'http://127.0.0.1:8000'
+        }
+
+        e.preventDefault()
+        
         const reviewData = store.getState().reviewFormDataReducer
         
-        const response = await fetch(`http://127.0.0.1:8000/product/review/review_id=${review_id}`, {
+        const response = await fetch(`${url}/product/review/review_id=${review_id}`, {
             method: 'PUT',
             credentials:'include',
             headers: {

@@ -5,7 +5,13 @@ import { getAllReviewsOfUser } from "../../../api/getAllReviewsOfUser"
 
 export const handleDeleteReview = async (review_id,user_id) => {
 
-        const response = await fetch(`http://127.0.0.1:8000/product/review/review_id=${review_id}`, {
+        if (process.env.REACT_APP_PRODUCTION === 'true'){
+            var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+        } else {
+            var url = 'http://127.0.0.1:8000'
+        }
+
+        const response = await fetch(`${url}/product/review/review_id=${review_id}`, {
             method: 'DELETE',
             credentials:'include',
             headers: {

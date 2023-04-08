@@ -3,11 +3,17 @@ import { setReviewSubmitted } from "../../../state/reviews/reviewsSlices"
 
 export const handleSubmitReview = async (e,product_id) => {
 
+        if (process.env.REACT_APP_PRODUCTION === 'true'){
+            var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+        } else {
+            var url = 'http://127.0.0.1:8000'
+        }
+
         e.preventDefault()
 
         const reviewData = store.getState().reviewFormDataReducer
         
-        const response = await fetch(`http://127.0.0.1:8000/product/review/create/product_id=${product_id}`, {
+        const response = await fetch(`${url}/product/review/create/product_id=${product_id}`, {
             method: 'POST',
             credentials:'include',
             headers: {
