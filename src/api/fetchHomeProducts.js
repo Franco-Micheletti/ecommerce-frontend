@@ -3,7 +3,8 @@ import { store } from "../state/store";
 
 
 export const fetchHomeProducts = () => {
-    
+
+    console.log(process.env.PRODUCTION_CHECK)
     console.log(process.env.PRODUCTION)
     if (process.env.PRODUCTION === true){
         var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
