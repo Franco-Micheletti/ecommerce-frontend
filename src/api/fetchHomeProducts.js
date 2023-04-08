@@ -1,11 +1,9 @@
 import { setDataLoading, setHomeProducts } from "../state/products/productsSlices"
 import { store } from "../state/store";
-require("dotenv").config()
 
 export const fetchHomeProducts = () => {
 
-    console.log(process.env.PRODUCTION_CHECK)
-    console.log(process.env.PRODUCTION)
+    console.log(process.env.REACT_APP_PRODUCTION)
     if (process.env.PRODUCTION === true){
         var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
     } else {
