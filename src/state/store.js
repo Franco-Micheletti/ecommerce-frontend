@@ -34,7 +34,8 @@ import { specificProductReducer,
 // Reviews
 import { reviewSubmittedReducer,
          reviewErrorReducer,
-         updateReviewReducer } from './reviews/reviewsSlices'
+         updateReviewReducer,
+         userAccountAllReviewsReducer } from './reviews/reviewsSlices'
 // Variants
 import { variantOptionsReducer,variantValuePreviewReducer } from './variants/variantsSlices' 
 // Favorites
@@ -44,7 +45,8 @@ import { userCredentialsReducer,
          renderUserOptionsReducer,
          registrationFormDataReducer,
          formErrorsReducer,
-         userDataReducer} from './user/userSlices'
+         userDataReducer,
+         configurationPanelReducer} from './user/userSlices'
 
 
 export const store = configureStore({
@@ -90,10 +92,12 @@ export const store = configureStore({
         registrationFormDataReducer,
         formErrorsReducer,
         userDataReducer,
+        configurationPanelReducer,
         // Reviews
         reviewSubmittedReducer,
         reviewErrorReducer,
-        updateReviewReducer
+        updateReviewReducer,
+        userAccountAllReviewsReducer
 
     }
 })

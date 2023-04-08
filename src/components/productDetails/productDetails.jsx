@@ -90,7 +90,7 @@ export const ProductDetails = () => {
                                 { 
                                     productData["logged_user_review"]
                                         ?   <div>
-                                                <div className="reviews-title">Your review of this product</div>
+                                                <div id="loggedUserReview" className="reviews-title">Your review of this product</div>
                                                 <div style={{marginLeft:"20px"}}>
                                                     <UserReview review={productData["logged_user_review"]}/>
                                                 </div>

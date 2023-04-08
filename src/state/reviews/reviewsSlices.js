@@ -43,6 +43,20 @@ export const updateReviewSlice = createSlice(
     }
 )
 
+export const userAccountAllReviewsSlice = createSlice(
+
+    {
+        name:'userAccountAllReviewsReducer',
+        initialState: [],
+        reducers:{
+            setUserAccountAllReviews: (state,action) =>{
+                state = action.payload
+                return state
+            }
+        }
+    }
+)
+
 export const { setReviewSubmitted } = reviewSubmittedSlice.actions
 export const reviewSubmittedReducer = reviewSubmittedSlice.reducer
 
@@ -51,3 +65,6 @@ export const reviewErrorReducer = reviewErrorSlice.reducer
 
 export const { setUpdateReview } = updateReviewSlice.actions
 export const updateReviewReducer = updateReviewSlice.reducer
+
+export const { setUserAccountAllReviews } = userAccountAllReviewsSlice.actions
+export const userAccountAllReviewsReducer = userAccountAllReviewsSlice.reducer

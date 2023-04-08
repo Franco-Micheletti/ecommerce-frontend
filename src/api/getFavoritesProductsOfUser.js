@@ -2,8 +2,14 @@ import { store } from "../state/store"
 import { setFavoritesList,setFavoritesIconChangeList } from "../state/favorites/favoritesSlices"
 
 export const getFavoritesProductsOfUser = async (user_id) => {
-
-    const response = await fetch(`http://127.0.0.1:8000/products/favorites/user_id=${user_id}`, {
+    
+    if (process.env.PRODUCTION === true){
+        var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+    } else {
+        var url = 'http://127.0.0.1:8000'
+    }
+    
+    const response = await fetch(`${url}/products/favorites/user_id=${user_id}`, {
         method: 'GET',
         credentials:'include',
         headers: {
@@ -19,4 +25,7 @@ export const getFavoritesProductsOfUser = async (user_id) => {
 
     store.dispatch(setFavoritesList(response["favorite_products_data"]))
     store.dispatch(setFavoritesIconChangeList(response["icon_change_list"]))
-} 
+
+
+    
+}

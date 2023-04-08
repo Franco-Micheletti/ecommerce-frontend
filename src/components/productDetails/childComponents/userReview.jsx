@@ -44,7 +44,7 @@ export const UserReview = ({review}) => {
                             <div className="review-user-info-container">
                                 <img className="user-profile-image" src={require(`../../../images/${review["user"]["profile_image_tag"]}.webp`)}></img>
                                 {review["user"]["username"]}
-                                <div className="review-date">{review["date"]}</div>
+                                <div className="review-date">{review["date"].split("-").reverse().join("/")}</div>
                             </div>
                             {   
                                 review["score"] === 1 
@@ -52,7 +52,7 @@ export const UserReview = ({review}) => {
                                     :  review["score"] === 2
                                             ? <span className="review-score">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
                                             : review["score"] === 3
-                                                ? <span className="review-score">&#9734;&#9733;&#9733;&#9734;&#9734;</span>
+                                                ? <span className="review-score">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
                                                 : review["score"] === 4
                                                     ? <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
                                                     : <span className="review-score">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -61,7 +61,7 @@ export const UserReview = ({review}) => {
                                 {
                                     userData["id"] === review["user"]["id"]
                                         ?   <div className="review-logged-options">
-                                                <button onClick={() => dispatch(setUpdateReview(true)) }>Edit</button> <button onClick={() => handleDeleteReview(review["id"])} >Delete</button>
+                                                <button onClick={() => dispatch(setUpdateReview(true)) }>Edit</button> <button onClick={() => handleDeleteReview(review["id"],review["user"]["id"])} >Delete</button>
                                             </div>
                                         :   <></>
                                 }

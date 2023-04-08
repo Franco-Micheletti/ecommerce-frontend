@@ -1,7 +1,7 @@
 import React,{useRef,useState,useEffect} from "react"
 // COMPONENTS
 import { FavoritesPreviewWindow } from "../favoritesPreviewWindow";
-import UserOptions from "../userOptions";
+import UserOptions from "../userOptions"
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchedString } from '../../state/products/productsSlices'
@@ -16,7 +16,6 @@ import {Link} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 // FUNCTIONS
 import { login } from "./functions/login";
-
 
 
 const Navbar = () => {
@@ -191,9 +190,9 @@ const Navbar = () => {
                                     
                                     <button className="expand-user-options-button" onClick={toggleUserOptions}><img alt={"user-small"} className="user-image" src={require(`../../images/user.png`)}></img></button>
                                 </div>
-                                {   renderUserOptions === true
-                                                ? <UserOptions />
-                                                : <></>
+                                {   renderUserOptions
+                                        ? <UserOptions />
+                                        : <></>
                                 }
                             </>
                         )

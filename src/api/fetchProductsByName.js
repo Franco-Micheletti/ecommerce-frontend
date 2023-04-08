@@ -7,15 +7,20 @@ import { setPage } from "../state/pagination/paginationSlices";
 import { Navigate } from "react-router-dom";
 
 export const fetchProductsByName = (string,page,orderByList) => {
+
+    if (process.env.PRODUCTION === true){
+        var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+    } else {
+        var url = 'http://127.0.0.1:8000'
+    }
     
     store.dispatch(setSearchedString(string))
     store.dispatch(setPage(page))
     
     if (orderByList) {
-        
-        var apiUrl = `http://127.0.0.1:8000/products/product_name=${string}&page=${page}&order_by=${orderByList}`
+        var apiUrl = `${url}/products/product_name=${string}&page=${page}&order_by=${orderByList}`
     } else {
-        var apiUrl = `http://127.0.0.1:8000/products/product_name=${string}&page=${page}`
+        var apiUrl = `${url}/products/product_name=${string}&page=${page}`
     }
 
     fetch(apiUrl)
@@ -43,7 +48,13 @@ export const fetchProductsByName = (string,page,orderByList) => {
 } 
 
 export const fetchAndApplyFilter = (searchInput,page,appliedFilters,orderByList=null) => {
-    
+
+    if (process.env.PRODUCTION === true){
+        var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+    } else {
+        var url = 'http://127.0.0.1:8000'
+    }
+
     store.dispatch(setPage(page))
     
     var urlStr = appliedFilters
@@ -72,9 +83,9 @@ export const fetchAndApplyFilter = (searchInput,page,appliedFilters,orderByList=
     
     if (orderByList) {
         
-        var apiUrl = `http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}&order_by=${orderByList}`
+        var apiUrl = `${url}/products/product_name=${searchInput}&filters=${filters}&page=${page}&order_by=${orderByList}`
     } else {
-        var apiUrl = `http://127.0.0.1:8000/products/product_name=${searchInput}&filters=${filters}&page=${page}`
+        var apiUrl = `${url}/products/product_name=${searchInput}&filters=${filters}&page=${page}`
     }
     
     fetch(apiUrl)

@@ -11,7 +11,7 @@ export const Favorites = () => {
     const userCredentials = store.getState().userCredentialsReducer
     let id = jwt(userCredentials["jwt_access"])["user_id"]
     const favoriteProducts = getFavoritesProductsOfUser(id)
-
+    
     return ( 
         <div>
             <Navbar />

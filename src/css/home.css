@@ -60,18 +60,14 @@
 }
 
 .to-favorite-icon-home,.to-favorite-icon-home-added{
-    border-radius: 50%;
-    width: 31px;
-    height: 31px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     display: flex;
     position: relative;
-    top: 26px;
-    left: 171px;
-    display: flex;
-    background: #edeeef;
+    top: 0.8rem;
+    right: -11rem;
+    justify-content: end;
+    background-color: #edeeef;
+    width: fit-content;
+    border-radius: 50%;
 }
 
 .to-favorite-icon-home:hover, .to-favorite-icon-home-added:hover{
@@ -303,6 +299,7 @@
     display: inline-flex;
     justify-content: center;
     margin-top: 10px;
+    gap: 1rem;
 }
 
 

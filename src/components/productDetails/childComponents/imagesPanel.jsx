@@ -24,7 +24,7 @@ export const ImagesPanel = ({productData}) => {
     }
 
     const handleClickSmallImage = (e,smallImageDefault) => {
-        e.target.style.borderBottom = "5px solid #0684dd"
+        console.log("clicked small image" )
         dispatch(setBigImage(smallImageDefault))
     }
 
@@ -73,9 +73,17 @@ export const ImagesPanel = ({productData}) => {
         bigImageElement.current.style.width     = "100%"
     }
 
+    // const handleScrollLeft = (container) => {
+    //     container.current.scrollLeft -= 226
+        
+    // }
+    // const handleScrollRight = (container) => {
+    //     container.current.scrollLeft += 226
+    // }
+
     return (
         
-        screenWidth > 650
+        screenWidth > 1070
 
         ?   <div className="product-images-panel">
                 <div>
@@ -113,18 +121,22 @@ export const ImagesPanel = ({productData}) => {
 
         :   <div className="product-images-panel">
                 <div ref={bigImageContainer} className="big-image-container">
-                    <img onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${productData["basic"]["product_image_tag"]}-1.webp`)}></img>
+                {
+                    bigImage
+                        ?   <img onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${bigImage}.webp`)}></img>
+                        :   <img onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${productData["basic"]["product_image_tag"]}-1.webp`)}></img>
+                }
                 </div>
-                <div className="small-images-panel">
+                <div  className="small-images-panel">
                     <div className="button-scroll-left-container">
-                        <button id="scroll-left" className="scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                        <button onClick={() => {smallImagesContainer.current.scrollLeft -= 50}} id="scroll-left" className="scroll-left"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                     </div>
-                    <div className="small-images-container">
+                    <div ref={smallImagesContainer} className="small-images-container">
                         {
                             imagesArray.map( (number) => {
 
                                 return (
-                                    <img onClick={() => dispatch(setBigImage(`${productData["basic"]["product_image_tag"]}-${number}`))} 
+                                    <img onClick={(e) => handleClickSmallImage(e,`${productData["basic"]["product_image_tag"]}-${number}`)} 
                                          className="product-image-small" 
                                          src={require(`././../../../images/${productData["basic"]["product_image_tag"]}-${number}.webp`)}>
                                     </img>
@@ -133,8 +145,8 @@ export const ImagesPanel = ({productData}) => {
                         }
                     </div>
                     <div className="button-scroll-right-container">
-                        <button id="scroll-right" className="scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
-                    </div>
+                    <button onClick={() => {smallImagesContainer.current.scrollLeft += 50}} id="scroll-right" className="scroll-right"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                </div>
                 </div>
             </div>
             

@@ -1,9 +1,16 @@
 import { store } from "../state/store"
 import { setFavoritesIconChangeList,setFavoritesList } from "../state/favorites/favoritesSlices"
 
-export const addProductToUserFavorites = async (productId,userId) => {
 
-    const response = await fetch(`http://127.0.0.1:8000/product/favorites/user_id=${userId}&product_id=${productId}`, {
+export const addProductToUserFavorites = async (productId,userId) => {
+    
+    if (process.env.PRODUCTION === true){
+        var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+    } else {
+        var url = 'http://127.0.0.1:8000'
+    }
+
+    const response = await fetch(`${url}/product/favorites/user_id=${userId}&product_id=${productId}`, {
         method: 'POST',
         credentials:'include',
         headers: {
@@ -23,9 +30,13 @@ export const addProductToUserFavorites = async (productId,userId) => {
 
 export const removeProductFromUserFavorites = async (productId,userId) => {
 
-    
+    if (process.env.PRODUCTION === true){
+        var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
+    } else {
+        var url = 'http://127.0.0.1:8000'
+    }
 
-    const response = await fetch(`http://127.0.0.1:8000/product/favorites/user_id=${userId}&product_id=${productId}`, {
+    const response = await fetch(`${url}/product/favorites/user_id=${userId}&product_id=${productId}`, {
         method: 'DELETE',
         credentials:'include',
         headers: {

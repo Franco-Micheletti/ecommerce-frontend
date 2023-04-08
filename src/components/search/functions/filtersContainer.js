@@ -16,6 +16,7 @@ export const toggleFiltersContainer = () => {
     const blackBackground  = getElements()[1]
     
     const displayStyle = filtersContainer.style.display
+    document.body.style.position = "fixed"
     
     if ( displayStyle === "block" ) {
 

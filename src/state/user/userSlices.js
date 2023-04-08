@@ -94,14 +94,30 @@ export const userDataSlice = createSlice(
     }
 )
 
+export const configurationPanelSlice = createSlice(
+
+    {
+        name:'configurationPanelReducer',
+        initialState: "showAccountInfo",
+        reducers:{
+            setConfigurationPanelState: (state,action) =>{
+                state = action.payload
+                return state
+            }
+        }
+    }
+)
+
 export const {setJwtAccess,setJwtRefresh,deleteUserCredentials}   = userCredentialsSlice.actions
-export const {setRenderUserOptions} = renderUserOptionsSlice.actions
-export const {setRegistrationFormData} = registrationFormDataslice.actions
+export const {setRenderUserOptions}         = renderUserOptionsSlice.actions
+export const {setRegistrationFormData}      = registrationFormDataslice.actions
 export const {addformError,resetFormErrors} = formErrorsslice.actions
-export const {setUserData} = userDataSlice.actions
+export const {setUserData}                  = userDataSlice.actions
+export const {setConfigurationPanelState}   = configurationPanelSlice.actions
 
 export const userCredentialsReducer = userCredentialsSlice.reducer
 export const renderUserOptionsReducer = renderUserOptionsSlice.reducer
 export const registrationFormDataReducer = registrationFormDataslice.reducer
 export const formErrorsReducer = formErrorsslice.reducer
 export const userDataReducer = userDataSlice.reducer
+export const configurationPanelReducer = configurationPanelSlice.reducer

@@ -221,7 +221,7 @@ const HomeProducts = () => {
                         products.map( (product) =>
                             
                             {   
-                                console.log(product)
+                                
                                 const imageFile = product["product_image_tag"]
                                 const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
                                 const id = product["id"]

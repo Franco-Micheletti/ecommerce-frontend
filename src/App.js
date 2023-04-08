@@ -1,14 +1,14 @@
 import {Route,Routes} from 'react-router-dom'
-import './css/App.css';
+import './css/App.css'
 import Home  from './components/home/home'
 import Cart  from './components/cart/cart'
-import Search from './components/search/search';
-import { UserAccount } from './components/UserAccount';
+import Search from './components/search/search'
+import { UserAccount } from './components/userAccount/userAccount'
 import { ProductDetails } from './components/productDetails/productDetails'
-import { PersistLogin } from './components/persistLogin';
-import { Register } from './components/register/register';
-import { ActivateAccount } from './components/activateAccount';
-import { Favorites } from './components/favorites';
+import { PersistLogin } from './components/persistLogin'
+import { Register } from './components/register/register'
+import { ActivateAccount } from './components/activateAccount'
+import { Favorites } from './components/favorites'
 
 function App() {
   

@@ -1,8 +1,8 @@
 import { setProduct } from "../state/specificProduct/productsSlices"
 import { setVariantOption } from "../state/variants/variantsSlices"
-import {store} from "../state/store"
+import { store } from "../state/store"
 
-export const fetchOneProduct = (productId) => {
+export const getAllReviewsOfUser = async () => {
 
     if (process.env.PRODUCTION === true){
         var url = 'https://ecommerce-backend-production-5b7a.up.railway.app'
@@ -10,7 +10,7 @@ export const fetchOneProduct = (productId) => {
         var url = 'http://127.0.0.1:8000'
     }
     
-    fetch(`${url}/product/id=${productId}`, {
+    const response = await fetch(`${url}/reviews/`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -18,14 +18,16 @@ export const fetchOneProduct = (productId) => {
         }
     })
     .then(response => {
-                    if (response.status === 200 ) {
-                        return response.json()
-                    } 
-                    }
-    )
-    .then(data => {
-        store.dispatch(setProduct(data))
-        store.dispatch(setVariantOption(data))
+            if (response.status === 200 ) {
+                return response.json()
+            } 
         }
     )
+    .then(reviews => {
+            return reviews
+        }
+    )
+
+    return response
+
 } 
