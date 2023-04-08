@@ -17,7 +17,6 @@ export const AccountInfo = ()=> {
                                     
                             :   <img className="acccount-info-profile-image" src={require(`../../../images/user.webp`)}></img>
                 }
-                <img className="acccount-info-profile-image" src={require(`../../../images/${userData["profile_image_tag"]}.webp`)}></img>
             </div>
             <div className="account-management-data">
                 <label>First name</label><input disabled={true} value={userData["first_name"]}></input>
