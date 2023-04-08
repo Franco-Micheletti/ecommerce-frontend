@@ -31,7 +31,7 @@ const UserOptions = () => {
     return (
         <div className="user-options-windows">
             <div>
-                <img alt={"user-medium"} className="user-image-medium" src={require(`../images/user.png`)}></img>
+                <img alt={"user-medium"} className="user-image-medium" src={require(`../images/user.webp`)}></img>
                 <div className="user-info">
                     <div className="user-name"><label>{userData["first_name"]}</label> <label>{userData["last_name"]}</label></div>
                     <div className="user-email">{userData["email"]}</div>

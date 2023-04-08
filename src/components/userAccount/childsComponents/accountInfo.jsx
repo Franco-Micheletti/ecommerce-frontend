@@ -9,6 +9,14 @@ export const AccountInfo = ()=> {
         
         <div className="account-info-page"> 
             <div className="account-management-profile">
+                {
+                    userData["profile_image_tag"]
+                            ?   userData["profile_image_tag"].length > 3
+                                    ?   <img className="acccount-info-profile-image" src={require(`../../../images/${userData["profile_image_tag"]}.webp`)}></img>
+                                    :   <img className="acccount-info-profile-image" src={require(`../../../images/user.webp`)}></img>
+                                    
+                            :   <img className="acccount-info-profile-image" src={require(`../../../images/user.webp`)}></img>
+                }
                 <img className="acccount-info-profile-image" src={require(`../../../images/${userData["profile_image_tag"]}.webp`)}></img>
             </div>
             <div className="account-management-data">
