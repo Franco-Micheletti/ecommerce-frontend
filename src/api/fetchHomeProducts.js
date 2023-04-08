@@ -1,6 +1,6 @@
 import { setDataLoading, setHomeProducts } from "../state/products/productsSlices"
 import { store } from "../state/store";
-
+require("dotenv").config()
 
 export const fetchHomeProducts = () => {
 
