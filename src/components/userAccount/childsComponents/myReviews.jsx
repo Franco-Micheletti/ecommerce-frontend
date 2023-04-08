@@ -32,7 +32,7 @@ export const Myreviews = (user_id)=> {
             <div className="user-account-reviews">
                 
                 {
-                    allReviews
+                    allReviews > 0
                         ?   allReviews.map((review) => {
 
                             const imageFile    = review["product"]["product_image_tag"]
