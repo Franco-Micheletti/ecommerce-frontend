@@ -56,7 +56,7 @@ export const Myreviews = (user_id)=> {
                                                                     ? <label className="all-reviews-product-name">{review["product"]['product_name'].slice(0,20)}...</label>
                                                                     : <label className="all-reviews-product-name">{review["product"]['product_name']}</label>
                                                                 :  screenWidth < 1300
-                                                                    ?   <label className="all-reviews-product-name">{review["product"]["product"]['product_name'].slice(0,50)}...</label>
+                                                                    ?   <label className="all-reviews-product-name">{review["product"]['product_name'].slice(0,50)}...</label>
                                                                     :   <label className="all-reviews-product-name">{review["product"]['product_name']}</label>
                                                                     
                                                         }
