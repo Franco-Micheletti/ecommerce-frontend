@@ -76,8 +76,6 @@ export const AppliedFilters = (filters) => {
                 appliedFilters["properties"]
                     ? Object.keys(appliedFilters["properties"]).map( (key,index) => {
 
-                        console.log("APPLIED FILTER KEY",key)
-                        console.log("APPLIED FILTER VALUE",appliedFilters["properties"][key])
                         const filterToRemove = {"filter_name":key,
                                                 "filter_value":appliedFilters["properties"][key]}
                         const optionName = key.charAt(0).toUpperCase()+key.slice(1).replaceAll("_"," ")

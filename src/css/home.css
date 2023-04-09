@@ -42,8 +42,6 @@
     text-align: center;
     justify-items: center;
     box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
-    transition: all 1.2s cubic-bezier(0, 1.97, 1, 1);
-    margin-top: -700px;
 }
 
 .groceries-card-image{
@@ -120,7 +118,6 @@
     border: 0.1px solid transparent;
     position: relative;
     transition: all 0.2s ease-in-out;
-    top: -700px;
     padding: 5px;
     gap: 10px;
 }
