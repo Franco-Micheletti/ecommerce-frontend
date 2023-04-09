@@ -16,7 +16,7 @@ export const toggleFiltersContainer = () => {
     const blackBackground  = getElements()[1]
     
     const displayStyle = filtersContainer.style.display
-    document.body.style.position = "fixed"
+    
     
     if ( displayStyle === "block" ) {
 
@@ -24,9 +24,10 @@ export const toggleFiltersContainer = () => {
         filtersContainer.style.marginLeft = "-320px"
         blackBackground.style.opacity = 0
         blackBackground.style.position = "static"
+        document.body.style.position = "static"
 
     } else {
-        
+        document.body.style.position = "fixed"
         filtersContainer.style.display = "block"
         filtersContainer.style.backgroundColor = "white"
         setTimeout( () => {
