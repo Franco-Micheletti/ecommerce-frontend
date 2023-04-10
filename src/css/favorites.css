@@ -10,11 +10,12 @@
 .favorite-preview-window{
     background-color: #ededed;
     width: 300px;
+    height: -moz-fit-content;
     height: fit-content;
     position: absolute;
     border-radius: 5px;
     top: 70px;
-    right: 242px;
+    right: 0;
     box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
     display: inline-flex;
     justify-content: center;

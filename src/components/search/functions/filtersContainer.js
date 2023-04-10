@@ -29,11 +29,8 @@ export const toggleFiltersContainer = () => {
     } else {
         document.body.style.position = "fixed"
         filtersContainer.style.display = "block"
+        filtersContainer.style.marginLeft = "auto"
         filtersContainer.style.backgroundColor = "white"
-        setTimeout( () => {
-            filtersContainer.style.marginLeft = "1%"
-            filtersContainer.style.left = "1%"
-        },20)
         blackBackground.style.opacity = 0.50
         blackBackground.style.position = "absolute"
         blackBackground.addEventListener("click",() => clickOutsideContainer(),false)

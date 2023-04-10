@@ -272,9 +272,10 @@
     z-index: 1;
     width: 100vw;
     background-color: var(--background-header);
-    justify-content: center;
-    gap: 40px;
+    justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.89) 0px 1px 5px -3px;
+    padding-right: 4vw;
+    padding-left: 4vw;
 }
 
 
@@ -397,7 +398,6 @@
     .user-options-button-container{
         flex-direction: column;
         justify-content: right;
-        background-color: rgb(225 226 226);
         border-radius: 10px;
         padding: 3px;
         align-items: center;

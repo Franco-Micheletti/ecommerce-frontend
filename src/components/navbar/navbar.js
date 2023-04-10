@@ -78,8 +78,8 @@ const Navbar = () => {
     function toggleUserOptions() {
         
         !renderUserOptions
-                ? dispatch(setRenderUserOptions(true))
-                : dispatch(setRenderUserOptions(false))
+            ? dispatch(setRenderUserOptions(true))
+            : dispatch(setRenderUserOptions(false))
 
     }
 
@@ -159,7 +159,7 @@ const Navbar = () => {
                     <div className="logo-container">
                         <Link to="/" className="logo-container">
                             <div className="logo-name">
-                                <span style={{color: "#000000"}}>CODENAME:</span><span>MARKET </span>  
+                                <span>CODENAME:</span><label>MARKET </label>  
                             </div>
                         </Link>
                     </div>

@@ -9,11 +9,15 @@ import { PersistLogin } from './components/persistLogin'
 import { Register } from './components/register/register'
 import { ActivateAccount } from './components/activateAccount'
 import { Favorites } from './components/favorites'
+import { store } from './state/store'
+import { useSelector } from 'react-redux'
 
 function App() {
+
+  const selectedTheme = useSelector( (store) => store.selectedThemeReducer)
   
   return (
-    <div className="App">
+    <div id={selectedTheme} className="App">
       <Routes>
         <Route path='/'element = {<PersistLogin />}>
           <Route index exact       element = {<Home />}    />

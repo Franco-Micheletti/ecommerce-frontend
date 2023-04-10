@@ -306,13 +306,14 @@
     }
     .filters-container{
         display: none;
-        margin-left: -320px;
-        position: absolute;
+        position: fixed;
+        overflow: scroll;
         margin-top: -10px;
         min-width: 300px;
         font-size: 13px;
         width: 0;
         z-index: 3;
+
     }
     .button-show-filters-container{
         display: block;
@@ -333,6 +334,11 @@
     }
     .filters-container{
         font-size: 8px;
+        height: 50vh;
+        overflow: scroll;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
     }
     
 }

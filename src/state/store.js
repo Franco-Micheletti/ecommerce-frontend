@@ -47,6 +47,9 @@ import { userCredentialsReducer,
          formErrorsReducer,
          userDataReducer,
          configurationPanelReducer} from './user/userSlices'
+// Theme
+import { selectedThemeReducer } from './theme/themeSlices'
+
 
 
 export const store = configureStore({
@@ -97,7 +100,9 @@ export const store = configureStore({
         reviewSubmittedReducer,
         reviewErrorReducer,
         updateReviewReducer,
-        userAccountAllReviewsReducer
+        userAccountAllReviewsReducer,
+        // Theme
+        selectedThemeReducer
 
     }
 })
