@@ -147,6 +147,10 @@
     margin-top: 0.5rem;
 }
 
+.user-account-image-big-res{
+    margin-left: 4rem;
+}
+
 .account-management-info label{
     font-size: 3.5rem;
     font-family: serif;
@@ -156,7 +160,6 @@
 .account-info-page{
     width: 95%;
     margin-top: 4rem;
-    overflow-y: scroll;
     height: auto;
 }
 .acccount-info-profile-image{
@@ -167,9 +170,10 @@
 }
 
 .manage-account-page{
-
     display: flex;
-    width: 100vw;
+    width: 99vw;
+    height: auto;
+    min-height: 99vh;
 }
 
 .user-account-management-title{
@@ -202,6 +206,7 @@
     box-shadow: 0px 0 12px 0px #fff;
     z-index: 0;
     margin-left: 3rem;
+    margin-top:  4rem;
 }
 
 .account-options-item{
@@ -244,31 +249,23 @@
     display: grid;
     background-color: transparent;
     border: 0.1rem solid #929292;
+    fill: #9d9d9d;
 }
 
-@media (min-width:700px) and (max-width:950px) {
-    .user-account-review-info {
-        flex-direction: none;
-        width: 100%;
-        justify-content: flex-start;
-    }
-    .user-account-review-item a{
-        width: auto;
-        align-items: center;
-    }
-    .manage-account-options{
-        width: auto;
-    }
-    .user-account-reviews{
-        width: 92%;
-        margin-left: 0;
-    }
-    .configuration-panel{
-        width: 85%;
-    }
+.user-account-svg-active{
+    fill: black;
+    width: 27px;
+    height: 27px;
+    border-radius: 5px;
+    stroke-width: 0;
+    padding: 0.2rem;
+    display: grid;
+    background-color: transparent;
+    border: 0.1rem solid #929292;
+    fill: black;
 }
 
-@media (min-width:280px) and (max-width:700px) {
+@media (min-width:280px) and (max-width:950px) {
     
 
     .manage-account-options{
@@ -279,12 +276,14 @@
         margin-left: 0;
         width: 100%;
         padding: 0.3rem;
+        margin-top: 0;
     }
 
     .manage-account-page{
         flex-direction: column;
-        height: fit-content;
-        align-items: center ;
+        align-items: center;
+        height: auto;
+        min-height: 99vh;
     }
     .account-management-data{
         margin-left: 0;
@@ -316,8 +315,12 @@
     }
     .user-account-reviews{
         margin-left: 0;
+        width: auto;
     }
     .account-management-profile{
         margin-left: 0;
+    }
+    .configuration-panel{
+        margin-top: 1rem;
     }
 }

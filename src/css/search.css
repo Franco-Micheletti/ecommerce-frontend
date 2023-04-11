@@ -160,5 +160,11 @@
         left: 40%;
         top: 1%;
     }
+    .order-by-options-list{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 230px;
+        right: 0;
+    }
 }
 

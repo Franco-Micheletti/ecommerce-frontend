@@ -57,7 +57,7 @@ const UserOptions = () => {
                     <div className="manage-account">Manage your Account</div>
                 </Link>
             </div>
-            <div>
+            <div style={{justifyContent: "center",display: "flex",padding:"1rem"}}>
                 <div className="theme-toggle-button">
                     <div className="selected-theme-text">{selectedTheme} mode</div><ReactSwitch onChange={handleToggleTheme} checked={selectedTheme === "Light" ? false : true} />
                 </div>
