@@ -134,7 +134,6 @@
 }
 .filters-container {
     
-    background-color: var(--background-card-2);
     width: 83%;
     min-width: 312px;
     max-width: 429px;
@@ -155,6 +154,7 @@
     justify-content: center;
     align-content: flex-start;
     overflow: hidden;
+    background-color: white;
     
 }
 
@@ -305,14 +305,15 @@
         width: auto;
     }
     .filters-container{
-        display: none;
-        position: fixed;
-        overflow: scroll;
-        margin-top: -10px;
+        position: absolute;
+        overflow-y: scroll;
+        margin-top: 10px;
+        margin-left: 10px;
         min-width: 300px;
         font-size: 13px;
         width: 0;
         z-index: 3;
+        height: 70vh;
 
     }
     .button-show-filters-container{
@@ -323,6 +324,7 @@
     .toggle-filter-black-background{
         position: absolute;
         z-index: 3;
+        opacity: 0.7;
     }
 }
 @media(max-width:480px){
@@ -339,7 +341,7 @@
         margin: 0 auto;
         left: 0;
         right: 0;
-        top: 248px;
+        top: 100px;
     }
     
 }

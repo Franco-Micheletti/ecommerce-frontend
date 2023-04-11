@@ -1,5 +1,5 @@
-
-
+import { store } from "../../../state/store"
+import { setShowMobileFilterContainer } from "../../../state/filters/filtersSlices"
 
 export const getElements = () => {
    
@@ -15,26 +15,25 @@ export const toggleFiltersContainer = () => {
     const filtersContainer = getElements()[0]
     const blackBackground  = getElements()[1]
     
-    const displayStyle = filtersContainer.style.display
+    const showMobileFilterContainer = store.getState().showMobileFilterContainerReducer
     
-    
-    if ( displayStyle === "block" ) {
-
-        filtersContainer.style.display = "none"
+    if ( showMobileFilterContainer === true ) {
+        store.dispatch(setShowMobileFilterContainer(false))
         filtersContainer.style.marginLeft = "-320px"
         blackBackground.style.opacity = 0
         blackBackground.style.position = "static"
         document.body.style.position = "static"
-
     } else {
-        document.body.style.position = "fixed"
-        filtersContainer.style.display = "block"
-        filtersContainer.style.marginLeft = "auto"
-        filtersContainer.style.backgroundColor = "white"
-        blackBackground.style.opacity = 0.50
-        blackBackground.style.position = "absolute"
-        blackBackground.addEventListener("click",() => clickOutsideContainer(),false)
-        blackBackground.removeEventListener("click",() => clickOutsideContainer(),false)
+        store.dispatch(setShowMobileFilterContainer(true))
+        setTimeout(() => {
+            document.body.style.position = "fixed"
+            filtersContainer.style.marginLeft = "auto"
+            blackBackground.style.opacity = 0.50
+            blackBackground.style.position = "absolute"
+            blackBackground.addEventListener("click",() => clickOutsideContainer(),false)
+            blackBackground.removeEventListener("click",() => clickOutsideContainer(),false)
+        }, 50);
+        
     }
     
 }

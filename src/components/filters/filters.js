@@ -12,6 +12,7 @@ import { setMaxPrice,setMinPriceValue,setMaxPriceValue } from "../../state/filte
 import { store } from "../../state/store";
 import { AppliedFilters } from "../appliedFilters/appliedFilters";
 import { useSearchParams } from 'react-router-dom';
+import { setShowMobileFilterContainer } from "../../state/filters/filtersSlices";
 
 const Filters = (filters) => {
     
@@ -31,6 +32,12 @@ const Filters = (filters) => {
             dispatch(setMaxPrice(filters["filters"]["price"]["max_price"]))
             dispatch(setMaxPriceValue(filters["filters"]["price"]["max_price"]))
         }
+
+        return(
+            () => {
+                dispatch(setShowMobileFilterContainer(false))
+            }
+        )
     },[filters])
 
     const handleFilterClick = (filterToApply,toggleActiveId,filterOptionsLength) => {

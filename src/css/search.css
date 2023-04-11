@@ -78,8 +78,8 @@
     background-color: #edeeef;
     display: inline-grid;
     text-align: left;
-    margin-left: 105px;
-    margin-top: 221px;
+    margin-left: 93px;
+    margin-top: 227px;
     border-radius: 5px;
     position: absolute;
     box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
@@ -163,8 +163,22 @@
     .order-by-options-list{
         margin-left: auto;
         margin-right: auto;
-        margin-top: 230px;
+        margin-top: 290px;
         right: 0;
+        left: 0;
+        width: 280px;
+        height: 210px;
+        padding: 1rem;
+    }
+    .toggle-sort-button{
+        font-size: 22px;
+    }
+    .order-by-option label{
+        font-size: 20px;
+    }
+    .order-by-option{
+        gap: 1rem;
+        margin-left: 2rem;
     }
 }
 

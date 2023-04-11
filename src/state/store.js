@@ -21,7 +21,8 @@ import {
          maxPriceFilterReducer,
          minPriceValueReducer,
          maxPriceValueReducer,
-         orderByListReducer } from './filters/filtersSlices'
+         orderByListReducer,
+         showMobileFilterContainerReducer } from './filters/filtersSlices'
 // Pagination
 import {
         pagesListReducer,
@@ -74,6 +75,7 @@ export const store = configureStore({
         minPriceValueReducer,
         maxPriceValueReducer,
         orderByListReducer,
+        showMobileFilterContainerReducer,
         // Pagination
         pagesListReducer,
         pageReducer,

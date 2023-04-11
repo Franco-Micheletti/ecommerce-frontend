@@ -51,8 +51,6 @@
 
 .review-logged-options button:hover{
     cursor: pointer;
-    background-color: rgb(184, 182, 182);
-    color: white;
 }
 
 .review-logged-options button{
@@ -324,7 +322,7 @@
 
 .color-variant-item:hover {
     cursor: pointer;
-    border: 3px solid rgb(49 144 187);
+    border: 3px solid rgb(15, 159, 226);
 }
 
 .width-variant-item{
@@ -343,7 +341,7 @@
 
 .width-variant-item:hover{
     cursor: pointer;
-    border: 1px solid rgb(26, 78, 146);
+    border: 1px solid rgb(11 187 242);
 }
 
 .product-right-panel{
@@ -355,7 +353,7 @@
     border-radius: 5px;
     box-shadow: 0 1px 2px 1px #00000026;
     padding: 20px;
-    padding-right: 2.5rem;
+    padding-right: 2.2rem;
 }
 
 .right-panel-basic{

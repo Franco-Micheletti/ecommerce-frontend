@@ -19,6 +19,7 @@ import { TemplateSkeletonHome } from "../templateSkeletonHome"
 import { useNavigate,createSearchParams } from "react-router-dom";
 // ROUTER
 import { Link } from "react-router-dom";
+import { setShowMobileFilterContainer } from "../../state/filters/filtersSlices";
 
 const HomeProducts = () => {
     
@@ -40,7 +41,7 @@ const HomeProducts = () => {
     const popularCoffeTables = useRef()
 
     useEffect( () => {
-        
+
         window.scrollTo(
             {
                 top: 0,

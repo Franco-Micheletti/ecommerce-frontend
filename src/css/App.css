@@ -47,20 +47,33 @@
     background-color: var(--light-theme-app-background);
     color: black;
 }
+/* Background color only*/
+/* Button Hover */
+#Light .review-logged-options button:hover{
+    background-color: #e9e9e9;;
+}
 /* Change background color and text color */
 #Light .user-options-windows{
     background-color: var(--light-theme-card-background);
     color: black;
     box-shadow: var(--light-theme-card-box-shadow);
 }
-/* Change text color , shadow, background color */
-#Light .manage-account, 
-#Light .log-out{
+/* ---- Change text color , shadow, background color ---- */
+/* Cards */
+#Light .user-review{
     box-shadow: rgb(0, 0, 0) 0px 1px 5px -2px;
     color: black;
     background-color: white
 }
-/* Change text only */
+/* Buttons */
+#Light .manage-account, 
+#Light .log-out,
+#Light .review-logged-options button{
+    box-shadow: rgb(0, 0, 0) 0px 1px 5px -2px;
+    color: black;
+    background-color: white
+}
+/* ---- Change text only ---- */
 #Light .privacy-policy-link,
 #Light .conditions-link,
 #Light .logo-name span{
@@ -84,22 +97,44 @@
     fill: #949090;;
 }
 /* --------------------- DARK THEME ------------------ */
-/* Box shadow only */
+/* ---- Box shadow only ---- */
 #Dark .manage-account-options,
 #Dark .user-account-mobile-navigate{
     box-shadow: var(--dark-theme-button-box-shadow);
 }
-/* Background color and text */
+/* Strong shadow */
+#Dark .filters-container,
+#Dark .product-right-panel,
+#Dark .product-specifications,
+#Dark .user-reviews-panel{
+    box-shadow: rgb(0 0 0) 0px 0px 10px -2px;;
+}
+/* White Shadow */
+#Dark .color-variant-item{
+    box-shadow: 0 1px 2px 1px #ffffff;
+}
+/* ---- Background color and text ---- */
+/* Main */
 #Dark .footer-container{
     background-color: var(--dark-theme-app-background);
     color: white;
 }
-/* ---- Change background color only ----*/
+/* Buttons */
+#Dark .review-logged-options button:hover{
+    background-color: rgb(197, 197, 197);
+    color: rgb(0, 0, 0);
+}
+/* ---- Background color only ----*/
 /* Cards */
 #Dark .popular-product-item,
 #Dark .to-favorite-icon-home,
+#Dark .to-favorite-icon-home-added,
+#Dark .to-favorite-icon,
+#Dark .to-favorite-icon-added,
 #Dark .cart-message-container,
-#Dark .user-account-review-info{
+#Dark .user-account-review-info,
+#Dark .product-item,
+#Dark .filters-container{
     background-color: var(--dark-theme-card-background);
 }
 /* Main */
@@ -107,7 +142,7 @@
 #Dark .configuration-panel{
     background-color: var(--dark-theme-app-background);
 }
-/* ---- Change background color and box shadow ---- */
+/* ---- Background color and box shadow ---- */
 /* Cards */
 #Dark .groceries-card,
 #Dark .tvs-card,
@@ -125,7 +160,8 @@
 /* BUTTONS */
 #Dark .manage-account,
 #Dark .log-out,
-#Dark .user-options-windows{
+#Dark .user-options-windows,
+#Dark .review-logged-options button{
     box-shadow: var(--dark-theme-button-box-shadow);
     color: white;
     background-color: var( --dark-theme-button-background);
@@ -133,12 +169,13 @@
 /* CARDS */
 #Dark .navigate-product-type-home,
 #Dark .navigate-tv-audio,
-#Dark .navigate-home-furnitures{
+#Dark .navigate-home-furnitures,
+#Dark .user-review{
     box-shadow: var(--dark-theme-button-box-shadow);
     color: white;
     background-color: var( --dark-theme-button-background);
 }
-/* Change text only */
+/* ---- Change text only ---- */
 #Dark .privacy-policy-link,
 #Dark .conditions-link,
 #Dark .product-price-search,
@@ -149,17 +186,33 @@
 #Dark .user-account-review-info label,
 #Dark .header,
 #Dark .header-container,
-#Dark{
+#Dark,
+#Dark .product-details-name,
+#Dark .product-details-price,
+#Dark .filters-title,
+#Dark .selected-filters-text,
+#Dark .filter-items-text,
+#Dark .num-result,
+#Dark .product-all-info-title,
+#Dark .product-property-name,
+#Dark .product-property-value,
+#Dark .reviews-title{
     color: white;
 }
 /* Blue color */
 #Dark .logo-name label{
     color: rgb(0 179 255);
 }
+/* Cyan color */
+#Dark .varian-value-text{
+    color: #00e7ff;
+}
 /* ---- Border Only ---- */
 /* White border */
 #Dark .input-box-style,
-#Dark .search-button{
+#Dark .search-button,
+#Dark .custom-radio-button,
+#Dark .applied-filter{
     border: 1px solid #ffffff;
 }
 /* Black Border */
@@ -168,13 +221,21 @@
 }
 /* Background and fill */
 #Dark .horizontal-scroll-right,
-#Dark .horizontal-scroll-left{
+#Dark .horizontal-scroll-left,
+#Dark .scroll-up,
+#Dark .scroll-down,
+#Dark .scroll-right,
+#Dark .scroll-left{
     background-color: var(--dark-theme-button-background);
 }
 /* ---- Fill only ---- */
 /*  White fill */
 #Dark .svg-cart,
-#Dark .link-favorites svg{
+#Dark .link-favorites svg,
+#Dark .to-favorite-icon-home-added svg,
+#Dark .to-favorite-icon-added svg,
+#Dark .svg-scroll-icon,
+#Dark .expand-filter-options-container svg{
     fill: white;
 }
 /* Black fill */
@@ -183,7 +244,9 @@
     fill: black;
 }
 /* Stroke only */
-#Dark .to-favorite-icon-home svg path{
+#Dark .to-favorite-icon-home svg path,
+#Dark .to-favorite-icon svg path,
+#Dark .to-favorite-icon-added svg path{
     stroke: white;
 }
 /* ------------------------------------------------- */

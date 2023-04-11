@@ -141,8 +141,8 @@ const Navbar = () => {
                 <div ref={loginWindow} style={{display:"none"}} className="login-window">
                     <form onSubmit={(e) => handleLoginSubmit(e)}>
                         <div className="login-inputs-container">
-                            <input placeholder={"user"} value={username} onChange={(e)=> setUsername(e.target.value)} />
-                            <input type="password" placeholder={"password"} value={password} onChange={(e)=> setPassword(e.target.value)} />
+                            <input autoComplete="username" placeholder={"user"} value={username} onChange={(e)=> setUsername(e.target.value)} />
+                            <input autoComplete="current-password" type="password" placeholder={"password"} value={password} onChange={(e)=> setPassword(e.target.value)} />
                             <div className="field-error-container-login">
                                 { formErrors.map((error) =>
                                     { return (<label>{error}</label>) }

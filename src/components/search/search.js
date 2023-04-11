@@ -35,6 +35,7 @@ const Search = () => {
     const expandAddButton     = useSelector((store) => store.expandAddButtonListReducer)
     const dataLoading         = useSelector((store) => store.dataLoadingReducer)
     const favoritesIconChange = useSelector((store) => store.favoritesIconChangeListReducer)
+    const showMobileFilterContainer = useSelector((store) => store.showMobileFilterContainerReducer)
     const [showSortWindow,setShowSortWindow] = useState()
     // Use ref
     const productListRef  = useRef()
@@ -54,6 +55,12 @@ const Search = () => {
     if (Object.keys(userCredentials).length > 0) {
         var userId = jwt(userCredentials["jwt_access"])["user_id"]
     }
+    // Screen width
+    let [screenWidth,setScreenWidth] = useState(window.innerWidth > 0 ? window.innerWidth : Screen.width)
+    useEffect(() => {
+        setScreenWidth = window.innerWidth > 0 ? window.innerWidth : Screen.width
+    }, [])
+
     useEffect(  () => {
         
         if (searchInput && page) {
@@ -118,8 +125,23 @@ const Search = () => {
                             
                             ?   <div>
                                     <div className="body-container-search">
-                                        <div id="toggle-filter-black-background" className="toggle-filter-black-background"></div>
-                                        <Filters filters={filters} />
+                                        
+                                        {   
+                                            screenWidth > 1240
+                                                ?   <></>
+                                                :   showMobileFilterContainer
+                                                        ?   <div id="toggle-filter-black-background" className="toggle-filter-black-background"></div>
+                                                        :   <></>
+                                            
+                                        }
+                                        {
+                                            screenWidth > 1240
+                                                ?   <Filters filters={filters} />
+                                                :   showMobileFilterContainer
+                                                        ?   <Filters filters={filters} />
+                                                        :   <></>
+                                            
+                                        }
                                         <div className="results">
                                             <div className="results-container">
                                                 <div className="button-title-results-wraper">

@@ -68,15 +68,30 @@ export const orderByListSlice = createSlice(
     }
 )
 
+export const showMobileFilterContainerSlice = createSlice(
+
+    {
+        name:'showMobileFilterContainerReducer',
+        initialState: false,
+        reducers:{
+            setShowMobileFilterContainer: (state,action) => {
+                state = action.payload
+                return state
+            }
+        }
+    }
+)
 
 // Export actions
 export const {setMaxPrice} = maxPriceFilterSlice.actions
 export const {setMinPriceValue} = minPriceValueSlice.actions
 export const {setMaxPriceValue} = maxPriceValueSlice.actions
 export const {addOrderByToList,removeOrderByFromList} = orderByListSlice.actions
+export const {setShowMobileFilterContainer} = showMobileFilterContainerSlice.actions
 
 // Export reducers
-export const maxPriceFilterReducer = maxPriceFilterSlice.reducer
-export const minPriceValueReducer  = minPriceValueSlice.reducer
-export const maxPriceValueReducer  = maxPriceValueSlice.reducer
-export const orderByListReducer    = orderByListSlice.reducer
+export const maxPriceFilterReducer            = maxPriceFilterSlice.reducer
+export const minPriceValueReducer             = minPriceValueSlice.reducer
+export const maxPriceValueReducer             = maxPriceValueSlice.reducer
+export const orderByListReducer               = orderByListSlice.reducer
+export const showMobileFilterContainerReducer = showMobileFilterContainerSlice.reducer

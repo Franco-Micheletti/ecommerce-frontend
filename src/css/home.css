@@ -97,7 +97,6 @@
     cursor: pointer;
     color: black;
     border: 0.1px solid rgb(185, 185, 185);
-    
 }
 
 .navigate-product-type-home, .navigate-tv-audio,.navigate-home-furnitures{
@@ -124,6 +123,10 @@
 
 .navigate-tv-audio,.navigate-home-furnitures{
     top: 0;
+}
+.navigate-home-furnitures:hover,.navigate-tv-audio:hover, .navigate-product-type-home:hover{
+    cursor: pointer;
+    border: 0.1px solid rgb(185, 185, 185);
 }
 
 .cards-container{

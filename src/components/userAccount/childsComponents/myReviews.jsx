@@ -52,11 +52,11 @@ export const Myreviews = (user_id)=> {
                                                     <div className="user-account-review-right-panel">
                                                         {   
                                                             screenWidth < 609
-                                                                ? review["product"]["product_name"].length > 20
-                                                                    ? <label className="all-reviews-product-name">{review["product"]['product_name'].slice(0,20)}...</label>
+                                                                ? review["product"]["product_name"].length > 60
+                                                                    ? <label className="all-reviews-product-name">{review["product"]['product_name'].slice(0,60)}...</label>
                                                                     : <label className="all-reviews-product-name">{review["product"]['product_name']}</label>
-                                                                :  screenWidth < 1300
-                                                                    ?   <label className="all-reviews-product-name">{review["product"]['product_name'].slice(0,50)}...</label>
+                                                                :  screenWidth > 609 && screenWidth < 1300
+                                                                    ?   <label className="all-reviews-product-name">{review["product"]['product_name'].slice(0,90)}...</label>
                                                                     :   <label className="all-reviews-product-name">{review["product"]['product_name']}</label>
                                                                     
                                                         }
