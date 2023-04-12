@@ -43,11 +43,11 @@ export const ImagesPanel = ({productData}) => {
 
     const handleScrollUp = () => {
         
-        smallImagesContainer.current.scrollTop -= bigImageElement.current.height / productData["basic"]["total_images"]
+        smallImagesContainer.current.scrollTop -= 160
     }
 
     const handleScrollDown = () => {
-        smallImagesContainer.current.scrollTop  += bigImageElement.current.height / productData["basic"]["total_images"]
+        smallImagesContainer.current.scrollTop  += 160
     }
 
     const handleMouseMoveBigImage = (e) => {

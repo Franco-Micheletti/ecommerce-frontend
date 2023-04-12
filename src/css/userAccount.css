@@ -303,6 +303,15 @@
         min-width: 192px;
         max-width: 192px;
     }
+    .all-favorites-container{
+        margin-left: 0;
+    }
+    .all-favorites-name-image{
+        flex-direction: column;
+    }
+    .all-favorites-product-name{
+        width: auto;
+    }
     .user-account-review-info{
         flex-direction: column;
         width: 100%;

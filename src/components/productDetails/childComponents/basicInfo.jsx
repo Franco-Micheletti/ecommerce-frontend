@@ -6,6 +6,7 @@ import { store } from "../../../state/store";
 import { removeProductFromCart } from "../../cart/functions/removeProductFromCart"
 import { addProductToCart } from "../../cart/functions/addProductToCart"
 import { addProductToUserFavorites,removeProductFromUserFavorites } from "../../../api/favoriteProduct";
+import { productsSlice } from "../../../state/products/productsSlices";
 
 export const BasicInfo = ({productData,expandAddButton}) => {
 
@@ -14,7 +15,6 @@ export const BasicInfo = ({productData,expandAddButton}) => {
     if (Object.keys(userCredentials).length > 0) {
         var userId = jwt(userCredentials["jwt_access"])["user_id"]
     }
-    
 
     return (
         <div className="right-panel-basic">
@@ -29,9 +29,30 @@ export const BasicInfo = ({productData,expandAddButton}) => {
             }
             <label className="brand-name">{productData["basic"]["brand"]["brand_name"]}</label>
             <label className="product-details-name">{productData["basic"]["product_name"]}</label>
-            <div className="user-score">
-                <div className="star-fill"></div>
-            </div>
+            {
+                productData["avg_score"]
+                    ?   <div className="product-avg-score">
+                            <div className="user-score">
+                                { 
+                                productData["avg_score"]["avg"] >= 1 && productData["avg_score"]["avg"] <= 1.5
+                                        ? <span className="product-details-product-score">&#9733;&#9734;&#9734;&#9734;&#9734;</span>
+                                        :  productData["avg_score"]["avg"] >= 1.5 && productData["avg_score"]["avg"] <= 2.5
+                                                ? <span className="product-details-product-score">&#9733;&#9733;&#9734;&#9734;&#9734;</span>
+                                                : productData["avg_score"]["avg"] >= 2.5 && productData["avg_score"]["avg"] <= 3.5
+                                                    ? <span className="product-details-product-score">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
+                                                    : productData["avg_score"]["avg"] >= 3.5 && productData["avg_score"]["avg"] <= 4.5
+                                                        ? <span className="product-details-product-score">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                                        : <span className="product-details-product-score">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                }
+                            </div>
+                            <div style={{fontSize:"13px",display:"flex",gap:"0.5rem"}}>
+                                <div className="product-details-avg-score">( {productData["avg_score"]["avg"]} ) </div>    
+                                <div className="product-details-total-reviews">{productData["avg_score"]["total_reviews"]} reviews</div>
+                            </div>
+                        </div>
+                    :   <></>
+            }
+            
             <label className="product-details-price">$ {productData["basic"]["price"]}</label>
             {
             expandAddButton[productData["basic"]["id"]]

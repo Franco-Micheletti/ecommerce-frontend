@@ -196,11 +196,13 @@
 #Dark .product-all-info-title,
 #Dark .product-property-name,
 #Dark .product-property-value,
-#Dark .reviews-title{
+#Dark .reviews-title,
+#Dark .all-favorites-product-name{
     color: white;
 }
 /* Blue color */
-#Dark .logo-name label{
+#Dark .logo-name label,
+#Dark .shipping-days{
     color: rgb(0 179 255);
 }
 /* Cyan color */

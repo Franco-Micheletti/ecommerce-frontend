@@ -36,12 +36,16 @@ const Filters = (filters) => {
         return(
             () => {
                 dispatch(setShowMobileFilterContainer(false))
+                document.body.style.position = "static"
             }
         )
     },[filters])
-
+    
     const handleFilterClick = (filterToApply,toggleActiveId,filterOptionsLength) => {
-        
+
+        // Set body back to static
+        document.body.style.position = "static"
+        // Add filter to the filters applied list
         dispatch(addFilter(filterToApply))
         const appliedFilters = store.getState().appliedFiltersReducer
         

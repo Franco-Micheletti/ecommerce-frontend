@@ -1,4 +1,16 @@
+.product-details-total-reviews{
+    text-decoration: underline;
+}
 
+.product-avg-score{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product-details-product-score{
+    margin-top: 10px;
+}
 .big-image-container{
     height: auto;
     overflow: hidden;
@@ -423,7 +435,8 @@
     text-align: center;
     justify-items: center;
     align-items: center;
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: bold;
     font-family: serif;
     width: 90px;
     height: 30px;
@@ -435,7 +448,7 @@
     justify-content: center;
     gap: 40px;
     margin-right: auto;
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 .product-detailed-page-add-button:hover{

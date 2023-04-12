@@ -12,7 +12,7 @@ export const cartCounterSlice = createSlice(
                 return state
             },
             cartCounterDecrease: (state,action) =>{
-                console.log("removing one product")
+                
                 state -= action.payload
                 return state
             },

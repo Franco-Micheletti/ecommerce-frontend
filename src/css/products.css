@@ -65,11 +65,11 @@
     
     font-family: 'Bogle';
     font-size: 20px;
-    width: 100%;
+    width: 95%;
     height: 20px;
     text-align: left;
     color: #123944;
-    padding-left: 40px;
+    margin-left: 1.5rem;
     font-weight: 700;
     margin-top: 1rem;
 }

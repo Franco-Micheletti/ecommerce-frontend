@@ -43,6 +43,16 @@ const Search = () => {
     const priceDesc       = useRef()
     const dateAsc         = useRef()
     const dateDesc        = useRef()
+    const popularityAsc   = useRef()
+    const popularityDesc  = useRef()
+    const scoreAsc        = useRef()
+    const scoreDesc       = useRef()
+    const packAsc         = useRef()
+    const packDesc        = useRef()
+    const speedAsc        = useRef()
+    const speedDesc       = useRef()
+
+
     const dispatch        = useDispatch()
     // Search params
     const [ searchParams,setSearchParams] = useSearchParams()
@@ -155,33 +165,33 @@ const Search = () => {
                                                         
                                                         <div style={{visibility: showSortWindow ? "visible" : "hidden"}} className="order-by-options-list">
                                                             <div id="order-by-price" className="order-by-option">
-                                                                <div id={"price"} ref={priceAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("price",priceAsc,priceDesc) } >↑</div>
+                                                                <div id={"price"} ref={priceAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("price",priceAsc,priceDesc) } >↑</div>
                                                                 <div id={"-price"} ref={priceDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-price",priceDesc,priceAsc)  } >↓</div>
                                                                 <label>Price</label>
                                                             </div>
                                                             <div id="order-by-datetime" className="order-by-option">
-                                                                <div id={"date"}  ref={dateAsc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("date",dateAsc,dateDesc) }> ↑</div>
+                                                                <div id={"date"}  ref={dateAsc} className="toggle-sort-button"  onClick={() => handleSelectOrderBy("date",dateAsc,dateDesc) }> ↑</div>
                                                                 <div id={"-date"} ref={dateDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-date",dateDesc,dateAsc)  }> ↓</div>
                                                                 <label>Date</label>
                                                             </div>
                                                             <div id="order-by-popularity" className="order-by-option">
-                                                                <div className="toggle-sort-button">↑</div>
-                                                                <div className="toggle-sort-button">↓</div>
+                                                                <div id={"popularity"}  ref={popularityAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("popularity",popularityAsc,popularityDesc) }>↑</div>
+                                                                <div id={"-popularity"}  ref={popularityDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-popularity",popularityDesc,popularityAsc) }>↓</div>
                                                                 <label>Popularity</label>
                                                             </div>
-                                                            <div id="order-by-creview"    className="order-by-option">
-                                                                <div className="toggle-sort-button">↑</div>
-                                                                <div className="toggle-sort-button">↓</div>
+                                                            <div id="order-by-score" className="order-by-option">
+                                                                <div id={"score"}  ref={scoreAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("score",scoreAsc,scoreDesc) }>↑</div>
+                                                                <div id={"-score"}  ref={scoreDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-score",scoreDesc,scoreAsc) }>↓</div>
                                                                 <label>Customer Review</label>
                                                             </div>
-                                                            <div id="order-by-pack"       className="order-by-option">
-                                                                <div className="toggle-sort-button">↑</div>
-                                                                <div className="toggle-sort-button">↓</div>
+                                                            <div id="order-by-pack" className="order-by-option">
+                                                                <div id={"pack"}  ref={packAsc}   className="toggle-sort-button" onClick={() => handleSelectOrderBy("pack",packAsc,packDesc) }>↑</div>
+                                                                <div id={"-pack"}  ref={packDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-pack",packDesc,packAsc) }>↓</div>
                                                                 <label>Pack #</label>
                                                             </div>
-                                                            <div id="order-by-speed"      className="order-by-option">
-                                                                <div className="toggle-sort-button">↑</div>
-                                                                <div className="toggle-sort-button">↓</div>
+                                                            <div id="order-by-speed" className="order-by-option">
+                                                                <div id={"speed"}  ref={speedAsc}   className="toggle-sort-button" onClick={() => handleSelectOrderBy("speed",speedAsc,speedDesc) }>↑</div>
+                                                                <div id={"-speed"}  ref={speedDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-speed",speedDesc,speedAsc) }>↓</div>
                                                                 <label>Speed</label>
                                                             </div>
                                                         </div>
@@ -227,6 +237,7 @@ const Search = () => {
                                                                                 </button>
                                                                         }
                                                                         <div className="product-price-search">${product['price']}</div>
+                                                                        <div className="shipping-days"><div>{product['shipping_days']}+</div><div>Shipping Days</div></div>
                                                                         <p className="product-name-search">{product['product_name']}</p>
                                                                     </div>)
                                                                 }
