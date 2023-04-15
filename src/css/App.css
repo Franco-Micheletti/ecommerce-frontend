@@ -37,7 +37,7 @@
     /* DARK THEME VARIABLES */
     --dark-theme-app-background:  #3f3d3b;
     --dark-theme-card-box-shadow:   rgb(0 0 0) 0px 1px 10px -2px;
-    --dark-theme-card-background:   #505050;
+    --dark-theme-card-background:   #3e3e3e;
     --dark-theme-button-background: #4d4d4d;
     --dark-theme-button-box-shadow: rgb(0 0 0) 0px 1px 5px -2px;
 }
@@ -106,8 +106,9 @@
 #Dark .filters-container,
 #Dark .product-right-panel,
 #Dark .product-specifications,
-#Dark .user-reviews-panel{
-    box-shadow: rgb(0 0 0) 0px 0px 10px -2px;;
+#Dark .user-reviews-panel,
+#Dark .product-item{
+    box-shadow: rgb(0 0 0) 0px 0px 10px -2px;
 }
 /* White Shadow */
 #Dark .color-variant-item{
@@ -197,7 +198,8 @@
 #Dark .product-property-name,
 #Dark .product-property-value,
 #Dark .reviews-title,
-#Dark .all-favorites-product-name{
+#Dark .all-favorites-product-name,
+#Dark .input-box-style{
     color: white;
 }
 /* Blue color */
@@ -237,12 +239,15 @@
 #Dark .to-favorite-icon-home-added svg,
 #Dark .to-favorite-icon-added svg,
 #Dark .svg-scroll-icon,
-#Dark .expand-filter-options-container svg{
+#Dark .expand-filter-options-container svg,
+#Dark .user-account-svg-desktop,
+#Dark .applied-filter-remove-svg{
     fill: white;
 }
 /* Black fill */
 #Dark .scope-icon,
-#Dark .active-option{
+#Dark .active-option,
+#Dark .account-options-item:hover svg{
     fill: black;
 }
 /* Stroke only */

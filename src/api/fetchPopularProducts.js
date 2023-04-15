@@ -9,7 +9,7 @@ export const fetchPopularProducts = () => {
         var url = 'http://127.0.0.1:8000'
     }
     
-    fetch(`${url}/products/home`)
+    fetch(`${url}/products/popular`)
     .then(response => {
                     if (response.status === 200 ) {
                         return response.json()
@@ -17,8 +17,7 @@ export const fetchPopularProducts = () => {
                     }
     )
     .then(data => {
-        
-            store.dispatch(setPopularProductsForCart(data))
+        store.dispatch(setPopularProductsForCart(data))
         }
     )
 } 

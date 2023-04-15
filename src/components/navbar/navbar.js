@@ -121,7 +121,8 @@ const Navbar = () => {
         }
     }
     useEffect( () => {
-        
+        // Hide user options
+        dispatch(setRenderUserOptions(false))
         window.addEventListener("scroll",navBarBackground,true)
         setTimeout(()=> {
             inputBox.current.style.marginTop = "0px"
@@ -130,6 +131,7 @@ const Navbar = () => {
         return () => {
             window.removeEventListener("scroll",navBarTransparent,true)
             window.removeEventListener("scroll",navBarBackground,true)
+
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])

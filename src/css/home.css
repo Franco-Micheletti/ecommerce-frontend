@@ -1,20 +1,58 @@
-.boxes-animation{
-    top: -202px;
-    position: relative;
+.carousel-item-image{
+    width: 101%;
+    height: auto;
+    margin-top: 0.3rem;
+}
+.carousel-indicator{
+    width: 2rem;
+    height: 0.25rem;
+    background-color: rgb(255, 255, 255);
+}
+.carousel-indicator:hover{
+    background-color: rgb(146, 146, 146);
+    cursor: pointer;
 }
 
-.box{
-    width: 11%;
-    transition: all 1.2s ease-in-out;
-    position: relative;
-    opacity: 0.8;
+.carousel-indicator-active{
+    width: 2rem;
+    height: 0.25rem;
+    background-color: rgb(146, 146, 146);
 }
 
-.box-container{
-    justify-content: center;
+.carousel-indicators-container{
+    gap: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 1rem;
+    display: inline-flex;
+}
+
+.card-periodic-carousel{
+    width: 100%;
     align-items: center;
-    display: flex;
+    justify-content: space-between;
+    display: inline-flex;
+    overflow: hidden;
+}
 
+.card-periodic-carousel-container{
+    width: 75%;
+    max-width: 1200px;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 4rem;
+    flex-direction: column;
+    box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
 }
 
 .home-panel,.tv-audio-panel{
@@ -239,6 +277,7 @@
 .body-home {
     display: inline-grid;
     justify-content: center;
+    justify-items: center;
     width: 100%;
     min-height: 737px;
     margin-top: 40px;

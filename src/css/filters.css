@@ -1,9 +1,12 @@
-
+.applied-filter-remove-svg{
+    width: 25px;
+    height: 25px;
+}
 .remove-filter-button{
     position: absolute;
     z-index: 5;
     align-items: center;
-    display: inline-flex;
+    display: none;
     border-radius: 5px;
     justify-content: center;
     cursor: pointer;
@@ -47,13 +50,20 @@
     font-weight: 200;
 }
 
-.applied-filter-container{
-    margin-left: 10px;
-    margin-right: 10px;
+.filter-option-name-value-container{
+
     display: inline-grid;
-    gap: 4px;
     justify-content: center;
     align-items: center;
+    width: 60%;
+}
+
+.applied-filter-container{
+    display: inline-flex;
+    gap: 0.5rem;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
 }
 
 .applied-filters-wraper{
@@ -91,7 +101,7 @@
     font-size: 12px;
     font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
     width: -moz-fit-content;
-    width: 120px;
+    width: 100px;
     height: 35px;
     border-radius: 3px;
     display: inline-flex;
@@ -99,10 +109,18 @@
     gap: 4px;
     align-items: center;
     justify-content: center;
-    background: transparent;
     font-weight: bold;
     align-items: center;
     text-align: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+.applied-filter:hover{
+    cursor: pointer;
+    background-color: #e7e5e53f;
 }
 
 .selected-filters-list-container {
@@ -196,7 +214,7 @@
 
     font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
     font-size: 14px;
-    width: 87%;
+    width: 92%;
     height: 30px;
     border-radius: 4px;
     background-color: transparent;

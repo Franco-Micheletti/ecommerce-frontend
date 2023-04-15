@@ -30,7 +30,11 @@ export const ProductDetails = () => {
     const userCredentials      = useSelector( (store)=> store.userCredentialsReducer)
     // Hooks
     const dispatch = useDispatch()
-    
+
+    useEffect( () => {
+        document.title = productName;
+      }, []);
+
     useEffect(() => {
         window.scrollTo(
             {

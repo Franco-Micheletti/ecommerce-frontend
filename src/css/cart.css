@@ -1,4 +1,24 @@
-
+.payment-method-wrapper{
+    width: 95%;
+}
+.payment-method-option{
+    
+    background-color: #efefef;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 5px;
+    font-size: 14px;
+    font-family: system-ui;
+}
+.payment-method-option:hover{
+    color: white;
+    background-color: #000000ab;
+    cursor: pointer;
+}
 .products-payment-container{
     display: flex;
     align-items: center;
@@ -58,6 +78,7 @@
     display: flex;
     text-decoration: none;
     margin-top: 1rem;
+    z-index: 0;
 }
 
 .product-options-cart-text{
@@ -109,9 +130,8 @@
     display: inline-flex;
     gap: 20px;
     align-items: center;
-    margin-top: 20px;
-    margin-left: 20px;
-
+    width: 91%;
+    padding: 1rem;
 }
 
 .payment-method-title{
@@ -119,10 +139,16 @@
     color: black;
     
 }
-.payment-method-selected{
+.payment-method-options-container{
 
     color: #0379b3;
     font-size: 13px;
+    gap: 1rem;
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    width: 100%;
+    height: 7rem;
 }
 
 .cart-product-image{

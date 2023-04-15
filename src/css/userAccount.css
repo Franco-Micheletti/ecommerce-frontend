@@ -224,12 +224,17 @@
 
 .account-options-item:hover{
     cursor: pointer;
-    background-color: rgb(97, 99, 99);
-    color: white
+    background-color: rgb(228, 228, 228);
+    color: rgb(0, 0, 0);
 }
 
+.account-options-item:hover svg{
+    fill: rgb(0, 0, 0);
+}
+
+
 .account-options-item label{
-    margin-left: 3rem;
+    margin-left: 1rem;
 }
 
 .configuration-panel{
@@ -238,6 +243,19 @@
     display: inline-flex;
     flex-direction: column;
     background-color: #ffffff;
+}
+.user-account-svg-desktop{
+    width: 27px;
+    height: 27px;
+    fill: #000000;
+    margin-left: 1rem;
+}
+
+.user-account-svg-desktop-active{
+    width: 27px;
+    height: 27px;
+    fill: #ffffff;
+    margin-left: 1rem;
 }
 
 .user-account-svg-mobile{
