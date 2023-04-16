@@ -100,6 +100,7 @@ const Filters = (filters) => {
                                     Object.keys(filters["filters"][filter]).map(function(attribute, keyIndex) {
                                         const filterToApply = {"filter_name":filter,
                                                                "filter_value":attribute}
+                                        const capitalAttributeName = attribute.charAt(0).toUpperCase()+attribute.slice(1)
                                         
                                         return(
                                             filter !== "price"
@@ -120,7 +121,7 @@ const Filters = (filters) => {
                                                         </div>
                                                     </div>
                                                     <div className="space-between">
-                                                        <div className="filter-items-text">{attribute}</div>
+                                                        <div className="filter-items-text">{capitalAttributeName}</div>
                                                         <div className="num-result">{filters["filters"][filter][attribute]}</div>
                                                     </div>
                                                 </div>
