@@ -257,8 +257,12 @@ const Search = () => {
                                                 
                                                 return (
                                                     parseInt(page) === page_number
-                                                        ? <div onClick={() => setSearchParams({ q:searchInput,page:page_number,filters:filtersApplied}) } className="page-selected">{page_number}</div>
-                                                        : <div onClick={() => setSearchParams({ q:searchInput,page:page_number,filters:filtersApplied}) } className="page-item-container">{page_number}</div>
+                                                        ? filtersApplied
+                                                            ?   <div onClick={() => setSearchParams({ q:searchInput,page:page_number,filters:filtersApplied}) } className="page-selected">{page_number}</div>
+                                                            :   <div onClick={() => setSearchParams({ q:searchInput,page:page_number}) } className="page-selected">{page_number}</div>
+                                                        : filtersApplied
+                                                            ?   <div onClick={() => setSearchParams({ q:searchInput,page:page_number,filters:filtersApplied}) } className="page-item-container">{page_number}</div>
+                                                            :   <div onClick={() => setSearchParams({ q:searchInput,page:page_number}) } className="page-item-container">{page_number}</div>
                                                 )
                                                 } ))
                                             
