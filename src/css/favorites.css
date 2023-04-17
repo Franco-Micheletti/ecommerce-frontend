@@ -23,7 +23,7 @@
 }
 
 .favorite-product-item{
-    width: 286px;
+    width: 90%;
     display: flex;
     gap: 10px;
     padding: 10px;

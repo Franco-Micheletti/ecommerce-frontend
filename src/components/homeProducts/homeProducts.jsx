@@ -196,11 +196,11 @@ const HomeProducts = () => {
                             <img className="home-product-types-image" src={require(`../../images/laptops.webp`)}></img>
                                 <label>Laptops</label>
                             </div>
-                            <div onClick={()=> goToProductType("Energy Drinks")} className="navigate-home-furnitures">
+                            <div onClick={()=> goToProductType("energy drink")} className="navigate-home-furnitures">
                                 <img className="home-product-types-image" src={require(`../../images/energy-drinks.webp`)}></img>
                                 <label>Energy Drinks</label>
                             </div>
-                            <div onClick={()=> goToProductType("Soda Pop")} className="navigate-home-furnitures">
+                            <div onClick={()=> goToProductType("soda")} className="navigate-home-furnitures">
                             <img className="home-product-types-image" src={require(`../../images/sodas.webp`)}></img>
                                 <label>Soda Pop</label>
                             </div>

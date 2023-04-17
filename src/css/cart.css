@@ -79,6 +79,7 @@
     text-decoration: none;
     margin-top: 1rem;
     z-index: 0;
+    margin-bottom: 1rem;
 }
 
 .product-options-cart-text{
@@ -233,12 +234,13 @@
 .cart-checkout-title{
 
     background-color: #000000ab;
-    border-radius: 5px;
     height: 39px;
     align-items: center;
     justify-content: center;
     display: flex;
     color: #ffffff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .cart-checkout-pay-button{
@@ -394,12 +396,11 @@
     display: flex;
     gap: 5px;
     justify-content: right;
-    background-color: transparent;
     height: 43px;
     align-items: center;
     padding-right: 22px;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    border-end-end-radius: 5px;
+    border-end-start-radius: 5px;
 }
 
 .total-price-in-cart label{
@@ -412,7 +413,6 @@
     font-family: sans-serif;
     font-size: 25px;
     font-weight: 800;
-    border-radius: 10px;
     height: auto;
     width: 50%;
     display: grid;

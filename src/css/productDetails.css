@@ -1,3 +1,5 @@
+
+
 .product-details-total-reviews{
     text-decoration: underline;
 }
@@ -224,7 +226,6 @@
     height: 40px;
     width: -moz-fit-content;
     width: fit-content;
-    margin-left: 20px;
     display: flex;
     align-items: center;
 }
@@ -256,7 +257,7 @@
     background-color: transparent;
     box-shadow: 0 1px 2px 1px #00000026;
     font-size: 15px;
-    padding: 20px;
+    padding: 10px;
     min-width: 180px;
     max-width: 350px;
     border-radius:8px;
@@ -306,10 +307,9 @@
     content: "\f198";
 }
 .brand-name{
-
     width: 100%;
     margin-right: auto;
-
+    text-decoration: underline;
 }
 .colors-list{
     display: inline-flex;
@@ -438,8 +438,8 @@
     font-size: 20px;
     font-weight: bold;
     font-family: serif;
-    width: 90px;
-    height: 30px;
+    width: 100px;
+    height: 35px;
     border: 0;
     color: #ffffff;
     box-shadow: rgb(0 0 0 / 80%) 0px 0px 3px -1px;
@@ -566,7 +566,6 @@
     width: 82%;
     min-height: 3rem;
     max-height: 34rem;
-    justify-content: center;
     align-items: center;
     overflow-y: hidden;
     padding: 15px;
@@ -617,15 +616,24 @@
     display: contents;
 }
 
-
+.user-review-container{
+    margin-left: 20px;
+}
 
 @media (min-width: 280px) and (max-width: 1070px){
+    .reviews-title{
+        font-size: 18px;
+    }
+    .user-review-container{
+        margin-left: 0;
+    }
     .product-image-big {
         min-width: 100px;
     }
     .product-image-small {
         max-width: 100px;
-        min-width: 35%;
+        min-width: 16%;
+        border-bottom: 0;
     }
     .product-all-info{
         min-width: 75%;
@@ -653,9 +661,9 @@
         gap: 1px;
     }
     .small-images-container{
-        width: 50%;
-        overflow-x: hidden;
+        width: 100%;
         display: inline-flex;
+        gap: 5px;
     }
     .width-variant-item{
         width: 32px;
@@ -683,7 +691,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: inherit;
+        width: 115%;
     }
     .product-images-panel{
         display: inline-flex;
@@ -697,15 +705,13 @@
     }
     .product-all-info-title{
         font-size: 16px;
+        height: 25px;
     }
     .product-property-name,.product-property-value{
         font-size: 14px;
     }
     .new-review-text-box{
         max-width: 200px
-    }
-    .user-review{
-        max-width: 200px;
     }
     .product-data-container{
         box-shadow: none;

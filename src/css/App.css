@@ -47,11 +47,16 @@
     background-color: var(--light-theme-app-background);
     color: black;
 }
-/* Background color only*/
-/* Button Hover */
+/* ---- Background color only ---- */
+/* -- Button Hover -- */
 #Light .review-logged-options button:hover{
-    background-color: #e9e9e9;;
+    background-color: #e9e9e9;
 }
+/* Gray Color */
+#Light .total-price-in-cart{
+    background-color: #efefef;
+}
+
 /* Change background color and text color */
 #Light .user-options-windows{
     background-color: var(--light-theme-card-background);
@@ -107,12 +112,19 @@
 #Dark .product-right-panel,
 #Dark .product-specifications,
 #Dark .user-reviews-panel,
-#Dark .product-item{
+#Dark .product-item,
+#Dark .cart-checkout-pay-button,
+#Dark .buy-products-container,
+#Dark .cart-checkout{
     box-shadow: rgb(0 0 0) 0px 0px 10px -2px;
 }
 /* White Shadow */
 #Dark .color-variant-item{
     box-shadow: 0 1px 2px 1px #ffffff;
+}
+/* Light Shadow */
+#Dark .favorites-page-link{
+    box-shadow: rgb(0 0 0) 0px 0px 4px 0px;;
 }
 /* ---- Background color and text ---- */
 /* Main */
@@ -142,6 +154,10 @@
 #Dark ,
 #Dark .configuration-panel{
     background-color: var(--dark-theme-app-background);
+}
+/* Frames */
+#Dark .favorite-preview-window{
+    background-color: var(--dark-theme-button-background);
 }
 /* ---- Background color and box shadow ---- */
 /* Cards */
@@ -199,12 +215,20 @@
 #Dark .product-property-value,
 #Dark .reviews-title,
 #Dark .all-favorites-product-name,
-#Dark .input-box-style{
+#Dark .input-box-style,
+#Dark .cart-product-name,
+#Dark .unit-price-cart,
+#Dark .product-options-cart-text,
+#Dark .payment-method-title,
+#Dark .cart-checkout-pay-button,
+#Dark .total-price-in-cart label,
+#Dark .favorites-page-link{
     color: white;
 }
 /* Blue color */
 #Dark .logo-name label,
-#Dark .shipping-days{
+#Dark .shipping-days,
+#Dark .product-options-cart-text:hover{
     color: rgb(0 179 255);
 }
 /* Cyan color */

@@ -6,6 +6,7 @@ import { useEffect,useState } from "react"
 import '../css/favorites.css'
 import { useSelector,useDispatch } from "react-redux"
 import { setShowFavoritesPreview } from "../state/favorites/favoritesSlices"
+import { setConfigurationPanelState } from "../state/user/userSlices"
 
 export const FavoritesPreviewWindow = () => {
 
@@ -68,7 +69,7 @@ export const FavoritesPreviewWindow = () => {
                 }
                 {
                     favoriteProducts.length > 0
-                            ?   <Link style={{textDecoration:"none"}} to={"/favorites"}>
+                            ?   <Link onClick={ () => dispatch(setConfigurationPanelState("showFavorites"))} style={{textDecoration:"none"}} to={"/account"}>
                                     <div className="favorites-page-link">
                                         <div>Show more</div>
                                     </div>
