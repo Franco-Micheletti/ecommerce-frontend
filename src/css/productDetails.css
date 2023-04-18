@@ -360,7 +360,7 @@
 
     display: block;
     width: 100%;
-    max-width: 20rem;
+    max-width: 21.2rem;
     height: auto;
     border-radius: 5px;
     box-shadow: 0 1px 2px 1px #00000026;
@@ -573,21 +573,21 @@
 
 .product-details-name{
     
-    font-family: serif;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #2e2f32;
     font-weight: 700;
     line-height: 1.5;
     height: auto;
     width: 100%;
+    font-family: Bogle,Helvetica Neue,Helvetica,Arial,sans-serif;
 
 }
 
 .product-details-price{
 
     font-family: serif;
-    font-size: 26px;
-    color: rgb(104, 104, 104);
+    font-size: 31px;
+    color: #2e2f32;
     width: 100%;
     font-weight: bold;
 }
@@ -624,7 +624,8 @@
     .reviews-title{
         font-size: 18px;
     }
-    .user-review-container{
+    .user-review-container,
+    .reviews-container{
         margin-left: 0;
     }
     .product-image-big {
