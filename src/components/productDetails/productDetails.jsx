@@ -19,6 +19,7 @@ import { VariantsPanel } from "./childComponents/variantsPanel";
 import { ProductSpecifications } from "./childComponents/productSpecifications";
 import { UserReview } from "./childComponents/userReview";
 import { CreateReviewForm } from "./childComponents/createReviewForm";
+import { setBigImage } from "../../state/specificProduct/productsSlices";
 
 export const ProductDetails = () => {
 
@@ -33,6 +34,10 @@ export const ProductDetails = () => {
 
     useEffect( () => {
         document.title = productName;
+
+        return ( () => {
+            dispatch(setBigImage(null))
+        })
       }, []);
 
     useEffect(() => {

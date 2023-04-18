@@ -61,10 +61,12 @@ const Search = () => {
     const filtersApplied  = searchParams.get("filters" || "")
     const orderByList     = searchParams.get("orderBy" || "")
 
+    // Get user id 
     const userCredentials = store.getState().userCredentialsReducer
     if (Object.keys(userCredentials).length > 0) {
         var userId = jwt(userCredentials["jwt_access"])["user_id"]
     }
+    
     // Screen width
     let [screenWidth,setScreenWidth] = useState(window.innerWidth > 0 ? window.innerWidth : Screen.width)
     useEffect(() => {
@@ -274,9 +276,8 @@ const Search = () => {
                                     </div>
                                 </div>
 
-                            :  dataLoading === true
-                                    ? <TemplateSkeletonSearch />
-                                    : <div>NO PRODUCT FOUND</div>
+                            :  <TemplateSkeletonSearch />
+                                    
                     }
                 </div>
                 <Footer />

@@ -1,17 +1,35 @@
 
-.skeleton-filters-search{
+.skeleton-carousel-image{
+    width: 75vw;
+    height: 23vw;
+    max-height: 400px;
+    max-width: 1200px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 
-    height: 743px;
-    width: 250px;
-    margin-right: 40px;
-    margin-top: 40px;
-    border-radius: 10px;
+.skeleton-card-image{
+    width: 36vw;
+    height: 30vw;
+    max-height: 553px;
+    max-width: 700px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .skeleton-item{
 
     opacity: .7;
     animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-product-item{
+    width: 20vw;
+    height: 25vw;
+    max-height: 570px;
+    max-width: 326px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .skeleton-text-home{

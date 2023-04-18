@@ -81,7 +81,8 @@
 /* ---- Change text only ---- */
 #Light .privacy-policy-link,
 #Light .conditions-link,
-#Light .logo-name span{
+#Light .logo-name span,
+#Light .favorite-empty{
     color: rgb(0, 0, 0);
 }
 #Light .cart-message-container{
@@ -128,7 +129,8 @@
 }
 /* ---- Background color and text ---- */
 /* Main */
-#Dark .footer-container{
+#Dark .footer-container,
+#Dark .score-select{
     background-color: var(--dark-theme-app-background);
     color: white;
 }
@@ -222,7 +224,8 @@
 #Dark .payment-method-title,
 #Dark .cart-checkout-pay-button,
 #Dark .total-price-in-cart label,
-#Dark .favorites-page-link{
+#Dark .favorites-page-link,
+#Dark .favorite-empty{
     color: white;
 }
 /* Blue color */

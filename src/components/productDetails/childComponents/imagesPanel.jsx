@@ -24,7 +24,6 @@ export const ImagesPanel = ({productData}) => {
     }
 
     const handleClickSmallImage = (e,smallImageDefault) => {
-        console.log("clicked small image" )
         dispatch(setBigImage(smallImageDefault))
     }
 

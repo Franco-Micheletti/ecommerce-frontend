@@ -1,4 +1,48 @@
+.user-account-options-title{
 
+    font-weight: bold;
+    font-size: 20px;
+    font-family: sans-serif;
+    margin-bottom: 1rem;
+    color: #525151;
+}
+
+.user-account-remove-favorite-container{
+    border-left: 2px solid #dfdfdf;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.user-account-remove-favorite-container:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+.user-account-remove-favorite{
+    
+    width: -moz-fit-content;
+    width: fit-content;
+    height: auto;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    justify-items: center;
+}
+
+.user-account-remove-favorite svg{
+    width: 40px;
+    height: 40px;
+    fill: #7a7979;
+    
+}
+.user-account-remove-favorite:hover{
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
 
 .user-account-review-wrapper{
     border: 1px solid #d5d5d5;
@@ -75,11 +119,18 @@
 
 .all-favorites-product-item{
     box-shadow: rgba(0, 0, 0, 0.89) 0px 1px 5px -3px;
-    padding: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
 }
 
 .all-favorites-product-item a{
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
 }
 .all-favorites-product-image{
     width: 15.5%;
@@ -171,7 +222,7 @@
 
 .manage-account-page{
     display: flex;
-    width: 99vw;
+    width: 100vw;
     height: auto;
     min-height: 99vh;
 }
@@ -200,13 +251,17 @@
 .manage-account-options{
 
     display: inline-flex;
-    flex-direction: column;
     width: 25%;
+    height: 300px;
     background-color: var(--background-card);
     box-shadow: 0px 0 12px 0px #fff;
     z-index: 0;
     margin-left: 3rem;
-    margin-top:  4rem;
+    margin-top: 4rem;
+    position: sticky;
+    transition: all .2s ease-in-out;
+    flex-direction: column;
+    top: 100px;
 }
 
 .account-options-item{
@@ -285,6 +340,17 @@
 
 @media (min-width:280px) and (max-width:950px) {
     
+    .user-account-remove-favorite svg{
+        width: 20px;
+        height: 20px;
+    }
+    .all-favorites-product-image{
+        min-width: 100px;
+    }
+
+    .all-favorites-product-item{
+        width: 100%;
+    }
 
     .manage-account-options{
         display: inline-flex;
@@ -295,6 +361,7 @@
         width: 100%;
         padding: 0.3rem;
         margin-top: 0;
+        height: auto;
     }
 
     .manage-account-page{
@@ -323,6 +390,7 @@
     }
     .all-favorites-container{
         margin-left: 0;
+        width: 100%;
     }
     .all-favorites-name-image{
         flex-direction: column;

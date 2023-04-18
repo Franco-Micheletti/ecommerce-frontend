@@ -231,6 +231,7 @@
     padding-top: 30px;
     padding-bottom: 30px;
     padding-left: 20vw;
+    width: 75%;
 }
 
 .popular-product-item {
@@ -241,8 +242,6 @@
     background-color: #edeeef;
     border-radius: 15px;
     box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
-    margin-left: 10px;
-    
 }
 
 .popular-product-item:hover{
@@ -260,7 +259,10 @@
     scrollbar-width: none;
     transition: 0.3s all ease-in;
     scroll-behavior: smooth;
-    padding: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 4px;
+    padding-right: 8px;
 }
 
 .popular-products-home::-webkit-scrollbar {
@@ -345,19 +347,19 @@
 
 @media ( min-width: 1200px) and (max-width: 2400px ) { 
     .popular-products-home {
-        max-width: 945px;
+        max-width: 908px;
     }
 }
 
 @media ( min-width: 850px) and (max-width: 1200px ) { 
     .popular-products-home {
-        max-width: 705px;
+        max-width: 680px;
     }
 }
 
 @media ( min-width: 608px ) and ( max-width: 850px){ 
     .popular-products-home {
-        max-width: 465px;
+        max-width: 443px;
     }
     .cards-text{
         font-size: 18px;
@@ -365,6 +367,10 @@
 }
 
 @media ( min-width: 280px) and ( max-width: 608px) { 
+    .carousel-indicator,
+    .carousel-indicator-active{
+        width: 1rem;
+    }
     .popular-products-home {
         max-width: 218px;
     }
@@ -413,11 +419,6 @@
     .tvs-card,.home-card,.groceries-card{
         width:75%;
     }
-    .home-first{
-        flex-direction: column-reverse;
-        padding: 0;
-    }
-    
 }
 
 

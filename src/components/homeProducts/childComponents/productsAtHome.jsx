@@ -1,4 +1,4 @@
-import React,{useRef} from "react"
+import React,{useRef,useState,useEffect} from "react"
 import { removeProductFromUserFavorites,addProductToUserFavorites} from "../../../api/favoriteProduct"
 import { removeProductFromCart } from "../../cart/functions/removeProductFromCart"
 import { addProductToCart } from "../../cart/functions/addProductToCart"
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import jwt from "jwt-decode";
 import { store } from "../../../state/store"
+import { calculateScrolling } from "../functions/calculateScrolling"
 
 export const ProductsAtHome = ({products,type}) => {
 
@@ -21,12 +22,17 @@ export const ProductsAtHome = ({products,type}) => {
     const popularEnergyDrinks = useRef()
     const popularLaptops = useRef()
 
+    // Screen width
+    let [screenWidth,setScreenWidth] = useState(window.innerWidth > 0 ? window.innerWidth : Screen.width)
+    useEffect(() => {
+        setScreenWidth = window.innerWidth > 0 ? window.innerWidth : Screen.width
+    }, [])
+
     const handleScrollLeft = (container) => {
-        container.current.scrollLeft -= 226
-        
+        container.current.scrollLeft -= calculateScrolling(screenWidth)
     }
     const handleScrollRight = (container) => {
-        container.current.scrollLeft += 226
+        container.current.scrollLeft += calculateScrolling(screenWidth)
     }
 
     return (

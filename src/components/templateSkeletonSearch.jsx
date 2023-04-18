@@ -1,4 +1,6 @@
 import React from "react"
+import { useSelector } from "react-redux"
+
 // CSS IMPORTS
 import '../css/products.css'
 import '../css/search.css'
@@ -8,67 +10,34 @@ import '../css/skeleton.css'
 export const TemplateSkeletonSearch = () => {
 
     const screenWidth = window.innerWidth > 0 ? window.innerWidth : Screen.width;
-    if (screenWidth <= 425 ) {
-        var arr = [0,1,2,4]
-    } else if (screenWidth > 425 && screenWidth <= 1024) {
-        var arr = [0,1,2]
-    }
-    else if (screenWidth > 1024){
-        var arr = [0,1,2]
-    }
+    const showMobileFilterContainer = useSelector((store) => store.showMobileFilterContainerReducer)
+
     return (
-        <div className="body-container-search">
-            {
-                screenWidth > 769
-                ?   <div className="skeleton-item skeleton-filters-search">
-                        <div className="skeleton-item skeleton-text-search"></div>
-                        <div className="skeleton-item skeleton-text-search"></div>
-                        <div className="skeleton-item skeleton-text-search"></div>
-                        <div className="skeleton-item skeleton-text-search"></div>
-                        <div className="skeleton-item skeleton-text-search"></div>
-                        <div className="skeleton-item skeleton-text-search"></div>
-                        <div className="skeleton-item skeleton-text-search"></div>
-                        <div className="skeleton-item skeleton-text-search"></div>
-                    </div>
-                
-                :  <></>
-            }
-            
-            <div className="results">
-                <div className="results-container">
-                    <span className="title-results skeleton-item skeleton-text-search"></span>
-                    <div className="products-list-container">
-                        {
-                            [0,1,2,3,4,5].map( (num) => {   
-                                return (
-                                    <div>
-                                        
-                                            {   
-                                                arr.map( (num) => {   
-                                                    
-                                                    return(
-                                                        <div className="product-item">
-                                                            
-                                                            <div className="skeleton-item skeleton-image-search"></div>
-                                                            <div className="skeleton-item skeleton-text-search"></div>
-                                                            <div className="skeleton-item skeleton-text-search"></div>
-                                                            <div className="skeleton-item skeleton-text-search"></div>
-                                                            <div className="skeleton-item skeleton-text-search"></div>
-                                                            <div className="skeleton-item skeleton-text-search"></div>
-                                                        </div>
-                                                    ) 
-                                                })
-                                            }
-                                        </div>
-                                    
-                                )
-                                
-                            })
-                        }
+        <div className="body-search">
+            <div>
+                <div className="body-container-search">
+                    {
+                        screenWidth > 1240
+                            ?   <div className="skeleton-item filters-container"></div>
+                            :   <></>
+                    }
+                    <div className="results">
+                        <div className="results-container">
+                            <div className="skeleton-text-search"></div>
+                            <div className="products-list-container">
+                                {
+                                    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map( ()=> {
+                                        return (
+                                            <div className="skeleton-item skeleton-product-item"></div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
     )
 
 }
