@@ -56,6 +56,10 @@
 #Light .total-price-in-cart{
     background-color: #efefef;
 }
+/* Remove favorite product */
+#Light .user-account-remove-favorite:hover{
+    background-color: rgb(214, 214, 214);
+}
 
 /* Change background color and text color */
 #Light .user-options-windows{
@@ -94,9 +98,13 @@
 #Light .search-button{
     border: 1px solid #00000040;
 }
-/* Gray border */
+/* Gray bottom border */
 #Ligth .account-options-item{
     border-bottom: 0.1rem groove rgb(139, 139, 139);;
+}
+/* Gray left border */
+#Light .user-account-remove-favorite-container{
+    border-left: 1px solid #cdcdcd;
 }
 /* Fill only */
 #Light .svg-cart{
@@ -104,7 +112,6 @@
 }
 /* --------------------- DARK THEME ------------------ */
 /* ---- Box shadow only ---- */
-#Dark .manage-account-options,
 #Dark .user-account-mobile-navigate{
     box-shadow: var(--dark-theme-button-box-shadow);
 }
@@ -116,8 +123,11 @@
 #Dark .product-item,
 #Dark .cart-checkout-pay-button,
 #Dark .buy-products-container,
-#Dark .cart-checkout{
-    box-shadow: rgb(0 0 0) 0px 0px 10px -2px;
+#Dark .cart-checkout,
+#Dark .all-favorites-product-item,
+#Dark .manage-account-options,
+#Dark .user-account-review-item{
+    box-shadow: rgb(0 0 0) 0px 0px 5px 0px;
 }
 /* White Shadow */
 #Dark .color-variant-item{
@@ -160,6 +170,14 @@
 /* Frames */
 #Dark .favorite-preview-window{
     background-color: var(--dark-theme-button-background);
+}
+/* Special light-black color */
+#Dark .user-account-remove-favorite-container:hover{
+    background-color: rgb(72 72 72);
+}
+/* Remove favorite product */
+#Dark .user-account-remove-favorite:hover{
+    background-color: rgb(94, 94, 94);
 }
 /* ---- Background color and box shadow ---- */
 /* Cards */
@@ -225,7 +243,8 @@
 #Dark .cart-checkout-pay-button,
 #Dark .total-price-in-cart label,
 #Dark .favorites-page-link,
-#Dark .favorite-empty{
+#Dark .favorite-empty,
+#Dark .user-account-options-title{
     color: white;
 }
 /* Blue color */
@@ -246,10 +265,15 @@
 #Dark .applied-filter{
     border: 1px solid #ffffff;
 }
-/* Black Border */
+/* Black Bottom Border */
 #Dark .account-options-item{
     border-bottom: .1rem groove rgb(0 0 0)
 }
+/* Border black user account */
+#Dark .user-account-remove-favorite-container{
+    border-left: 2px solid #000000;
+}
+
 /* Background and fill */
 #Dark .horizontal-scroll-right,
 #Dark .horizontal-scroll-left,
@@ -268,7 +292,8 @@
 #Dark .svg-scroll-icon,
 #Dark .expand-filter-options-container svg,
 #Dark .user-account-svg-desktop,
-#Dark .applied-filter-remove-svg{
+#Dark .applied-filter-remove-svg,
+#Dark .user-account-remove-favorite svg{
     fill: white;
 }
 /* Black fill */

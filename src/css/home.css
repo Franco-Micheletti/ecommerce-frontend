@@ -100,7 +100,7 @@
     position: relative;
     top: 0.8rem;
     right: -11rem;
-    justify-content: end;
+    justify-content: flex-end;
     background-color: #edeeef;
     width: fit-content;
     border-radius: 50%;
