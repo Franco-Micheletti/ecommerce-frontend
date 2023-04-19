@@ -31,11 +31,9 @@ export const UserReview = ({review}) => {
         }
     },[updateReview])
 
-
-
     return ( 
         
-        <div className="user-review">
+        <div style={{boxShadow: updateReview ? "none" : "box-shadow: 0 1px 2px 1px #00000026"}} className="user-review">
             {   
                 updateReview && userData["id"] === review["user"]["id"]
                     ? <UpdateReviewForm reviewId={review["id"]}/>

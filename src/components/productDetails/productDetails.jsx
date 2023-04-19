@@ -20,6 +20,7 @@ import { ProductSpecifications } from "./childComponents/productSpecifications";
 import { UserReview } from "./childComponents/userReview";
 import { CreateReviewForm } from "./childComponents/createReviewForm";
 import { setBigImage } from "../../state/specificProduct/productsSlices";
+import { setUpdateReview } from "../../state/reviews/reviewsSlices";
 
 export const ProductDetails = () => {
 
@@ -37,6 +38,7 @@ export const ProductDetails = () => {
 
         return ( () => {
             dispatch(setBigImage(null))
+            dispatch(setUpdateReview(false))
         })
       }, []);
 

@@ -114,7 +114,6 @@
     display: inline-grid;
     align-items: center;
     justify-content: left;
-    padding-left: 20px;
 }
 
 .new-review-form input{
@@ -237,7 +236,7 @@
     justify-content: left;
     gap: 5px;
     box-shadow: 0 1px 2px 1px #00000026;
-    width: 72.5%;
+    width: 80%;
     padding: 20px;
     padding-bottom: 100px;
     background-color: var(--background-card);
@@ -258,9 +257,9 @@
     box-shadow: 0 1px 2px 1px #00000026;
     font-size: 15px;
     padding: 10px;
-    min-width: 180px;
-    max-width: 350px;
-    border-radius:8px;
+    width: 100%;
+    max-width: 340px;
+    border-radius: 8px;
     background-color: var(--background-card-2);
     color: var(--text-color-card-2);
 }
@@ -412,7 +411,7 @@
     display: inline-grid;
     justify-content: left;
     align-items: center;
-    width: 72.5%;
+    width: 80%;
     height: fit-content;
     padding: 20px;
     margin-top: 40px;
@@ -549,7 +548,7 @@
 
 .product-data-container{
 
-    width: 74.9%;
+    width: 80%;
     justify-content: center;
     align-items: center;
     display: inline-flex;
@@ -621,12 +620,20 @@
 }
 
 @media (min-width: 280px) and (max-width: 1070px){
+    .update-review-text-box{
+        width: 100%;
+        max-width: 180px;
+        min-width: 180px;
+    }
     .reviews-title{
         font-size: 18px;
     }
     .user-review-container,
     .reviews-container{
         margin-left: 0;
+        justify-content: left;
+        display: inline-flex;
+        width: 100%;
     }
     .product-image-big {
         min-width: 100px;
@@ -640,8 +647,12 @@
         min-width: 75%;
     }
     .product-right-panel{
-        width: 53%;
-        min-width: 93%;
+        width: 100%;
+        min-width: 98.0%;
+        margin-top: 1rem;
+        padding-right: 2.2rem;
+        max-width: none;
+        padding: 20px;
     }
     .product-details-name{
         width: 240px;
@@ -660,6 +671,7 @@
         flex-direction: column;
         height: fit-content;
         gap: 1px;
+        box-shadow: none;
     }
     .small-images-container{
         width: 100%;
@@ -713,8 +725,5 @@
     }
     .new-review-text-box{
         max-width: 200px
-    }
-    .product-data-container{
-        box-shadow: none;
     }
 }
