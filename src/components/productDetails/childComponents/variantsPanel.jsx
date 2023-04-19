@@ -50,7 +50,7 @@ export const VariantsPanel = ({productData,productName}) => {
                                                 if (property === "color"){
                                                     return (
                                                         <div onMouseOver={ () => handleMouseOverVariantValue(property,value)} onClick={()=> handleUpdateVariantOption(property,value)} className="color-variant-item">
-                                                            <img className="variant-color-image" src={require(`./../../../images/${productData["basic"]["generic_image_tag"]}-${value}-color.webp`)}></img>
+                                                            <img width={"48"} height={"48"} alt="variant-color-image" className="variant-color-image" src={require(`./../../../images/${productData["basic"]["generic_image_tag"]}-${value}-color.webp`)}></img>
                                                         </div>
                                                     )
                                                 } else {

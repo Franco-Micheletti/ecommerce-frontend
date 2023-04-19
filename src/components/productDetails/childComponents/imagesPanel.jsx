@@ -94,7 +94,10 @@ export const ImagesPanel = ({productData}) => {
                             imagesArray.map( (number) => {
 
                                 return (
-                                    <img key={number} 
+                                    <img width={"130"}
+                                         height={"130"}
+                                         alt="small-product-image" 
+                                         key={number} 
                                          onClick={(e) => handleClickSmallImage(e,`${productData["basic"]["product_image_tag"]}-${number}`)}
                                          onMouseOver = {(e) => handleMouseOver(e,`${productData["basic"]["product_image_tag"]}-${number}`)}
                                          onMouseOut  = {(e) => handleMouseOut(e)}  
@@ -109,21 +112,21 @@ export const ImagesPanel = ({productData}) => {
                         <button onClick={() => handleScrollDown()} id="scroll-down" className="scroll-down"><svg className="svg-scroll-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
                     </div>
                 </div>
-                <div ref={bigImageContainer} className="big-image-container">
+                <div alt="big-product-image" ref={bigImageContainer} className="big-image-container">
                     {
                         bigImage
-                            ?   <img onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${bigImage}.webp`)}></img>
-                            :   <img onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${productData["basic"]["product_image_tag"]}-1.webp`)}></img>
+                            ?   <img width={"600"} height={"600"}onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${bigImage}.webp`)}></img>
+                            :   <img width={"600"} height={"600"}onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${productData["basic"]["product_image_tag"]}-1.webp`)}></img>
                     }
                 </div>
             </div>
 
         :   <div className="product-images-panel">
-                <div ref={bigImageContainer} className="big-image-container">
+                <div alt="big-product-image" ref={bigImageContainer} className="big-image-container">
                 {
                     bigImage
-                        ?   <img onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${bigImage}.webp`)}></img>
-                        :   <img onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${productData["basic"]["product_image_tag"]}-1.webp`)}></img>
+                        ?   <img width={"600"} height={"600"} onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${bigImage}.webp`)}></img>
+                        :   <img width={"600"} height={"600"} onMouseLeave={handleMouseOutBigImage} onMouseMove={(e) => handleMouseMoveBigImage(e)} ref={bigImageElement} className="product-image-big" src={require(`./../../../images/${productData["basic"]["product_image_tag"]}-1.webp`)}></img>
                 }
                 </div>
                 <div  className="small-images-panel">

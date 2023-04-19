@@ -38,7 +38,7 @@ export const ProductsAtHome = ({products,type}) => {
     return (
         <div className="popular-products-wraper">
             <div>
-                <button id="scroll-left-1" onClick ={ () => handleScrollLeft(type === "cookies" ? popularcookies : type === "energy_drinks" ? popularEnergyDrinks : popularLaptops)} className="horizontal-scroll-left"><svg className="svg-scroll-icon-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                <button aria-label="scroll-left" id={`scroll-left-${type}`} onClick ={ () => handleScrollLeft(type === "cookies" ? popularcookies : type === "energy_drinks" ? popularEnergyDrinks : popularLaptops)} className="horizontal-scroll-left"><svg className="svg-scroll-icon-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
             </div>
             <div ref={type === "cookies" ? popularcookies : type === "energy_drinks" ? popularEnergyDrinks : popularLaptops } id="popular-cookies-snacks" className="popular-products-home">
                 {   products
@@ -59,7 +59,7 @@ export const ProductsAtHome = ({products,type}) => {
                                                     </div>
                                         }
                                         <Link to={`/${formatedName}/${id}`}>
-                                            <img className="home-product-image" src={require(`../../../images/${imageFile}-1.webp`)}></img>
+                                            <img alt="product-image-home" className="home-product-image" width={"176"} height={"176"} src={require(`../../../images/${imageFile}-1.webp`)}></img>
                                         </Link>
                                         {
                                         expandAddButton[product["id"]]
@@ -109,7 +109,7 @@ export const ProductsAtHome = ({products,type}) => {
                 }
             </div>
             <div>
-                <button id="scroll-right-1" onClick ={ () => handleScrollRight(type === "cookies" ? popularcookies : type === "energy_drinks" ? popularEnergyDrinks : popularLaptops)} className="horizontal-scroll-right"><svg className="svg-scroll-icon-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
+                <button aria-label="scroll-right" id={`scroll-right-${type}`} onClick ={ () => handleScrollRight(type === "cookies" ? popularcookies : type === "energy_drinks" ? popularEnergyDrinks : popularLaptops)} className="horizontal-scroll-right"><svg className="svg-scroll-icon-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2097B4"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg></button>
             </div>
         </div>
     )

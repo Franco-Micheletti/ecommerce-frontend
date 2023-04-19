@@ -6,19 +6,23 @@ const Footer =  () => {
     return (
 
         <div className="footer-container">
-            <div className="footer-info">
-                <div><a>Contact Us</a></div>
-                <div><a>Privacy Policy</a></div>
-                <div><a>Get information</a></div>
-                <div><a>Get your products at home</a></div>
+            <div className="footer-my-info">
+            <div className="footer-title">Author</div>
+                <div>Website created by Franco Micheletti, FullStack Developer</div>
+                <div className="footer-contact-me">
+                    <div>Contact me at</div>
+                    <a href="https://www.linkedin.com/in/franco-micheletti-62a9901b7/">
+                        <img width={"24"} height={"24"} alt="linkedin-contact" src={require(`../images/linkedin.webp`)}></img>
+                    </a>
+                </div>
             </div>
-            <div className="social-media-container">
-                <img className="social-media-icon" src={require(`../images/insta.png`)}></img>
-                <img className="social-media-icon" src={require(`../images/face.png`)}></img>
+            <div className="footer-disclaimer">
+                <div className="footer-title">Disclaimer</div>
+                <div>All the products you see in this website are not being sold by any user or company, most of the images are obtained from <a className="walmart-link" href="https://www.walmart.com/">Walmart's </a>website.</div>
+                <div>If u think any of the content displayed in this website breaks any rule, please contact me at LinkedIn and i will remove it immediately.</div>
             </div>
         </div>
     )
-    
 }
 
 export default Footer

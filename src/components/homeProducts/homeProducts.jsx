@@ -91,9 +91,9 @@ const HomeProducts = () => {
             <div className="body-home">
                 <div className="card-periodic-carousel-container">
                     <div ref={carouselHome} className="card-periodic-carousel">
-                        <img className="carousel-item-image" src={require(`../../images/kitchen.webp`)}></img>
-                        <img className="carousel-item-image" src={require(`../../images/outdoors.webp`)}></img>
-                        <img className="carousel-item-image" src={require(`../../images/living-room.webp`)}></img>
+                        <img alt="carousel-kitchen" className="carousel-item-image" width={"1200"} height={"400"} src={require(`../../images/kitchen.webp`)}></img>
+                        <img alt="carousel-outdoors" className="carousel-item-image" width={"1200"} height={"400"} src={require(`../../images/outdoors.webp`)}></img>
+                        <img alt="carousel-living-room" className="carousel-item-image" width={"1200"} height={"400"} src={require(`../../images/living-room.webp`)}></img>
                     </div>
                     <div className="carousel-indicators-container">
                         <div onClick={() => handleCarouselChange("kitchen",carouselHome)}     className={imageCarousel === "kitchen" ? "carousel-indicator-active" : "carousel-indicator"}></div>
@@ -103,22 +103,22 @@ const HomeProducts = () => {
                 </div>
                 <div className="home-first">
                     <div ref={groceriesCard} className="groceries-card">
-                        <img alt={"groceries-card"} className="groceries-card-image" src={require(`../../images/groceries.webp`)}></img>
+                        <img alt="groceries-card" className="groceries-card-image" width={"2085"} height={"1438"} src={require(`../../images/groceries.webp`)}></img>
                         <div className="cards-text">Every grocery you need, we have it !</div>
                     </div>
                     <NavigateProductTypes />
                 </div>
                 <div className="cards-container">
-                    <div style={{display:"flex"}} className="tv-audio-panel">
+                    <div style={{display: "flex",height: "auto"}} className="tv-audio-panel">
                         <div className="tvs-card">
-                            <img alt={"tvs-card"} className="tvs-card-image" src={require(`../../images/tvs.webp`)}></img>
+                            <img alt="tvs-card" className="tvs-card-image" width={"800"} height={"600"} src={require(`../../images/tvs.webp`)}></img>
                             <div className="cards-text">Get our new 4k TVs directly from our main store.</div>
                         </div>
                         <NavigateProductTypes />
                     </div>
-                    <div style={{display:"flex"}} className="home-panel">
+                    <div style={{display: "flex",height: "auto"}} className="home-panel">
                         <div className="home-card">
-                            <img alt={"home-card"} className="home-card-image" src={require(`../../images/home.webp`)}></img>
+                            <img alt="home-card" className="home-card-image" width={"800"} height={"600"} src={require(`../../images/home.webp`)}></img>
                             <div className="cards-text">Decorate your home with the best furnitures.</div>
                         </div>
                         <NavigateProductTypes />

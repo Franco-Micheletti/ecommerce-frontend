@@ -221,7 +221,7 @@
 
 .login-button {
 
-    background-color: rgb(34, 133, 199);
+    background-color: rgb(0 139 233);
     width: 88px;
     height: 35px;
     color: white;
@@ -230,8 +230,9 @@
     display: inline-flex;
     justify-content: center;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     font-family: serif;
+    font-weight: 600;
     padding: 5px;
 }
 

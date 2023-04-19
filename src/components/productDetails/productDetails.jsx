@@ -83,7 +83,7 @@ export const ProductDetails = () => {
                             <div className="product-data-container">
                                 
                                 <ImagesPanel productData = {productData}/>
-
+                
                                 <div className="product-right-panel">
                                     
                                     <BasicInfo     productData = {productData} expandAddButton = {expandAddButton}/>

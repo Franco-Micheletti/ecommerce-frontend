@@ -21,26 +21,26 @@ export const NavigateProductTypes = () => {
 
         <div className="home-navigate-product-types">
             <div onClick={()=> goToProductType("table")} className="navigate-product-type-home">
-                <img className="home-product-types-image" src={require(`../../../images/coffe-tables.webp`)}></img>
+                <img alt="navigate-tables" className="home-product-types-image" width={"300"} height={"300"} src={require(`../../../images/coffe-tables.webp`)}></img>
                 <label>Coffe Tables</label>
             </div>
             <div onClick={()=> goToProductType("laptop")} className="navigate-product-type-home">
-            <img className="home-product-types-image" src={require(`../../../images/laptops.webp`)}></img>
+            <img alt="navigate-laptops" className="home-product-types-image" width={"300"} height={"300"} src={require(`../../../images/laptops.webp`)}></img>
                 <label>Laptops</label>
             </div>
             <div onClick={()=> goToProductType("energy drink")} className="navigate-product-type-home">
-                <img className="home-product-types-image" src={require(`../../../images/energy-drinks.webp`)}></img>
+                <img alt="navigate-energy-drinks"className="home-product-types-image" width={"300"} height={"300"} src={require(`../../../images/energy-drinks.webp`)}></img>
                 <label>Energy Drinks</label>
             </div>
             <div onClick={()=> goToProductType("soda pop")} className="navigate-product-type-home">
-            <img className="home-product-types-image" src={require(`../../../images/sodas.webp`)}></img>
+                <img alt="navigate-sodas"className="home-product-types-image" width={"300"} height={"300"} src={require(`../../../images/sodas.webp`)}></img>
                 <label>Soda Pop</label>
             </div>
             <div onClick={()=> goToProductType("cookies")} className="navigate-product-type-home">
-                <img className="home-product-types-image" src={require(`../../../images/cookies.webp`)}></img>
+                <img alt="navigate-cookies"className="home-product-types-image" width={"300"} height={"300"} src={require(`../../../images/cookies.webp`)}></img>
                 <label>Cookies</label>
             </div>
-            <div style={{justifyContent:"center"}} onClick={()=> goToProductType("Cookies")}  className="navigate-product-type-home">
+            <div style={{justifyContent:"center"}} className="navigate-product-type-home">
                 <label>More</label>
             </div>
         </div>
