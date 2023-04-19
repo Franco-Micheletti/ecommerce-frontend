@@ -65,7 +65,6 @@
 .home-first{
     display: flex;
     gap: 40px;
-    padding: 40px;
     width: fit-content;
     justify-content: center;
     margin-bottom: 60px;
@@ -179,7 +178,7 @@
     padding: 2.5%;
     width: 95%;
     height: auto;
-    max-height: 56rem;
+    max-height: 74rem;
 }
 
 .cards-text{
