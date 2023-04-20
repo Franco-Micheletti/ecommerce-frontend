@@ -133,6 +133,7 @@
     justify-items: center;
     width: 23%;
     min-width: 300px;
+    max-height: 552px;
 }
 
 .no-results {

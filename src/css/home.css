@@ -129,7 +129,6 @@
     justify-content: left;
     width: -moz-fit-content;
     width: fit-content;
-    height: 21rem;
     max-height: 21rem;
 }
 
@@ -142,8 +141,7 @@
 
 .navigate-product-type-home, .navigate-tv-audio,.navigate-home-furnitures{
 
-    min-height: 3vh;
-    min-width: 3vw;
+    max-height: 2rem;
     height: auto;
     width: 16rem;
     background-color: rgb(248, 248, 248);
@@ -178,7 +176,7 @@
     padding: 2.5%;
     width: 95%;
     height: auto;
-    max-height: 74rem;
+    max-height: 82rem;
 }
 
 .cards-text{
@@ -409,6 +407,7 @@
         justify-content: center;
         padding: 0px;
         flex-wrap: wrap;
+        align-content: flex-start;
        
     }
     .title-popular-products-home{
