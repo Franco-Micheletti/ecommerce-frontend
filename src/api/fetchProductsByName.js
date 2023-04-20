@@ -66,7 +66,7 @@ export const fetchAndApplyFilter = (searchInput,page,appliedFilters,orderByList=
     })
     strList.splice(0,1)
     strList.forEach( (filter,index) => {
-        if (filter[0] === "min_price" || filter[0] === "max_price") {
+        if (filter[0] === "min" || filter[0] === "max") {
             if ( !json["price"]) {
                 json["price"] = {}
             }

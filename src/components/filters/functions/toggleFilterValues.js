@@ -7,18 +7,17 @@ export const toggleFilterValues = (filter,filtersNames) => {
                         : svgSymbol.style.transform = "rotate(180deg)"
     // Remove border
     const filterContainer = document.getElementById(filter)
-    
+
     filterContainer.style.borderBottom === "0.1px solid rgb(96, 96, 96)"
         ?filterContainer.style.borderBottom = "none" 
         :filterContainer.style.borderBottom = "0.1px solid rgb(96, 96, 96)"
     
     // Toggle hide or show filter attributes
-    Object.keys(filtersNames[filter]).map( (attrKey) => {
+    Object.keys(filtersNames[filter]).forEach( (attrKey) => {
         
         if (filter === "price") {
 
-            let attribute = document.getElementById(filter)
-
+            let attribute = document.getElementById(filter+"slider")
             attribute.style.display === "inline-grid"
                 ? attribute.style = "display: none"
                 : attribute.style = "display: inline-grid; margin-left: 5px;"
@@ -28,9 +27,7 @@ export const toggleFilterValues = (filter,filtersNames) => {
             let attribute = document.getElementById(filter+filtersNames[filter][attrKey])
             attribute.style.display === "inline-flex"
                 ? attribute.style = "display: none"
-                : attribute.style = "display: inline-flex; margin-left: 5px;"
-            
-                
+                : attribute.style = "display: inline-flex; margin-left: 5px;"   
         }
     })         
     }

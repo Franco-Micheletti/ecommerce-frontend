@@ -1,14 +1,11 @@
 import { store } from "../../../state/store"
-import { fetchAndApplyFilter } from "../../../api/fetchProductsByName"
-import { setProducts,addFilter,setUrlFiltersString } from "../../../state/products/productsSlices"
-import { Navigate } from "react-router-dom"
+import { addFilter,setUrlFiltersString } from "../../../state/products/productsSlices"
+import { history } from "../../../utilities/customHistoryObject"
+import { createSearchParams } from "react-router-dom"
 
-export  const addPriceFilter = async (e) => {
+export  const addPriceFilter = (e) => {
     if (e.button === 0) {
 
-        const priceSlider = document.getElementById("price")
-        priceSlider.removeEventListener("mouseup",addPriceFilter)
-        
         console.log("BUTTON RELEASED , FETCHING")
         console.log("PRECIO MINIMO: ",store.getState().minPriceValueReducer)
         console.log("PRECIO MAXIMO: ",store.getState().maxPriceValueReducer)
@@ -26,19 +23,13 @@ export  const addPriceFilter = async (e) => {
         const urlString = store.getState().urlFiltersStringReducer
         // Get search input
         const searchInput = store.getState().stringInputReducer
-        console.log(urlString)
-        const data = await fetchAndApplyFilter(searchInput,appliedFilters)
-        if (data) {
-            store.dispatch(setProducts(data["products"]))
-        }
 
-        Navigate(`/search=${searchInput}${urlString}`)
+        // Navigate
+        const params = { q: searchInput, page: '1',filters:urlString}
+        history.navigate({
+            pathname: '/search/',
+            search: `?${createSearchParams(params)}`,
+        })
     }   
 
-}
-export const addMouseUpEvent = () => {
-
-    const priceSlider = document.getElementById("price")
-    priceSlider.addEventListener("mouseup",addPriceFilter)
-    
 }

@@ -149,7 +149,7 @@ export const urlFiltersStringSlice = createSlice(
                     });
                 }
                 if ( filtersApplied["price"]) {
-                    state += "&"+"min_price="+filtersApplied["price"]["min_price"]+"&"+"max_price="+filtersApplied["price"]["max_price"]
+                    state += "&"+"min="+filtersApplied["price"]["min"]+"&"+"max="+filtersApplied["price"]["max"]
                 }
                 
                 return state

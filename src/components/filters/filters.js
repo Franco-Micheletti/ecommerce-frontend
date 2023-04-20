@@ -1,11 +1,10 @@
 import React,{useEffect,useRef} from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,createSearchParams } from "react-router-dom";
 import '../../css/filters.css'
 import { toggleFilterValues } from './functions/toggleFilterValues.js'
 import { createFilterData } from './functions/createFilterData.js'
 import { getStringInputFromLocalStorage } from "../navbar/functions/searchStringLocalStorage";
-import { addMouseUpEvent } from "./functions/addPriceFilter";
 import { fetchAndApplyFilter } from '../../api/fetchProductsByName'
 import { setProducts,setFilters,setUrlFiltersString,addFilter } from "../../state/products/productsSlices";
 import { setMaxPrice,setMinPriceValue,setMaxPriceValue } from "../../state/filters/filtersSlices";
@@ -13,10 +12,17 @@ import { store } from "../../state/store";
 import { AppliedFilters } from "../appliedFilters/appliedFilters";
 import { useSearchParams } from 'react-router-dom';
 import { setShowMobileFilterContainer } from "../../state/filters/filtersSlices";
+import { history } from "../../utilities/customHistoryObject";
+import { addPriceFilter } from "./functions/addPriceFilter";
 
 const Filters = (filters) => {
     
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    history.navigate = useNavigate();
+
+    const priceSlider = useRef()
     const [searchParams,setSearchParams] = useSearchParams()
     // Create object with values of each filter to be used by handleShowFilter function
     const filtersNames = createFilterData(filters)
@@ -25,6 +31,16 @@ const Filters = (filters) => {
     const minPriceValue = useSelector( (store) => store.minPriceValueReducer)
     const maxPriceValue = useSelector( (store) => store.maxPriceValueReducer)
     
+    useEffect(() => {
+        
+        priceSlider.current.addEventListener("mouseup",addPriceFilter)
+
+        return () => {
+            if (priceSlider.current !== null) {
+                priceSlider.current.removeEventListener("mouseup",addPriceFilter)
+            }
+        }
+    }, [])
     
     useEffect(() => {
         
@@ -54,7 +70,12 @@ const Filters = (filters) => {
         
         const searchInput  = searchParams.get("q" || "")
         
-        setSearchParams({ q:searchInput,page:1,filters:filterString})
+        // Navigate
+        const params = { q: searchInput, page: '1',filters:filterString}
+        navigate({
+            pathname: '/search/',
+            search: `?${createSearchParams(params)}`,
+        })
         
         for (let number = 0;number<filterOptionsLength;number++) {
             const otherButton = document.getElementById("label"+filterToApply["filter_name"]+number)
@@ -68,10 +89,9 @@ const Filters = (filters) => {
         } else {
             radioButtonLabel.style.backgroundColor = "#2a7dca"
         }
-       
-        
     }
 
+    
     
     return (
         
@@ -126,14 +146,14 @@ const Filters = (filters) => {
                                                     </div>
                                                 </div>
 
-                                            :   <div key={attribute} id={filter} className="price-range-container" style={{display: "None"}}>
+                                            :   <div ref={priceSlider} key={attribute} id={filter+"slider"} className="price-range-container" style={{display: "None"}}>
                                                     <label >${minPriceValue} - ${maxPriceValue} </label>
                                                     <div className="price-slider-container">
                                                         <label>Min</label>
                                                         <input 
                                                             className="price-slider-min" 
                                                             id="price-slider-min" 
-                                                            onClick={addMouseUpEvent}
+                                                            
                                                             onChange={ function (e) {dispatch(setMinPriceValue(e.target.value))} }
                                                             step={(Math.round(maxPrice,2)/50)} 
                                                             type="range" 
@@ -147,7 +167,7 @@ const Filters = (filters) => {
                                                         <input 
                                                             className="price-slider-max" 
                                                             id="price-slider-max"
-                                                            onClick={addMouseUpEvent}
+                                                            
                                                             onChange= { function (e) {dispatch(setMaxPriceValue(e.target.value))} }
                                                             step={(Math.round(maxPrice,2)/50)} 
                                                             type="range" 
