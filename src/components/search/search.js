@@ -1,5 +1,7 @@
 import React, { useEffect,useRef, useState} from "react";
 import jwt from "jwt-decode";
+// RESOURCES
+import { arrowUpSvg,arrowDownSvg } from "../../utilities/resources";
 // CSS IMPORTS
 import '../../css/home.css'
 import '../../css/userOptions.css' 
@@ -36,24 +38,25 @@ const Search = () => {
     const dataLoading         = useSelector((store) => store.dataLoadingReducer)
     const favoritesIconChange = useSelector((store) => store.favoritesIconChangeListReducer)
     const showMobileFilterContainer = useSelector((store) => store.showMobileFilterContainerReducer)
-    const [showSortWindow,setShowSortWindow] = useState()
+    const [showSortWindow,setShowSortWindow] = useState(false)
     // Use ref
-    const productListRef  = useRef()
-    const priceAsc        = useRef()
-    const priceDesc       = useRef()
-    const dateAsc         = useRef()
-    const dateDesc        = useRef()
-    const popularityAsc   = useRef()
-    const popularityDesc  = useRef()
-    const scoreAsc        = useRef()
-    const scoreDesc       = useRef()
-    const packAsc         = useRef()
-    const packDesc        = useRef()
-    const speedAsc        = useRef()
-    const speedDesc       = useRef()
+    const productListRef    = useRef()
+    const priceAsc          = useRef()
+    const priceDesc         = useRef()
+    const dateAsc           = useRef()
+    const dateDesc          = useRef()
+    const popularityAsc     = useRef()
+    const popularityDesc    = useRef()
+    const scoreAsc          = useRef()
+    const scoreDesc         = useRef()
+    const packAsc           = useRef()
+    const packDesc          = useRef()
+    const speedAsc          = useRef()
+    const speedDesc         = useRef()
+    const sortBackground    = useRef()
+    const filtersBackground = useRef()
+    const dispatch          = useDispatch()
 
-
-    const dispatch        = useDispatch()
     // Search params
     const [ searchParams,setSearchParams] = useSearchParams()
     const searchInput     = searchParams.get("q" || null)
@@ -71,6 +74,13 @@ const Search = () => {
     let [screenWidth,setScreenWidth] = useState(window.innerWidth > 0 ? window.innerWidth : Screen.width)
     useEffect(() => {
         setScreenWidth = window.innerWidth > 0 ? window.innerWidth : Screen.width
+    }, [])
+
+    useEffect(() => {
+      
+        return () => {
+            setShowSortWindow(false)
+        }
     }, [])
 
     useEffect(  () => {
@@ -100,15 +110,15 @@ const Search = () => {
         let orderByList = store.getState().orderByListReducer
         // Toggle add / remove from list
         if (orderByList.includes(orderByString) !== true) {
-            element.current.style.color = "#22C779"
+            element.current.style.backgroundColor = "#7ed0ec"
             dispatch(addOrderByToList(orderByString))
             // Remove alternate
             if (orderByList.includes(elementAlt.current.id) === true) {
-                elementAlt.current.style.color = "#000000"
+                elementAlt.current.style.backgroundColor = "#e9e8e8"
                 dispatch(removeOrderByFromList(elementAlt.current.id))
             } 
         } else {
-            element.current.style.color = "#000000"
+            element.current.style.backgroundColor = "#e9e8e8"
             dispatch(removeOrderByFromList(orderByString))
         }
         
@@ -116,22 +126,56 @@ const Search = () => {
         orderByList = store.getState().orderByListReducer
         const orderByListToString = orderByList.toString()
         
-        if (filtersApplied === null) {
-            setSearchParams({ q:searchInput,page:page,orderBy:orderByListToString})
+        if (filtersApplied === null || filtersApplied === "") {
+            if (orderByListToString.length > 0) {
+                setSearchParams({ q:searchInput,page:page,orderBy:orderByListToString})
+            } else {
+                setSearchParams({ q:searchInput,page:page})
+            }
         } else {
+            if (orderByListToString.length > 0) {
+                setSearchParams({ q:searchInput,page:page,filters:filtersApplied,orderBy:orderByListToString})
+            } else {
+                setSearchParams({ q:searchInput,page:page,filters:filtersApplied})
+            }
             
-            setSearchParams({ q:searchInput,page:page,filters:filtersApplied,orderBy:orderByListToString})
         }
         
 
     }
     
     
+    
+    const handleToggleSortWindow = () => {
+        console.log(showSortWindow)
+        if (showSortWindow === true) {
+            setShowSortWindow(false)
+            document.body.style.position = "static"
+        } else {
+            setShowSortWindow(true)
+            setTimeout(() => {
+                document.body.style.position = "fixed"
+                sortBackground.current.addEventListener("click",clickOutsideSort,{ once: true })
+            }, 10);
+            
+        }
+    }
+    
+    const clickOutsideSort = () => {
+        document.body.style.position = "static"
+        setShowSortWindow(false)
+    }                                                   
+    
     return (
         searchInput && page
             ?<div>
                 <Navbar />
                 <div className="body-search">
+                    {
+                        showSortWindow
+                            ?   <div ref={sortBackground} id="toggle-sort-black-background" className="toggle-sort-black-background"></div>
+                            :   <></>
+                    }
                     {
                         products && filters && pagesList
                             
@@ -142,7 +186,7 @@ const Search = () => {
                                             screenWidth > 1240
                                                 ?   <></>
                                                 :   showMobileFilterContainer
-                                                        ?   <div id="toggle-filter-black-background" className="toggle-filter-black-background"></div>
+                                                        ?   <div ref={filtersBackground} id="toggle-filter-black-background" className="toggle-filter-black-background"></div>
                                                         :   <></>
                                             
                                         }
@@ -152,7 +196,6 @@ const Search = () => {
                                                 :   showMobileFilterContainer
                                                         ?   <Filters filters={filters} />
                                                         :   <></>
-                                            
                                         }
                                         <div className="results">
                                             <div className="results-container">
@@ -161,43 +204,54 @@ const Search = () => {
                                                         <svg viewBox="0 0 24 24" focusable="false" style={{pointeEvents: "none",display: "block",width: "100%",height: "100%"}}><g><path d="M21,6H3V5h18V6z M21,11H3v1h18V11z M21,17H3v1h18V17z"></path></g></svg>
                                                     </button>
                                                     <span className="title-results"><h4>Results for:</h4><label>"{ searchInput }" ( {totalResults} )</label></span>
-                                                    <div onClick={showSortWindow ? () => setShowSortWindow(false) : () => setShowSortWindow(true)} className="order-by-container">
+                                                    <div onClick={handleToggleSortWindow} className="order-by-container">
                                                         <label>Sort by</label>
-                                                        <svg style={{rotate: showSortWindow ? "180deg" : "0deg" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
-                                                        
-                                                        <div style={{visibility: showSortWindow ? "visible" : "hidden"}} className="order-by-options-list">
+                                                        <svg className="toggle-show-sort" style={{rotate: showSortWindow ? "180deg" : "0deg" }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
+                                                    </div>
+                                                    <div style={{visibility: showSortWindow ? "visible" : "hidden"}} className="order-by-options-list">
                                                             <div id="order-by-price" className="order-by-option">
-                                                                <div id={"price"} ref={priceAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("price",priceAsc,priceDesc) } >↑</div>
-                                                                <div id={"-price"} ref={priceDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-price",priceDesc,priceAsc)  } >↓</div>
+                                                                <div id={"price"} ref={priceAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("price",priceAsc,priceDesc) } >
+                                                                    {arrowUpSvg}
+                                                                </div>
+                                                                <div id={"-price"} ref={priceDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-price",priceDesc,priceAsc)  } >
+                                                                    {arrowDownSvg}
+                                                                </div>
                                                                 <label>Price</label>
                                                             </div>
                                                             <div id="order-by-datetime" className="order-by-option">
-                                                                <div id={"date"}  ref={dateAsc} className="toggle-sort-button"  onClick={() => handleSelectOrderBy("date",dateAsc,dateDesc) }> ↑</div>
-                                                                <div id={"-date"} ref={dateDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-date",dateDesc,dateAsc)  }> ↓</div>
+                                                                <div id={"date"}  ref={dateAsc} className="toggle-sort-button"  onClick={() => handleSelectOrderBy("date",dateAsc,dateDesc) }>
+                                                                    {arrowUpSvg}</div>
+                                                                <div id={"-date"} ref={dateDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-date",dateDesc,dateAsc)  }>
+                                                                    {arrowDownSvg}</div>
                                                                 <label>Date</label>
                                                             </div>
                                                             <div id="order-by-popularity" className="order-by-option">
-                                                                <div id={"popularity"}  ref={popularityAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("popularity",popularityAsc,popularityDesc) }>↑</div>
-                                                                <div id={"-popularity"}  ref={popularityDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-popularity",popularityDesc,popularityAsc) }>↓</div>
+                                                                <div id={"popularity"}  ref={popularityAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("popularity",popularityAsc,popularityDesc) }>{arrowUpSvg}</div>
+                                                                <div id={"-popularity"}  ref={popularityDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-popularity",popularityDesc,popularityAsc) }>{arrowDownSvg}</div>
                                                                 <label>Popularity</label>
                                                             </div>
                                                             <div id="order-by-score" className="order-by-option">
-                                                                <div id={"score"}  ref={scoreAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("score",scoreAsc,scoreDesc) }>↑</div>
-                                                                <div id={"-score"}  ref={scoreDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-score",scoreDesc,scoreAsc) }>↓</div>
+                                                                <div id={"score"}  ref={scoreAsc} className="toggle-sort-button"   onClick={() => handleSelectOrderBy("score",scoreAsc,scoreDesc) }>
+                                                                    {arrowUpSvg}</div>
+                                                                <div id={"-score"}  ref={scoreDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-score",scoreDesc,scoreAsc) }>
+                                                                    {arrowDownSvg}</div>
                                                                 <label>Customer Review</label>
                                                             </div>
                                                             <div id="order-by-pack" className="order-by-option">
-                                                                <div id={"pack"}  ref={packAsc}   className="toggle-sort-button" onClick={() => handleSelectOrderBy("pack",packAsc,packDesc) }>↑</div>
-                                                                <div id={"-pack"}  ref={packDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-pack",packDesc,packAsc) }>↓</div>
+                                                                <div id={"pack"}  ref={packAsc}   className="toggle-sort-button" onClick={() => handleSelectOrderBy("pack",packAsc,packDesc) }>
+                                                                    {arrowUpSvg}</div>
+                                                                <div id={"-pack"}  ref={packDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-pack",packDesc,packAsc) }>
+                                                                    {arrowDownSvg}</div>
                                                                 <label>Pack #</label>
                                                             </div>
                                                             <div id="order-by-speed" className="order-by-option">
-                                                                <div id={"speed"}  ref={speedAsc}   className="toggle-sort-button" onClick={() => handleSelectOrderBy("speed",speedAsc,speedDesc) }>↑</div>
-                                                                <div id={"-speed"}  ref={speedDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-speed",speedDesc,speedAsc) }>↓</div>
+                                                                <div id={"speed"}  ref={speedAsc}   className="toggle-sort-button" onClick={() => handleSelectOrderBy("speed",speedAsc,speedDesc) }>
+                                                                    {arrowUpSvg}</div>
+                                                                <div id={"-speed"}  ref={speedDesc} className="toggle-sort-button" onClick={() => handleSelectOrderBy("-speed",speedDesc,speedAsc) }>
+                                                                    {arrowDownSvg}</div>
                                                                 <label>Speed</label>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                 </div>
                                                 <div ref={productListRef} className="products-list-container">
                                                 {
@@ -268,9 +322,7 @@ const Search = () => {
                                                 )
                                                 } ))
                                             
-                                            :  pagesList.length === 1
-                                                ? <div className="page-item-container">{1}</div>
-                                                : <></>
+                                            :   <></>
                                                 
                                     }
                                     </div>

@@ -42,7 +42,12 @@ export const appliedFiltersLocalStorage = (key,remove,filter=null) => {
                 }
                 
             } else {
-                delete appliedFilters[key][filter["filter_name"]]
+                if (filter["filter_name"] === "price") {
+                    delete appliedFilters[filter["filter_name"]]
+                } else {
+                    delete appliedFilters[key][filter["filter_name"]]
+                }
+                
                 window.localStorage.setItem("applied_filters",JSON.stringify(appliedFilters))
             }
         }   // If key doesn't exist in local storage we create it and then we add the filter

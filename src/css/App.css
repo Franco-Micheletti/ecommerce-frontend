@@ -165,7 +165,8 @@
 #Dark .cart-message-container,
 #Dark .user-account-review-info,
 #Dark .product-item,
-#Dark .filters-container{
+#Dark .filters-container,
+#Dark .order-by-options-list{
     background-color: var(--dark-theme-card-background);
 }
 /* Main */
@@ -254,7 +255,8 @@
 #Dark .total-price-in-cart label,
 #Dark .favorites-page-link,
 #Dark .favorite-empty,
-#Dark .user-account-options-title{
+#Dark .user-account-options-title,
+#Dark .order-by-option label{
     color: white;
 }
 /* Blue color */

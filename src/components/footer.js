@@ -10,7 +10,7 @@ const Footer =  () => {
             <div className="footer-title">Author</div>
                 <div>Website created by Franco Micheletti, FullStack Developer</div>
                 <div>Project duration: 18/02/2023 - 20/04/2023</div>
-                <div>This a e-commerce project i made with React and Django Rest Framework</div>
+                <div>This is a e-commerce project i made with React.js and Django Rest Framework.</div>
                 <div className="footer-contact-me">
                     <div>Contact me at</div>
                     <a href="https://www.linkedin.com/in/franco-micheletti-62a9901b7/">

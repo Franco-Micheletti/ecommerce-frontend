@@ -14,6 +14,7 @@ import { useSearchParams } from 'react-router-dom';
 import { setShowMobileFilterContainer } from "../../state/filters/filtersSlices";
 import { history } from "../../utilities/customHistoryObject";
 import { addPriceFilter } from "./functions/addPriceFilter";
+import { removeAppliedFilter } from "../appliedFilters/functions/removeAppliedFilter";
 
 const Filters = (filters) => {
     
@@ -58,38 +59,45 @@ const Filters = (filters) => {
     },[filters])
     
     const handleFilterClick = (filterToApply,toggleActiveId,filterOptionsLength) => {
-
-        // Set body back to static
-        document.body.style.position = "static"
-        // Add filter to the filters applied list
-        dispatch(addFilter(filterToApply))
-        const appliedFilters = store.getState().appliedFiltersReducer
-        
-        dispatch(setUrlFiltersString(appliedFilters))
-        const filterString = store.getState().urlFiltersStringReducer
-        
-        const searchInput  = searchParams.get("q" || "")
-        
-        // Navigate
-        const params = { q: searchInput, page: '1',filters:filterString}
-        navigate({
-            pathname: '/search/',
-            search: `?${createSearchParams(params)}`,
-        })
-        
-        for (let number = 0;number<filterOptionsLength;number++) {
-            const otherButton = document.getElementById("label"+filterToApply["filter_name"]+number)
-            otherButton.style.backgroundColor = "transparent"
-            
-        }
-        
-        const radioButtonLabel = document.getElementById(toggleActiveId)
-        if (radioButtonLabel.style.backgroundColor === "#2a7dca") {
-            radioButtonLabel.style.backgroundColor = "transparent"
+        // Check if the same filter already exist, if so remove it
+        const appliedFiltersList = store.getState().appliedFiltersReducer
+        if (
+             appliedFiltersList.hasOwnProperty("properties") && 
+             appliedFiltersList["properties"].hasOwnProperty(filterToApply["filter_name"]) === true && 
+             filterToApply["filter_value"] === appliedFiltersList["properties"][filterToApply["filter_name"]]
+            ) {
+                removeAppliedFilter(filterToApply,filtersNames,filters)
         } else {
-            radioButtonLabel.style.backgroundColor = "#2a7dca"
+            // Set body back to static
+            document.body.style.position = "static"
+            // Add filter to the filters applied list
+            dispatch(addFilter(filterToApply))
+            const appliedFilters = store.getState().appliedFiltersReducer
+            dispatch(setUrlFiltersString(appliedFilters))
+            const filterString = store.getState().urlFiltersStringReducer
+            const searchInput  = searchParams.get("q" || "")
+            // Navigate
+            const params = { q: searchInput, page: '1',filters:filterString}
+            navigate({
+                pathname: '/search/',
+                search: `?${createSearchParams(params)}`,
+            })
+            
+            for (let number = 0;number<filterOptionsLength;number++) {
+                const otherButton = document.getElementById("label"+filterToApply["filter_name"]+number)
+                otherButton.style.backgroundColor = "transparent"
+                
+            }
+            
+            const radioButtonLabel = document.getElementById(toggleActiveId)
+            if (radioButtonLabel.style.backgroundColor === "#2a7dca") {
+                radioButtonLabel.style.backgroundColor = "transparent"
+            } else {
+                radioButtonLabel.style.backgroundColor = "#2a7dca"
+            }
         }
     }
+        
 
     
     
@@ -153,7 +161,6 @@ const Filters = (filters) => {
                                                         <input 
                                                             className="price-slider-min" 
                                                             id="price-slider-min" 
-                                                            
                                                             onChange={ function (e) {dispatch(setMinPriceValue(e.target.value))} }
                                                             step={(Math.round(maxPrice,2)/50)} 
                                                             type="range" 
@@ -167,7 +174,6 @@ const Filters = (filters) => {
                                                         <input 
                                                             className="price-slider-max" 
                                                             id="price-slider-max"
-                                                            
                                                             onChange= { function (e) {dispatch(setMaxPriceValue(e.target.value))} }
                                                             step={(Math.round(maxPrice,2)/50)} 
                                                             type="range" 

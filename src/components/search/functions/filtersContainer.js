@@ -30,8 +30,7 @@ export const toggleFiltersContainer = () => {
             filtersContainer.style.marginLeft = "auto"
             blackBackground.style.opacity = 0.50
             blackBackground.style.position = "absolute"
-            blackBackground.addEventListener("click",() => clickOutsideContainer(),false)
-            blackBackground.removeEventListener("click",() => clickOutsideContainer(),false)
+            blackBackground.addEventListener("click",clickOutsideContainer,{once:true})
         }, 50);
         
     }

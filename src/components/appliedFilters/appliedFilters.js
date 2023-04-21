@@ -1,51 +1,18 @@
 import React,{ useRef,createRef,useEffect } from "react"
 // Redux
 import { store } from "../../state/store"
-import { removeFilter,setUrlFiltersString } from "../../state/products/productsSlices";
 // Filters
 import '../../css/filters.css'
 // Functions
-import { handleMouseOverFilter } from "./functions/handleMouseOverFilter"
-import { handleMouseOutOfFilter } from "./functions/handleMouseOutOfFilter"
 import { createFilterData } from '../filters/functions/createFilterData'
-import { toggleFilterValues}  from "../filters/functions/toggleFilterValues";
+import { removeAppliedFilter } from "./functions/removeAppliedFilter";
 // Router
-import {useNavigate,createSearchParams} from "react-router-dom"
 
 export const AppliedFilters = (filters) => {
 
     const appliedFilters      = store.getState().appliedFiltersReducer
-    const navigate            = useNavigate()
     const filtersNames        = createFilterData(filters)
 
-    const removeAppliedFilter = (filterToRemove) => {
-
-        // Update applied filters
-        store.dispatch(removeFilter(filterToRemove))
-        const appliedFilters = store.getState().appliedFiltersReducer
-        // Update url
-        store.dispatch(setUrlFiltersString(appliedFilters))
-        const filterString   = store.getState().urlFiltersStringReducer
-        // Get search input
-        const searchInput = store.getState().stringInputReducer
-        // Navigate
-        const params = { q: searchInput, page: '1',filters:filterString};
-        navigate({
-            pathname: '/search/',
-            search: `?${createSearchParams(params)}`,
-        });
-        // Remove old filter selected css
-        const filterName = filterToRemove["filter_name"]
-        const propertiesValues = Object.keys(filters["filters"][filterName]).length
-        
-        for (let number = 0;number<propertiesValues;number++) {
-            const otherButton = document.getElementById("label"+filterName+number)
-            otherButton.style.backgroundColor = "transparent"
-        }
-
-        toggleFilterValues(filterName,filtersNames)
-
-    }
     return (
         
         <div className="applied-filters-wraper">
@@ -56,7 +23,7 @@ export const AppliedFilters = (filters) => {
             {   
                 appliedFilters["price"]
                     ?   appliedFilters["price"]["min"] || appliedFilters["price"]["max"] 
-                            ?   <div onClick={()=> removeAppliedFilter({"filter_name":"price"})} style={{backgroundColor:"transparent"}} className="applied-filter">
+                            ?   <div onClick={()=> removeAppliedFilter({"filter_name":"price"},filtersNames,filters)} style={{backgroundColor:"transparent"}} className="applied-filter">
                                     <div>${appliedFilters["price"]["min"]}</div>
                                     <div>-</div>
                                     <div>{appliedFilters["price"]["max"]}</div>
@@ -75,7 +42,7 @@ export const AppliedFilters = (filters) => {
                         
                         return (
                             
-                            <div onClick={()=> removeAppliedFilter(filterToRemove)} style={{backgroundColor:"transparent"}} className="applied-filter">
+                            <div onClick={()=> removeAppliedFilter(filterToRemove,filtersNames,filters)} style={{backgroundColor:"transparent"}} className="applied-filter">
                                 <div className="applied-filter-container">
                                     <div className="filter-option-name-value-container">
                                         <div>{optionName}</div>

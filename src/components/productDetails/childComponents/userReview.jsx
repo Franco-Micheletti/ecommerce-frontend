@@ -40,7 +40,7 @@ export const UserReview = ({review}) => {
                     
                     :   <div>
                             <div className="review-user-info-container">
-                                <img width={"48"} height={"48"} alt="user-review-profile-image" className="user-profile-image" src={require(`../../../images/${review["user"]["profile_image_tag"]}.webp`)}></img>
+                                <img width={"30"} height={"30"} alt="user-review-profile-image" className="user-profile-image" src={require(`../../../images/${review["user"]["profile_image_tag"]}.webp`)}></img>
                                 {review["user"]["username"]}
                                 <div className="review-date">{review["date"].split("-").reverse().join("/")}</div>
                             </div>
