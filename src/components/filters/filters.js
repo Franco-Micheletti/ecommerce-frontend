@@ -27,6 +27,8 @@ const Filters = (filters) => {
     const [searchParams,setSearchParams] = useSearchParams()
     // Create object with values of each filter to be used by handleShowFilter function
     const filtersNames = createFilterData(filters)
+    // Get appliedFilters
+    const appliedFilters = store.getState().appliedFiltersReducer
     // Price Range States
     const maxPrice      = useSelector( (store) => store.maxPriceFilterReducer)
     const minPriceValue = useSelector( (store) => store.minPriceValueReducer)
@@ -52,7 +54,7 @@ const Filters = (filters) => {
 
         return(
             () => {
-                dispatch(setShowMobileFilterContainer(false))
+                // dispatch(setShowMobileFilterContainer(false))
                 document.body.style.position = "static"
             }
         )
@@ -116,11 +118,18 @@ const Filters = (filters) => {
                             const filterTitle = filter.charAt(0).toUpperCase()+filter.slice(1).replaceAll("_"," ")
                             const maxPriceValue = store.getState().maxPriceValueReducer
                             return (
-                                <>  
-                                    <div key={filter} id={filter} style={{borderBottom:"0.1px solid rgb(96, 96, 96)"}} className="filter-container">
+                                <div key={filterIndex} >
+                                    <div key={filterIndex} 
+                                         id={filter} 
+                                         className="filter-container"
+                                         style={{
+                                                borderBottom: appliedFilters["properties"] && appliedFilters["properties"].hasOwnProperty(filter) ? "none" : "0.1px solid rgb(96, 96, 96)"}}>
+                                        
                                         <div className="filters-title">{filterTitle}</div>
                                         <div id={filter+"toggle"} onClick={() => toggleFilterValues(filter,filtersNames)} className="expand-filter-options-container"> 
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
+                                            <svg 
+                                            style={{rotate: appliedFilters["properties"] && appliedFilters["properties"].hasOwnProperty(filter) ? "180deg" : "none"}}
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgb(56 60 75);"><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"></path></svg>
                                         </div>
                                     </div>
                                     <div className="transition-inline">
@@ -132,8 +141,12 @@ const Filters = (filters) => {
                                         
                                         return(
                                             filter !== "price"
-
-                                            ?  <div key={attribute} id={filter+attribute} className="filter-items" style={{display:"None"}}>
+                                            
+                                            ?  <div key={attribute+keyIndex} id={filter+attribute} className="filter-items" style={{
+                                                                                                                                    display: appliedFilters["properties"] && appliedFilters["properties"].hasOwnProperty(filter) ? "inline-flex" : "none",
+                                                                                                                                    marginLeft: appliedFilters["properties"] && appliedFilters["properties"].hasOwnProperty(filter) ? "inline-flex" : "none"
+                                                                                                                                    }}>
+                                                    
                                                     <div style={{display:"inline-flex",width:"40px"}}>
                                                         <div>
                                                             <input 
@@ -145,7 +158,11 @@ const Filters = (filters) => {
                                                                 value={filter+attribute}></input>
                                                         </div>
                                                         <div style={{display:"inline-flex"}}>
-                                                            <label id={"label"+filter+keyIndex} className="custom-radio-button" htmlFor={"radio"+filter+attribute}></label>
+                                                            <label id={"label"+filter+keyIndex} className="custom-radio-button" htmlFor={"radio"+filter+attribute} 
+                                                            style={{
+                                                                backgroundColor: appliedFilters["properties"] && appliedFilters["properties"].hasOwnProperty(filter) && appliedFilters["properties"][filter] === attribute ? "#2a7dca" : "transparent"
+                                                            }}>
+                                                            </label>
                                                         </div>
                                                     </div>
                                                     <div className="space-between">
@@ -154,7 +171,7 @@ const Filters = (filters) => {
                                                     </div>
                                                 </div>
 
-                                            :   <div ref={priceSlider} key={attribute} id={filter+"slider"} className="price-range-container" style={{display: "None"}}>
+                                            :   <div key={attribute+keyIndex} ref={priceSlider} id={filter+"slider"} className="price-range-container" style={{display: "None"}}>
                                                     <label >${minPriceValue} - ${maxPriceValue} </label>
                                                     <div className="price-slider-container">
                                                         <label>Min</label>
@@ -188,7 +205,7 @@ const Filters = (filters) => {
                                     
                                     }
                                     </div>
-                                </>
+                                </div>
                             )
                             }))
                         :(<></>)

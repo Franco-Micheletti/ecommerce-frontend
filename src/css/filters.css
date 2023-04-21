@@ -170,20 +170,18 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
-    overflow: hidden;
     background-color: white;
     
 }
 
 .filters-features-container {
 
-    
-    height: 680px;
+    height: 548px;
     width: 80%;
     gap: 3px;
     margin: auto;
     margin-bottom: 20px;
-    overflow-y: scroll;
+    overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     transition: all .3s ease-in-out;
@@ -219,7 +217,7 @@
     background-color: transparent;
     border-width: 0;
     align-items: center;
-    display: inline-flex;
+    /* display: inline-flex; */
 }
 
 .filter-options-container {
@@ -306,8 +304,8 @@
     transition-property: opacity;
     transform: translateZ(0);
     opacity: 0;
-    background-color: #1e1e1e;
-    transition: 0.3s ease-in-out;
+    background-color: #00000087;
+    transition: 0.3s ease-out;
 }
 
 @media(max-width:2460px) {

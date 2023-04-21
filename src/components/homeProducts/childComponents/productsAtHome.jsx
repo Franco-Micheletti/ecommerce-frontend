@@ -42,13 +42,13 @@ export const ProductsAtHome = ({products,type}) => {
             </div>
             <div ref={type === "cookies" ? popularcookies : type === "energy_drinks" ? popularEnergyDrinks : popularLaptops } id="popular-cookies-snacks" className="popular-products-home">
                 {   products
-                        ?   products.map( (product) => {   
+                        ?   products.map( (product,index) => {   
                                 
                                 const imageFile = product["product_image_tag"]
                                 const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
                                 const id = product["id"]
                                 return (
-                                    <div className="popular-product-item">
+                                    <div key={index} className="popular-product-item">
                                         {
                                             favoritesIconChange.includes(product["id"]) === true
                                                 ?   <div onClick={() => removeProductFromUserFavorites(product["id"],userId)} className="to-favorite-icon-home-added">

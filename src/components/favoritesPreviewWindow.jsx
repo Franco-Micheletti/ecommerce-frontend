@@ -39,10 +39,10 @@ export const FavoritesPreviewWindow = () => {
             <div className="favorite-preview-wraper">
                 { 
                     favoriteProducts
-                        ? favoriteProducts?.slice(0,5).map( (product) => {
+                        ? favoriteProducts?.slice(0,5).map( (product,index) => {
                                 return (
                                     
-                                    <div className="favorite-product-item">
+                                    <div key={index} className="favorite-product-item">
                                         <img className="favorite-product-image" src={require(`../images/${product["product_image_tag"]}-1.webp`)}></img>
                                         {   
                                         screenWidth < 480

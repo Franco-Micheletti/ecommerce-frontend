@@ -8,7 +8,6 @@ import { ProductDetails } from './components/productDetails/productDetails'
 import { PersistLogin } from './components/persistLogin'
 import { Register } from './components/register/register'
 import { ActivateAccount } from './components/activateAccount'
-import { Favorites } from './components/favorites'
 import { store } from './state/store'
 import { useSelector } from 'react-redux'
 
@@ -22,11 +21,10 @@ function App() {
         <Route path='/'element = {<PersistLogin />}>
           <Route index exact       element = {<Home />}    />
           <Route path ="/search/"  element = {<Search />}  />
-          <Route path ="/register" element = {<Register />}    />
+          <Route path ="/register" element = {<Register />} />
           <Route path ='/cart'     element = {<Cart />}    />
-          <Route path='/account'   element = {<UserAccount />}    />
-          <Route path='/activate'  element = {<ActivateAccount />}    />
-          <Route path='/favorites' element = {<Favorites />}    />
+          <Route path='/account'   element = {<UserAccount />} />
+          <Route path='/activate'  element = {<ActivateAccount />} />
           <Route exact path ='/:productName/:productId' element = {<ProductDetails />} />
           <Route path = '*' element = {<h1 style={{textAlign: "center"}}>404 Not Found</h1>} />
         </Route>  

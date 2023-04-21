@@ -14,7 +14,7 @@
     position: absolute;
     border-radius: 5px;
     top: 70px;
-    right: 0;
+    right: 10px;
     box-shadow: rgb(0 0 0 / 90%) 0px 0px 5px -2px;
     display: inline-flex;
     justify-content: center;

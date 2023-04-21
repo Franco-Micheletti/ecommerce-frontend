@@ -10,8 +10,8 @@
     transform: translateZ(0);
     z-index: 6;
     opacity: 1;
-    background-color: #00000087;;
-    transition: 0.3s ease-in-out;
+    background-color: #00000087;
+    transition: 0.3s ease-out;
 }
 
 .order-by-container label {

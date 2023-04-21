@@ -1,6 +1,5 @@
 export const toggleFilterValues = (filter,filtersNames) => {
     
-    console.log(filter)
     // Rotate svg
     const svgSymbol = document.getElementById(filter+"toggle")
     svgSymbol.style.transform

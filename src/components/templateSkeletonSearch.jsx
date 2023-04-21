@@ -26,9 +26,9 @@ export const TemplateSkeletonSearch = () => {
                             <div className="skeleton-text-search"></div>
                             <div className="products-list-container">
                                 {
-                                    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map( ()=> {
+                                    [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20].map( (num,index)=> {
                                         return (
-                                            <div className="skeleton-item skeleton-product-item"></div>
+                                            <div key={index} className="skeleton-item skeleton-product-item"></div>
                                         )
                                     })
                                 }

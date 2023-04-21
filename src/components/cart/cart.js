@@ -93,7 +93,7 @@ const Cart = () => {
                                                                 const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
                                                                 const id = product["id"]
                                                                 return(
-                                                                        <div className="product-info-item-cart">
+                                                                        <div key={index} className="product-info-item-cart">
                                                                             <div className="product-data-container-cart">
                                                                                 <Link to={`/${formatedName}/${id}`}>
                                                                                     <div className="product-name-image-container">

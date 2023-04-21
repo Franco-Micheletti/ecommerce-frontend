@@ -11,7 +11,6 @@ export const ActivateAccount = () => {
             <div className="activate-container">
                 <div className="activate-message-container">
                     <div>Registration Complete!</div>
-                    <div>Please check your email and click the link we have sent to activate your account.</div>
                 </div>
             </div>
             <Footer />

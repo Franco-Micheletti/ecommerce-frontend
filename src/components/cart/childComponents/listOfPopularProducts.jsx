@@ -35,13 +35,13 @@ export const ListOfPopularProducts = ({popularProducts}) => {
             <div ref={popProdElement} id="popular-cookies-snacks" className="popular-products-home">
                 
                 { 
-                    popularProducts?.map( (product) => {
+                    popularProducts?.map( (product,index) => {
                         {   
                             const imageFile = product["product_image_tag"]
                             const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
                             const id = product["id"]
                             return (
-                                <div className="popular-product-item">
+                                <div key={index} className="popular-product-item">
                                     {
                                         favoritesIconChange.includes(product["id"]) === true
                                             ?   <div onClick={() => removeProductFromUserFavorites(product["id"],userId)} className="to-favorite-icon-home-added">

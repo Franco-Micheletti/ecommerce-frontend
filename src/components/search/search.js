@@ -147,7 +147,6 @@ const Search = () => {
     
     
     const handleToggleSortWindow = () => {
-        console.log(showSortWindow)
         if (showSortWindow === true) {
             setShowSortWindow(false)
             document.body.style.position = "static"
@@ -173,7 +172,7 @@ const Search = () => {
                 <div className="body-search">
                     {
                         showSortWindow
-                            ?   <div ref={sortBackground} id="toggle-sort-black-background" className="toggle-sort-black-background"></div>
+                            ?   <div style={{visibility: showSortWindow ? "visible" : "hidden",opacity: 0.5}} ref={sortBackground} id="toggle-sort-black-background" className="toggle-sort-black-background"></div>
                             :   <></>
                     }
                     {
@@ -183,11 +182,9 @@ const Search = () => {
                                     <div className="body-container-search">
                                         
                                         {   
-                                            screenWidth > 1240
-                                                ?   <></>
-                                                :   showMobileFilterContainer
-                                                        ?   <div ref={filtersBackground} id="toggle-filter-black-background" className="toggle-filter-black-background"></div>
-                                                        :   <></>
+                                            screenWidth < 1240
+                                                ?   <div style={{visibility: showMobileFilterContainer ? "visible" : "hidden"}} ref={filtersBackground} id="toggle-filter-black-background" className="toggle-filter-black-background"></div>
+                                                :   <></>     
                                             
                                         }
                                         {
@@ -257,13 +254,13 @@ const Search = () => {
                                                 {
                                                     products.length >= 1
 
-                                                        ?  products.map( (product) =>  
+                                                        ?  products.map( (product,index) =>  
                                                                 {   
                                                                     const imageFile    = product["product_image_tag"]
                                                                     const formatedName = product["product_name"].replaceAll(" ","-").toLowerCase()
                                                                     const id = product["id"]
                                                                     return (
-                                                                    <div className="product-item">
+                                                                    <div key={index} className="product-item">
                                                                         {   
                                                                         favoritesIconChange.includes(product["id"]) === true
                                                                             ?   <div onClick={() => removeProductFromUserFavorites(product["id"],userId)} className="to-favorite-icon-added">

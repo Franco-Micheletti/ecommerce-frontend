@@ -16,9 +16,9 @@ export const TemplateSkeletonHome = () => {
                 <div className="skeleton-item skeleton-card-image"></div>
                 <div className="home-navigate-product-types">
                     {
-                        [0,1,2,3,4,5].map( () => {
+                        [0,1,2,3,4,5].map( (num,index) => {
                             return (
-                                <div className="navigate-product-type-home">
+                                <div key={index} className="navigate-product-type-home">
                                     <div className="skeleton-item home-product-types-image"></div>
                                     <label className="skeleton-text-home"></label>
                                 </div>
@@ -31,9 +31,9 @@ export const TemplateSkeletonHome = () => {
                 <div className="skeleton-item skeleton-card-image"></div>
                 <div className="home-navigate-product-types">
                     {
-                        [0,1,2,3,4,5].map( () => {
+                        [0,1,2,3,4,5].map( (num,index) => {
                             return (
-                                <div className="navigate-product-type-home">
+                                <div key={index} className="navigate-product-type-home">
                                     <div className="skeleton-item home-product-types-image"></div>
                                     <label className="skeleton-text-home"></label>
                                 </div>
@@ -46,9 +46,9 @@ export const TemplateSkeletonHome = () => {
                 <div className="skeleton-item skeleton-card-image"></div>
                 <div className="home-navigate-product-types">
                     {
-                        [0,1,2,3,4,5].map( () => {
+                        [0,1,2,3,4,5].map( (num,index) => {
                             return (
-                                <div className="navigate-product-type-home">
+                                <div key={index}className="navigate-product-type-home">
                                     <div className="skeleton-item home-product-types-image"></div>
                                     <label className="skeleton-text-home"></label>
                                 </div>
