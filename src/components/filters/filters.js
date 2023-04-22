@@ -24,7 +24,8 @@ const Filters = (filters) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     history.navigate = useNavigate();
-    const priceSlider = useRef()
+    const priceSliderMin = useRef()
+    const priceSliderMax = useRef()
     // Create object with values of each filter to be used by handleShowFilter function
     const filtersNames = createFilterData(filters)
     // Get appliedFilters
@@ -34,21 +35,21 @@ const Filters = (filters) => {
     const minPriceValue = useSelector( (store) => store.minPriceValueReducer)
     const maxPriceValue = useSelector( (store) => store.maxPriceValueReducer)
 
-    // Screen width
-    let [screenWidth,setScreenWidth] = useState(window.innerWidth > 0 ? window.innerWidth : Screen.width)
-    useEffect(() => {
-        setScreenWidth = window.innerWidth > 0 ? window.innerWidth : Screen.width
-    }, [])
-
     useEffect(() => {
         
-        priceSlider.current.addEventListener("mouseup",addPriceFilter)
-        priceSlider.current.addEventListener("touchend",addPriceFilterMobile)
+        priceSliderMin.current.addEventListener("mouseup",addPriceFilter)
+        priceSliderMax.current.addEventListener("mouseup",addPriceFilter)
+        priceSliderMin.current.addEventListener("touchend",addPriceFilterMobile)
+        priceSliderMax.current.addEventListener("touchend",addPriceFilterMobile)
 
         return () => {
-            if (priceSlider.current !== null) {
-                priceSlider.current.removeEventListener("mouseup",addPriceFilter)
-                priceSlider.current.addEventListener("touchend",addPriceFilterMobile)
+            if (priceSliderMin.current !== null && priceSliderMax.current !== null) {
+                // Desktop
+                priceSliderMin.current.removeEventListener("mouseup",addPriceFilter)
+                priceSliderMax.current.removeEventListener("mouseup",addPriceFilter)
+                // Mobile
+                priceSliderMin.current.addEventListener("touchend",addPriceFilterMobile)
+                priceSliderMax.current.addEventListener("touchend",addPriceFilterMobile)
             }
         }
     }, [])
@@ -141,7 +142,6 @@ const Filters = (filters) => {
                                                 </div>
 
                                             :   <div key={attribute+keyIndex} 
-                                                     ref={priceSlider} 
                                                      id={filter+"slider"} 
                                                      className="price-range-container" 
                                                      style={{
@@ -151,7 +151,8 @@ const Filters = (filters) => {
                                                     <label >${minPriceValue} - ${maxPriceValue} </label>
                                                     <div className="price-slider-container">
                                                         <label>Min</label>
-                                                        <input 
+                                                        <input
+                                                            ref={priceSliderMin} 
                                                             className="price-slider-min" 
                                                             id="price-slider-min" 
                                                             onChange={ function (e) {dispatch(setMinPriceValue(e.target.value))} }
@@ -164,7 +165,8 @@ const Filters = (filters) => {
                                                     </div>
                                                     <div className="price-slider-container">
                                                         <label>Max</label>
-                                                        <input 
+                                                        <input
+                                                            ref={priceSliderMax} 
                                                             className="price-slider-max" 
                                                             id="price-slider-max"
                                                             onChange= { function (e) {dispatch(setMaxPriceValue(e.target.value))} }
