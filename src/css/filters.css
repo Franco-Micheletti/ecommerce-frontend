@@ -181,9 +181,6 @@
     gap: 3px;
     margin: auto;
     margin-bottom: 20px;
-    overflow: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     transition: all .3s ease-in-out;
     
 }
@@ -273,8 +270,8 @@
 }
 
 .price-slider-min, .price-slider-max {
-    width: auto;
-    height: auto;
+    width: 165px;
+    height: 20px;
 }
 
 .price-range-container  {

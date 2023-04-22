@@ -4,8 +4,8 @@ import { history }  from "../../../utilities/customHistoryObject"
 import { toggleFilterValues } from "../../filters/functions/toggleFilterValues"
 import { createSearchParams } from "react-router-dom";
 
-export const removeAppliedFilter = (filterToRemove,filtersNames,filters) => {
-
+export const removeAppliedFilter = (filterToRemove) => {
+    
     // Update applied filters
     store.dispatch(removeFilter(filterToRemove))
     const appliedFilters = store.getState().appliedFiltersReducer
@@ -25,15 +25,5 @@ export const removeAppliedFilter = (filterToRemove,filtersNames,filters) => {
         pathname: '/search/',
         search: `?${createSearchParams(params)}`,
     });
-    // Remove old filter selected css
-    const filterName = filterToRemove["filter_name"]
-    const propertiesValues = Object.keys(filters["filters"][filterName]).length
-    
-    for (let number = 0;number<propertiesValues;number++) {
-        const otherButton = document.getElementById("label"+filterName+number)
-        otherButton.style.backgroundColor = "transparent"
-    }
-
-    toggleFilterValues(filterName,filtersNames)
 
 }

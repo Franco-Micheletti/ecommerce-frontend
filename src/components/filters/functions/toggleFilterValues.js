@@ -2,9 +2,11 @@ export const toggleFilterValues = (filter,filtersNames) => {
     
     // Rotate svg
     const svgSymbol = document.getElementById(filter+"toggle")
-    svgSymbol.style.transform
-                        ? svgSymbol.style = ""
-                        : svgSymbol.style.transform = "rotate(180deg)"
+    if (svgSymbol.style.transform) {
+        svgSymbol.style.transform === "none"
+                ?   svgSymbol.style.transform = "rotate(180deg)"
+                :   svgSymbol.style.transform = "none"
+    }
     // Remove border
     const filterContainer = document.getElementById(filter)
 
