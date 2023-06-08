@@ -185,6 +185,7 @@
     .button-title-results-wraper{
         padding: 4px;
         justify-content: center;
+        gap: 10px;
     }
     .title-results{
         font-size: 13px;
